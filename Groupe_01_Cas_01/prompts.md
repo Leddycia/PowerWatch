@@ -15,7 +15,7 @@
 - **Relecture préalable** : relu et validé par le membre de R3 et le membre de R4 le 2026-10-18 à 13:03.
 - **Commit avant délégation** : `b170333` (`docs(r4): prompt RMTCEV final, avant délégation`, C-08).
 
-**Note de R6 sur le mode de session et la réponse brute (O-13)** : l'archive de la réponse brute (`travail/brut/delegation_reponse_brute.md`, conservée dans le dépôt du projet, hors livrable) décrit dans son en-tête une « Nouvelle conversation web temporaire » ; le texte brut reçu qu'elle conserve (à partir de sa l. 9) commence directement par `<!DOCTYPE html>`, sans les marques Markdown d'un bloc de code ni texte autour. Le 2026-10-18, le membre de R4 a confirmé à R6 une nouvelle conversation, et non une conversation temporaire : le mode « nouvelle conversation » indiqué ci-dessus est donc le bon, et la mention « temporaire » de l'en-tête de l'archive est inexacte (E-34). Pour la réponse, la confirmation porte sur le bloc HTML ; elle ne précise pas si des marques ```html ou un texte l'entouraient : l'archive en conserve le code HTML. L'archive n'est pas modifiée, car elle reste telle qu'elle a été commitée avec `version_IA.html`, qui est identique à son code HTML (contrôle `git diff --no-index --ignore-cr-at-eol` vide).
+**Note de R6 sur le mode de session et la réponse brute (O-13)** : l'archive de la réponse brute (`travail/brut/delegation_reponse_brute.md`, conservée dans le dépôt du projet, hors livrable) décrit dans son en-tête une « Nouvelle conversation web temporaire » ; le texte brut reçu qu'elle conserve (à partir de sa l. 9) commence directement par `<!DOCTYPE html>`, sans les marques Markdown d'un bloc de code ni texte autour. Le 2026-10-18, le membre de R4 a confirmé à R6 une nouvelle conversation, et non une conversation temporaire : le mode « nouvelle conversation » indiqué ci-dessus est donc le bon, et la mention « temporaire » de l'en-tête de l'archive est inexacte (E-34). Le membre de R4 a aussi indiqué, le même jour, qu'un texte entourait le bloc HTML reçu, alors que le prompt demandait le fichier HTML seul, sans texte d'introduction ni de conclusion (§1.2) : l'IA déléguée n'a donc pas respecté le format de réponse demandé, et l'archive ne conserve que le code HTML, pas la réponse complète (E-36, §3). L'archive n'est pas modifiée, car elle reste telle qu'elle a été commitée avec `version_IA.html`, qui est identique à son code HTML (contrôle `git diff --no-index --ignore-cr-at-eol` vide).
 
 ### 1.2 Texte exact du prompt RMTCEV envoyé
 
@@ -566,6 +566,13 @@ Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de co
 - **Pourquoi c'était incorrect** : le prototype doit être un seul fichier HTML sans aucune ressource externe (C-10, C-11, RG-05) et fonctionner sans Internet (B-16) ; le mode sombre est hors du Sprint 01 (RG-04) ; une page commerciale n'a aucun rapport avec un outil interne du collège. Appliquée, la police en ligne aurait fait échouer le contrôle « aucune ressource externe ».
 - **Correction** : proposition rejetée. Seconde recherche plus ciblée, puis direction proposée par l'IA et validée par un membre de l'équipe : fond clair, une seule couleur vive (ambre), polices déjà présentes sur l'ordinateur (Bahnschrift, Segoe UI) avec polices de repli.
 - **Vérification** : recherche des URL, de `url(`, de `src=` et de `<link` dans `index.html` : aucune occurrence ; pendant la vérification, une seule requête, le fichier local lui-même.
+
+### E-36 : Texte autour du bloc HTML, malgré le format de réponse demandé (`version_IA.html`)
+
+- **Proposition produite** : la réponse de ChatGPT (GPT-4o) à la délégation du Sprint 01 entourait le bloc HTML d'un texte (indication du membre de R4, transmise à R6 le 2026-10-18).
+- **Pourquoi c'était incorrect** : le prompt envoyé demandait « uniquement le fichier HTML complet, dans un seul bloc de code HTML […], sans aucun texte d'introduction ni de conclusion, sans explication » (§1.2, « Format de réponse »).
+- **Correction** : seul le code HTML a été repris, tel quel, dans `version_IA.html` (C-09) ; le texte autour n'a pas été utilisé. L'archive de la réponse brute ne conserve que ce code : le texte d'origine n'a pas été gardé, et son contenu n'est pas connu.
+- **Vérification** : `version_IA.html` est identique au code HTML de l'archive (`git diff --no-index --ignore-cr-at-eol` vide) ; la réponse complète non conservée est consignée comme écart de procédure (E-36).
 
 ---
 

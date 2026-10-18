@@ -465,3 +465,29 @@
 - **Ce qu'il a produit** : README (colonne `version_IA.html` de CA-01.03, CA-01.08 et CA-01.10, paragraphe « Trois preuves de `version_IA.html` retirées »), plan de test §3 (rectificatif et colonne « Capture »), E-35, K15 de l'audit R6, ETAT §8.
 - **Ce que l'humain a vérifié ou corrigé** : décision de suppression et motif, donnés par Leddycia ; motif reporté dans E-35 et, en bref, dans le README.
 - **Candidat pour `prompts.md`** : non.
+
+### JP-35 : Prompt de mise au courant pour Gervais
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 19:42 (première heure lue après l'envoi)
+- **Prompt (texte exact)** :
+  > Cree un prompt pour que Gervais puisse etre au courant de tout ca
+- **Contexte** : après la sauvegarde du relais de 19:39 ; Gervais doit lancer son prompt de contre-audit (JP-33), puis faire le test depuis le Drive.
+- **Ce qu'il a produit** : page privée claude.ai « Feuille de route de Gervais » : état du projet au commit de la sauvegarde, étapes dans l'ordre, complément à coller après le prompt de contre-audit (faits déjà connus, points en attente de la passation, test depuis le Drive), modèle de compte rendu du test ; contre-vérifiée en lecture seule avant publication.
+- **Ce que l'humain a vérifié ou corrigé** : à venir : transmission de la page à Gervais par Leddycia.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-36 : Texte autour du bloc HTML reçu par le membre de R4 (O-13)
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 19:42 puis 19:45 (premières heures lues après chaque envoi)
+- **Prompt (texte exact)** :
+  > n texte entouraient le bloc HTML que Bradley a reçu
+  >
+  > Un texte entouraient le bloc HTML que Bradley a reçu.
+- **Contexte** : réponse à la question de R6 sur O-13 (marques ```html ou texte autour du bloc reçu). Le premier message, tronqué, n'a pas été pris comme réponse ; le second le complète.
+- **Ce qu'il a produit** : E-36 ; `prompts.md` §1.1 (note O-13) et §3 (E-36) ; E-34 précisé ; O-13 clos ; point 5 du complément pour Gervais mis à jour.
+- **Ce que l'humain a vérifié ou corrigé** : information du membre de R4, transmise par Leddycia.
+- **Candidat pour `prompts.md`** : non.

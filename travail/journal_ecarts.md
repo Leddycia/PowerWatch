@@ -463,7 +463,7 @@
 - **Référence** : D-09, C-08, `AGENTS.md` §12, O-13
 - **Gravité** : mineur (aucun effet sur `version_IA.html`, identique au code HTML de l'archive)
 - **Décision** : corrigé (dans `prompts.md` seulement)
-- **Raison** : le membre de R4 a confirmé une nouvelle conversation, et non une conversation temporaire, ainsi que le bloc HTML reçu en réponse (confirmation transmise par Leddycia à 18:44, JP-32) ; `prompts.md` §1.1 était donc juste, et l'en-tête de l'archive est inexact. Pour la réponse, la confirmation porte sur le bloc HTML ; elle ne précise pas si des marques ```html ou un texte l'entouraient : l'archive en conserve le code HTML.
+- **Raison** : le membre de R4 a confirmé une nouvelle conversation, et non une conversation temporaire, ainsi que le bloc HTML reçu en réponse (confirmation transmise par Leddycia à 18:44, JP-32) ; `prompts.md` §1.1 était donc juste, et l'en-tête de l'archive est inexact. Pour la réponse, la confirmation portait sur le bloc HTML ; le membre de R4 a précisé ensuite qu'un texte l'entourait (E-36).
 - **Correction** : `prompts.md` §1.1 : la note d'audit de R6 est remplacée par une note qui clôt O-13 et signale l'inexactitude. L'archive n'est pas modifiée : elle a été commitée avec `version_IA.html` (`624003a`, tag `version-ia`) et sert de preuve de l'extraction.
 - **Vérifié après correction** : oui, par l'IA assistante de la reprise (extraction de l'archive comparée à `version_IA.html` par `git diff --no-index --ignore-cr-at-eol` : aucune différence ; `git log` de l'archive : seul `624003a`)
 
@@ -479,3 +479,16 @@
 - **Raison** : suppression voulue, confirmée par Leddycia à 19:20, motif donné à 19:38 (JP-34) : photos de l'écran prises de biais, et non de vraies captures : peu lisibles et peu professionnelles pour le livrable.
 - **Correction** : les trois fichiers ont été supprimés du dossier `captures/` à 19:13, hors de la session de l'IA assistante (51 captures suivies avant, 48 après) ; README : colonne `version_IA.html` des trois CA remplacée par « Aucune (photo retirée, voir sous le tableau) » et paragraphe d'explication ; plan de test §3 : rectificatif et mention dans la colonne « Capture », sans réécrire les observations de R5. Les photos restent dans l'historique du dépôt (`370abc6`, puis `b797c0c` pour les versions recadrée et masquée).
 - **Vérifié après correction** : oui, par l'IA assistante de la reprise (53 liens du README, tous vers des fichiers présents ; 48 captures, toutes liées ; chaque CA du Sprint 01 et Test-P04 garde une capture d'`index.html`)
+
+### E-36 : Texte autour du bloc HTML et réponse complète non conservée (O-13)
+
+- **Date / relais / membre** : 2026-10-18 / R6 (reprise) / Leddycia
+- **Source** : réponse de l'IA déléguée (ChatGPT, GPT-4o, nouvelle conversation web) à la délégation du Sprint 01 ; archive `travail/brut/delegation_reponse_brute.md`, rédigée au relais R4 (`624003a`)
+- **Observé** : selon le membre de R4 (transmis par Leddycia à 19:45, JP-36), un texte entourait le bloc HTML reçu. L'archive ne conserve que le code HTML (l. 9 à 1116), sans ce texte.
+- **Attendu** : une réponse limitée au fichier HTML dans un seul bloc de code, « sans aucun texte d'introduction ni de conclusion » (prompt envoyé, `prompts.md` §1.2) ; la réponse brute complète conservée par copier-coller intégral (fiche 03, tâche de délégation ; DoD de `version_IA.html`, `AGENTS.md` §12).
+- **Référence** : C-08, C-09, C-21, D-09, `AGENTS.md` §12, O-13
+- **Gravité** : mineur (aucun effet sur `version_IA.html`, identique au code HTML reçu ; la réponse complète, elle, n'est pas conservée)
+- **Décision** : rejeté (texte autour non repris dans `version_IA.html`) ; conservation de la réponse complète : non corrigée à ce stade
+- **Raison** : C-09 demande la première sortie brute du prototype, c'est-à-dire le fichier HTML ; le texte autour n'en fait pas partie. Le texte d'origine n'a pas été gardé : il ne peut pas être reconstitué, et l'archive commitée avec `version_IA.html` n'est pas modifiée.
+- **Correction** : `prompts.md` §1.1 (note O-13) et §3 complétés ; E-34 précisé ; O-13 clos. Retrouver la réponse complète dans la conversation du membre de R4, pour l'ajouter dans un nouveau fichier de `travail/brut/` sans toucher à l'archive, reste à décider par l'équipe (ETAT §8, points ouverts).
+- **Vérifié après correction** : oui, par l'IA assistante de la reprise (format demandé relu dans `prompts.md` §1.2, l. 511 ; archive relue : le texte reçu commence à `<!DOCTYPE html>` et finit à `</html>`)
