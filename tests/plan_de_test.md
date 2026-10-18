@@ -60,7 +60,7 @@
 2. **Exécution des tests** :
    - Tester d'abord `Groupe_01_Cas_01/prototype/version_IA.html` (sans jamais modifier ce fichier).
    - Noter chaque écart constaté dans `travail/journal_ecarts.md`.
-   - Créer ensuite `Groupe_01_Cas_01/prototype/index.html` en appliquant les corrections nécessaires pour satisfaire 100% des critères du plan de test.
+   - Seulement si des écarts sont constatés sur les CA du Sprint 01, les règles du client ou les consignes (fiche 04) : créer ensuite `Groupe_01_Cas_01/prototype/index.html` en appliquant les corrections nécessaires pour satisfaire 100% des critères du plan de test. Si `version_IA.html` est conforme (C-09), ne pas créer `index.html` : l'écrire dans `ETAT_PROJET.md`, et R6 le mentionne dans le README (fiche 04 ; rectifié au complément de R4, E-28).
 3. **Prise des captures** :
    - Effectuer les captures d'écran de la page sous `index.html` (ou `version_IA.html` si conforme) en veillant à la lisibilité des chiffres et mentions attendus.
    - Enregistrer chaque capture au format PNG dans `Groupe_01_Cas_01/captures/` avec son nommage exact défini dans le tableau ci-dessus.
