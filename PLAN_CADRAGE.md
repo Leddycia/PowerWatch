@@ -269,7 +269,7 @@ Chaque membre audite ainsi au moins un livrable qu'il n'a pas écrit, ce qui pr�
 | **R3** | G3 | CDC : chaque exigence est-elle reliée à un B-xx ? Rien n'est-il inventé ? Les points à décider sont-ils reportés ? | `product_backlog.md` : 8 US avec leurs CA (chiffrés pour le Sprint 01), MoSCoW, ordre, Sprint 01 | `02_product_owner.md` |
 | **R4** | G4 | Backlog : les CA sont-ils vérifiables ? Le Sprint 01 compte-t-il bien 3 US ? | Prompt RMTCEV, écrit dans `prompts.md` §1 et commité avant la délégation ; exécution unique **en session vierge** ; `version_IA.html` commité et tagué (tag annoté `version-ia`) ; `tests/plan_de_test.md` et fixtures | `03_prompt_engineer.md` |
 | **R5** | G5 | `version_IA.html` : passe complète de la matrice de tests (oracle, fuseau Haïti, hors ligne, hash) | `journal_ecarts.md`, corrections dans `index.html`, nouvelle passe de tests, **captures** de la version finale | `04_developpeur.md` et `05_verificateur.md` |
-| **R6** | G6 et G7 | `index.html` : nouvelle passe rapide des CA ; cohérence globale des livrables | README (statuts et preuves), finalisation de `prompts.md` (2 ou 3 prompts et corrections), `fiche_contribution.pdf`, copie sur le Drive, **test sur un autre PC**, fiche de soutenance | `06_finalisation_soutenance.md` |
+| **R6** | G6 et G7 | `index.html` : nouvelle passe rapide des CA ; cohérence globale des livrables | README (statuts et preuves), finalisation de `prompts.md` (2 ou 3 prompts et corrections), `fiche_contribution.pdf`, remise prête dans le dépôt, téléversée sur le Drive par Leddycia (D-13), **test sur un autre PC**, fiche de soutenance | `06_finalisation_soutenance.md` |
 
 > Si un relais déborde, il **passe quand même la main à l'heure prévue** : il indique dans `ETAT_PROJET.md` ce qui reste à faire, et le relais suivant le reprend en priorité. Le Sprint 02, facultatif, n'est envisagé que si G7 est assuré.
 >
@@ -287,18 +287,12 @@ Chaque membre audite ainsi au moins un livrable qu'il n'a pas écrit, ce qui pr�
 
 ### 7.3 Protocole de passation (chaque relais, environ 10 min)
 
+> **Mise à jour (D-14)** : la passation est automatisée ; **seul `agents/00_protocole_relais.md` §4 fait foi** (ordre des étapes, blocs Git A et B, tag, push). Le membre dit « fin de notre relais » ; pendant le relais, l'IA tient le journal de bord de `ETAT_PROJET.md` §8. Les points ci-dessous n'en donnent que le principe.
+
 1. Mettre à jour **`ETAT_PROJET.md`**, le témoin du relais : porte atteinte, ce qui est fait, ce qui reste, points ouverts, décisions prises, mission du relais suivant.
-2. Écrire le rapport d'audit `travail/audits/RX_audit.md` : ce qui a été vérifié, les constats, ce qui a été corrigé, ce qui est laissé en l'état et pourquoi.
-3. Commiter (format conventionnel, en français), poser le tag **annoté** `relais-X`, puis pousser. Commandes (Git Bash) :
-   ```
-   git status
-   git add -A
-   git diff --cached --name-only
-   git commit -m "docs(rX): <résumé>" && git tag -a relais-X -m "Relais RX" && git push origin main --follow-tags
-   git ls-remote --tags origin
-   ```
-   Aucun original de `docs/` (`.docx`, `.pdf`, `energie_college.csv`) ni `version_IA.html` après son tag ne doit apparaître dans `git diff --cached --name-only` ; sinon : `git restore --staged <fichier>`, puis `git restore <fichier>`. Seule exception : le commit de R1, qui rétablit volontairement les octets CRLF d'origine du CSV. `relais-X` doit apparaître dans `git ls-remote --tags origin`. Les tags sont toujours annotés (`git tag -a`) : un tag léger n'est pas envoyé par `--follow-tags`.
-4. Envoyer au sous-groupe le message de passation (modèle dans `AGENTS.md`) : « Relais X terminé, porte GX atteinte, à toi : [mission], points d'attention : […] ».
+2. Compléter le rapport d'audit `travail/audits/RX_audit.md`, créé au démarrage : constats, corrections, points remontés, copie du journal de bord.
+3. Commit, tag **annoté** `relais-X` et push : blocs A (contrôle) et B (commit, tag, push), lancés séparément (protocole §4, étape 7). Les tags sont toujours annotés : un tag léger n'est pas envoyé par `--follow-tags`.
+4. Envoyer au sous-groupe le message de passation (modèle : `agents/00_protocole_relais.md` §5.4 ; l'IA le prépare à « fin de notre relais ») : « Relais X terminé, porte GX atteinte, à toi : [mission], points d'attention : […] ».
 
 ### 7.4 Règles d'audit (anti-dérive)
 
@@ -329,6 +323,7 @@ powerwatch/                         dépôt Git = espace de travail
 ├── ETAT_PROJET.md                  témoin du relais : où on en est, qui suit, quoi faire
 ├── PLAN_CADRAGE.md                 ce document
 ├── agents/                         fiches de rôle, indépendantes de l'outil
+│   ├── 00_protocole_relais.md      protocole de relais : journal de bord, « fin de notre relais » (D-14)
 │   ├── 01_analyste_cdc.md
 │   ├── 02_product_owner.md
 │   ├── 03_prompt_engineer.md
@@ -453,6 +448,8 @@ Les portes sont franchies **séquentiellement**, un relais à la fois (§7.1). A
 - organisation en relais 6 × 1 h ;
 - D-06 à D-09 et H-01 à H-06 : proposition de l'IA (R1), validée par Leddycia à la relecture humaine du 2026-10-18 ;
 - D-11 : le groupe est le **Groupe 01** (numéro confirmé par l'équipe le 2026-10-18) ; le dossier `Groupe_01_Cas_01/` n'existe pas encore, R2 le crée directement sous ce nom ; aucun renommage n'est prévu ;
+- D-13 : remise sur le Drive par Leddycia ; `fiche_contribution.pdf` à la racine du dépôt (R6) ;
+- D-14 : protocole de relais automatisé ; « fin de notre relais » déclenche la passation complète (`agents/00_protocole_relais.md`) ;
 - D-12 : dépôt GitHub **laissé public**, décision de Leddycia prise en connaissance de cause (la proposition de le passer en privé a été écartée) ; membres invités comme collaborateurs pour pouvoir pousser ; adresse e-mail noreply GitHub fortement recommandée pour les commits. Tout ce qui est poussé est public, y compris le commit initial `478570e` (documents du cours, e-mail de l'auteur).
 
 **Reste à fournir :**
@@ -466,4 +463,4 @@ Les portes sont franchies **séquentiellement**, un relais à la fois (§7.1). A
 2. Les transcriptions `docs/brief_client.md`, `docs/consignes.md` et `docs/oracle.md`.
 3. `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` et les 6 fiches `agents/`.
 4. `ETAT_PROJET.md` et les journaux `travail/journal_prompts.md` et `travail/journal_ecarts.md`. Le dossier `Groupe_01_Cas_01/` sera créé par R2 avec son premier livrable.
-5. Vérification de la visibilité du dépôt (laissé public par décision de Leddycia, D-12), puis commit, tag annoté `relais-1`, push avec `--follow-tags` (commandes du §7.3) et message de passation à R2. Ce commit rétablit volontairement les octets CRLF d'origine de `docs/energie_college.csv` (stocké en LF par le commit initial `478570e`) grâce à `.gitattributes` : `git log --stat` le montre donc modifié par R1, c'est voulu, les données ne changent pas (empreinte `320155c7…a84b`). Ne jamais le restaurer depuis `478570e`.
+5. Vérification de la visibilité du dépôt (laissé public par décision de Leddycia, D-12), puis commit, tag annoté `relais-1`, push avec `--follow-tags` (commandes d'origine de R1) et message de passation à R2. Ce commit rétablit volontairement les octets CRLF d'origine de `docs/energie_college.csv` (stocké en LF par le commit initial `478570e`) grâce à `.gitattributes` : `git log --stat` le montre donc modifié par R1, c'est voulu, les données ne changent pas (empreinte `320155c7…a84b`). Ne jamais le restaurer depuis `478570e`.

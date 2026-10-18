@@ -125,7 +125,7 @@ Fichier **`Groupe_01_Cas_01/product_backlog.md`** :
 | 10 à 25 min | Énoncés des 8 US, MoSCoW, ordre et justifications |
 | 25 à 45 min | CA des US-01 à US-03, très précis et chiffrés avec l'oracle ; CA plus légers pour US-04 à US-08. Pour US-07 et US-08, CA rédigés sans fixer de formule ni de seuil : ils renvoient à Q-11 ou Q-12 et portent la mention « valeurs à compléter après réponse du client » (C-05, C-06) |
 | 45 à 50 min | Section Sprint 01 ; contrôle DoD |
-| 50 à 60 min | Passation |
+| 50 à 60 min | Passation : dire « fin de notre relais » (`AGENTS.md` §9) |
 
 ## Checklist de sortie (DoD)
 

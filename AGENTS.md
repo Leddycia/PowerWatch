@@ -16,16 +16,16 @@
 
 Tu travailles **en relais** : un humain différent prend la main chaque heure (D-05). **Avant de modifier quoi que ce soit**, fais dans l'ordre :
 
-1. Lis **ce fichier en entier**, puis **`ETAT_PROJET.md`**, qui indique le relais en cours, ce qui est fait et ta mission.
-2. Lis la **fiche de rôle** de ton relais dans `agents/` (indiquée dans `ETAT_PROJET.md`), puis les fichiers d'entrée qu'elle liste.
+1. Lis **ce fichier en entier**, puis **`ETAT_PROJET.md`**, qui indique le relais en cours, ce qui est fait et ta mission. Si son §8 n'est pas vide : protocole de relais §2.1 d'abord.
+2. Lis **`agents/00_protocole_relais.md`**, puis la **fiche de rôle** de ton relais dans `agents/` (indiquée dans `ETAT_PROJET.md`) et les fichiers d'entrée qu'elle liste.
 3. Analyse l'état du dépôt, après `git pull`, `git fetch --tags` et `git tag -l` (les tags des relais précédents doivent apparaître) : quels fichiers existent, lesquels sont vides ou incomplets, et ce que disent les derniers commits (`git log --oneline -15`).
 4. **Audite le travail du relais précédent** avec la checklist d'audit de ta fiche.
 5. Présente à l'humain, **sans rien modifier encore** :
    - un **rapport d'audit** : chaque constat est classé conforme, à corriger ou bloquant, avec sa preuve (fichier et ligne, identifiant B-xx, C-xx ou CA) ;
    - un **plan** pour l'heure de travail : ce que tu vas faire, dans quel ordre et sur quels fichiers.
-6. Attends la **validation explicite de l'humain** avant toute écriture (fichiers, `git add`, `commit`, `tag`, `push`), puis exécute ; l'audit en lecture seule (`git log`, `Get-FileHash`…) se fait avant elle. C'est l'humain qui est responsable (consigne C-18).
+6. Attends la **validation explicite de l'humain** avant toute écriture (fichiers, `git add`, `commit`, `tag`, `push`), puis exécute ; l'audit en lecture seule (`git log`, `Get-FileHash`…) se fait avant elle. Ta première écriture : marquer le relais EN COURS dans `ETAT_PROJET.md` (voir §9). C'est l'humain qui est responsable (consigne C-18).
 
-**Portée** : ce protocole s'applique une fois par relais, à l'IA assistante en session interactive. Il ne s'applique pas à une session rouverte dans le même relais (relire `ETAT_PROJET.md` §6 et reprendre), au mode coach (fiche 06), aux exécutions non interactives en lecture seule lancées pour une tâche ciblée, ni à l'IA déléguée (qui ne lit pas ce fichier).
+**Portée** : ce protocole s'applique une fois par relais, à l'IA assistante en session interactive. Il ne s'applique pas à une session rouverte dans le même relais (relire `ETAT_PROJET.md` §8 et reprendre), au mode coach (fiche 06), aux exécutions non interactives en lecture seule lancées pour une tâche ciblée, ni à l'IA déléguée (qui ne lit pas ce fichier).
 
 **Langue** : réponds dans la langue de ton interlocuteur (français ou créole haïtien). **Tous les fichiers du projet sont rédigés en français.**
 
@@ -56,7 +56,7 @@ En cas de conflit, la source la plus haute l'emporte :
 
 **Références utiles :**
 
-- `docs/oracle.md` : valeurs justes attendues, calculées par un script Python déterministe, écrit et exécuté par l'IA assistante du relais R1 (Claude Code, Claude Opus 5.5), indépendamment de l'IA déléguée et du prototype ; le script n'a pas été conservé dans le dépôt ; une relecture adversariale automatisée les a recalculées sans trouver d'erreur de valeur ; contre-vérification humaine obligatoire par R2 ;
+- `docs/oracle.md` : valeurs justes attendues, calculées par script par l'IA de R1, indépendamment de l'IA déléguée (origine exacte et contre-vérification humaine par R2 : « Méthode », en tête du fichier) ;
 - `PLAN_CADRAGE.md` : analyse complète et arbitrages ;
 - `ETAT_PROJET.md` : état courant du relais.
 
@@ -160,7 +160,7 @@ Le maximum est **toujours à égalité** : la règle R-03 est testée sur les do
 | R3 | G3 | `product_backlog.md` | `agents/02_product_owner.md` |
 | R4 | G4 | Prompt RMTCEV, délégation, `version_IA.html`, plan de test et fixtures | `agents/03_prompt_engineer.md` |
 | R5 | G5 | Vérification, journal des écarts, `index.html`, captures | `agents/04_developpeur.md` et `agents/05_verificateur.md` |
-| R6 | G6 et G7 | README, `prompts.md` final, fiche de contribution, remise, test sur un autre PC | `agents/06_finalisation_soutenance.md` |
+| R6 | G6 et G7 | README, `prompts.md` final, fiche de contribution, test depuis le Drive sur un autre PC (téléversement : Leddycia, D-13) | `agents/06_finalisation_soutenance.md` |
 
 **Après la remise**, chaque membre se prépare à la soutenance avec le « mode coach » de `agents/06_finalisation_soutenance.md`.
 
@@ -168,42 +168,16 @@ Le maximum est **toujours à égalité** : la règle R-03 est testée sur les do
 
 ---
 
-## 9. Protocole de passation (fin de chaque relais)
+## 9. Journal de bord et passation (D-14)
 
-1. **Mettre à jour `ETAT_PROJET.md`** : statut du relais, porte atteinte, fait, reste à faire, points ouverts, mission précise du relais suivant, nouvelle entrée dans le journal des passations.
-2. **Écrire `travail/audits/RX_audit.md`** selon ce modèle :
+`ETAT_PROJET.md` est tenu à jour **par l'IA pendant le relais**, selon `agents/00_protocole_relais.md` :
 
-   ```markdown
-   # Audit d'entrée : relais RX (nom, outil d'IA, date et heure)
-   ## Livrable audité : <fichier(s)> (produit par R<X-1>)
-   | # | Constat | Preuve (fichier:ligne, B/C/CA) | Gravité (conforme / à corriger / bloquant) | Action (corrigé / laissé / remonté) |
-   ## Corrections apportées (une ligne par correction)
-   ## Points remontés à l'équipe (decisions.md, ETAT_PROJET.md)
-   ## Ce que j'ai produit pendant mon relais
-   ```
+1. **Démarrage** (après validation du plan) : relais **EN COURS** dans `ETAT_PROJET.md` §1, §2 et §8, avec le plan validé et la synthèse de l'audit.
+2. **Pendant** : une ligne au journal de bord (§8) après chaque étape ; JP-xx et E-xx consignés au fil de l'eau (RG-11).
+3. **« fin de notre relais »** (ou « fin du relais », « fen relè nou an ») : passation complète, après relecture du protocole §4 et §5. L'IA met à jour tout `ETAT_PROJET.md` (§1 à §8), écrit `travail/audits/RX_audit.md`, complète les journaux et `decisions.md`, puis commite, pose le tag annoté `relais-X` et pousse (`git ls-remote --tags origin` doit lister `relais-X`). Elle donne enfin le message de passation prêt à envoyer. **Cette phrase vaut demande explicite de commit et de push.** L'IA s'arrête si un original de `docs/` ou `version_IA.html` (après son tag) apparaît dans les fichiers indexés.
+4. **« sauvegarde du relais »** : `ETAT_PROJET.md` à jour, commit et push, sans tag.
 
-3. **Mettre à jour les journaux** : `travail/journal_prompts.md` (prompts significatifs) et `travail/journal_ecarts.md` (propositions d'IA corrigées ou rejetées).
-4. **Commit, tag et push** (dans Git Bash) :
-
-   ```bash
-   git status
-   git add -A
-   git diff --cached --name-only
-   git commit -m "docs(rX): <résumé du relais>" && git tag -a relais-X -m "Relais RX" && git push origin main --follow-tags
-   git ls-remote --tags origin
-   ```
-
-   Si `git diff --cached --name-only` liste un original de `docs/` (.docx, .pdf, CSV) ou `version_IA.html` après son tag : `git restore --staged <fichier>`, puis `git restore <fichier>` (sauf au commit de R1, qui rétablit les octets CRLF d'origine du CSV ; ne jamais restaurer le CSV depuis 478570e). `git ls-remote --tags origin` doit lister `relais-X`.
-
-5. **Envoyer le message de passation** au groupe :
-
-   ```
-   Relais RX terminé (porte GX : atteinte / partielle).
-   Fait : …
-   À toi, R(X+1) [prénom] : <mission> (fiche agents/<fiche>.md).
-   Points d'attention : …
-   git pull puis lis ETAT_PROJET.md.
-   ```
+Commandes, contrôles, cas particuliers (tag existant, push refusé) et modèles : `agents/00_protocole_relais.md` §4 et §5. Une IA web fournit les contenus à coller et les commandes à lancer.
 
 ---
 
@@ -233,7 +207,7 @@ powerwatch/
     └── captures/                          R5
 ```
 
-`fiche_contribution.pdf` est créé par R6 **hors du dépôt**, à côté du dossier projet sur le Drive (C-01).
+`fiche_contribution.pdf` est créé par R6 **à la racine du dépôt**, au même niveau que `Groupe_01_Cas_01/`, comme sur le Drive (C-01). **Leddycia téléverse les deux sur le Drive** (D-13) ; rien d'autre n'est déposé.
 
 ---
 
@@ -261,7 +235,7 @@ powerwatch/
 | `index.html` | Tous les CA du Sprint 01 sont respectés (ou le statut est justifié). RG-04 à RG-07 sont respectées. Aucune fonction hors sprint (C-23, C-09). |
 | `captures/` | Au moins une capture par CA du Sprint 01, nommée selon la convention. La valeur attendue y est lisible. |
 | `README.md` | Il explique comment ouvrir le prototype et liste les outils (IA et éditeur). Un tableau donne, pour chaque CA, le statut (respecté, non respecté ou partiel) et le lien vers la capture. Il mentionne `index.html` ou explique son absence (C-09), ainsi que le test sur un autre PC. |
-| Remise | Dossier `Groupe_01_Cas_01/` et `fiche_contribution.pdf` au même niveau sur le Drive, testés depuis un autre PC avant 23 h 59. |
+| Remise | Dossier `Groupe_01_Cas_01/` et `fiche_contribution.pdf` au même niveau sur le Drive (téléversés par Leddycia, D-13), testés depuis le Drive sur un autre PC avant 23 h 59. |
 
 ---
 
@@ -271,19 +245,21 @@ Téléverse ou colle, **dans cet ordre** :
 
 1. `AGENTS.md` ;
 2. `ETAT_PROJET.md` ;
-3. ta fiche `agents/0X_….md` ;
-4. `travail/decisions.md` ;
+3. `agents/00_protocole_relais.md`, ta fiche `agents/0X_….md` et celle du relais suivant (pour ETAT §6) ;
+4. `travail/decisions.md`, `travail/journal_prompts.md` et `travail/journal_ecarts.md` ;
 5. les fichiers d'entrée listés dans ta fiche ;
-6. la sortie copiée-collée de `git log --oneline -15` et de `git status` ;
+6. la sortie copiée-collée de `git log --oneline -15`, `git status` et `git tag -l` ;
 7. pour R2 : `docs/01_Demande_client.docx` et le PDF des consignes.
 
-Puis envoie le prompt d'amorçage (§14). L'IA web ne voit pas le dépôt : demande-lui des modifications ciblées (« remplace la section X par… »), pas des fichiers entiers ; **c'est toi qui les reportes** dans les fichiers et relis `git diff` avant de commiter.
+Puis envoie le prompt d'amorçage (§14). L'IA web ne voit pas le dépôt : demande-lui des modifications ciblées (« remplace la section X par… »), pas des fichiers entiers ; **c'est toi qui les reportes** dans les fichiers et relis `git diff --cached` après le bloc A (protocole, variante web).
 
 ## 14. Prompt d'amorçage standard (à copier au début de chaque relais)
 
 ```
 Tu es l'IA assistante du relais R<X> du projet PowerWatch (cas 01).
-1. Lis AGENTS.md en entier, puis ETAT_PROJET.md, puis la fiche agents/<fiche>.md et ses fichiers d'entrée.
+1. Lis AGENTS.md en entier, puis ETAT_PROJET.md, agents/00_protocole_relais.md, la fiche agents/<fiche>.md
+   et ses fichiers d'entrée. Tiens ETAT_PROJET.md à jour selon le protocole ; à « fin de notre relais »,
+   fais la passation complète.
 2. Analyse l'état actuel du dépôt (fichiers, contenu, derniers commits).
 3. Audite le travail du relais précédent avec la checklist d'audit de ma fiche.
 4. Présente-moi : (a) ton rapport d'audit (constat, preuve, gravité, action proposée),

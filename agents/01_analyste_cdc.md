@@ -83,7 +83,7 @@ Fichier **`Groupe_01_Cas_01/cahier_des_charges.md`**, avec la structure ci-desso
 | 25 à 38 min | Sections 4 à 7 (exigences, règles, contraintes) ; vérifier **chaque** source citée |
 | 38 à 46 min | Sections 9 à 12 (périmètre, hors périmètre, souhaits ultérieurs, points à décider, matrice) |
 | 46 à 50 min | Contrôle DoD ci-dessous ; consigner le prompt principal (JP-xx) |
-| 50 à 60 min | Passation (`AGENTS.md` §9) |
+| 50 à 60 min | Passation : dire « fin de notre relais » (`AGENTS.md` §9) |
 
 ## Checklist de sortie (DoD)
 

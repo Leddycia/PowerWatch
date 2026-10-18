@@ -135,7 +135,7 @@ Dans `Groupe_01_Cas_01/prompts.md`, compléter la section 1 et créer les sectio
 | 10 à 30 min | Rédaction du prompt RMTCEV avec l'IA assistante ; **relecture par le membre de R3** (entre la 20e et la 30e minute, par message) ; prompt final écrit et commité dans `prompts.md` §1 |
 | 30 à 40 min | Délégation en session vierge, sauvegarde brute, contrôle d'extraction, commit, tag annoté `version-ia` et push |
 | 40 à 50 min | `prompts.md` v1 (sections 1 à 4) ; plan de test et fixtures (ou transmission à R5) |
-| 50 à 60 min | Passation |
+| 50 à 60 min | Passation : dire « fin de notre relais » (`AGENTS.md` §9) |
 
 ## Checklist de sortie (DoD)
 

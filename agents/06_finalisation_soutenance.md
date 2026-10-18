@@ -10,8 +10,8 @@ Rendre le projet **complet, cohérent et remis à temps** :
 - README avec les preuves ;
 - `prompts.md` finalisé ;
 - fiche de contribution ;
-- copie sur le Drive ;
-- **test sur un autre ordinateur** (C-14).
+- remise prête dans le dépôt, **téléversée sur le Drive par Leddycia** (D-13) ;
+- **test sur un autre ordinateur**, depuis le Drive (C-14).
 
 ## Entrées à lire
 
@@ -55,27 +55,29 @@ Rendre le projet **complet, cohérent et remis à temps** :
 - **§3 Propositions corrigées ou rejetées** : au moins une (souvent plusieurs), tirées de `travail/journal_ecarts.md`. Pour chacune : ce que l'IA a proposé ou produit, pourquoi c'était faux ou hors périmètre (CA, règle ou consigne violés), ce qu'on a fait.
 - **§4 Écarts** : signaler et justifier tout écart à C-12 (données intégrées), ou écrire « aucun ».
 
-### 3. `fiche_contribution.pdf` (hors du dépôt, C-01)
+### 3. `fiche_contribution.pdf` (à la racine du dépôt, C-01, D-13)
 
 - **Un tableau unique** : nom du membre | partie principale | contribution en une phrase.
 - Sources : le tableau des relais et le journal des passations d'`ETAT_PROJET.md`.
-- Rédiger dans Word ou Google Docs, puis exporter en PDF.
+- Rédiger dans Word ou Google Docs, exporter en PDF, puis l'enregistrer à la **racine du dépôt**, au même niveau que `Groupe_01_Cas_01/`, comme sur le Drive.
 
-### 4. Remise sur le Drive (C-01, C-19)
+### 4. Remise sur le Drive : préparer, puis passer la main à Leddycia (C-01, C-19, D-13)
 
-1. Dans le dossier du groupe sur le Drive (`Groupe_01/`), déposer **au même niveau** :
-   - le dossier `Groupe_01_Cas_01/`, copié depuis le dépôt **tel quel** ;
+1. Dire **« sauvegarde du relais »** à l'IA : le README, `prompts.md` et `fiche_contribution.pdf` sont commités et poussés (sans tag).
+2. Prévenir **Leddycia** en lui donnant le hash court du commit de sauvegarde (`git log -1 --format=%h`), **seulement après** la vérification de la sauvegarde (`git status -sb` sans `ahead` ni `behind`). Dans son clone, elle fait `git pull`, vérifie que `git log -1 --format=%h` affiche ce hash et que `git status --short` n'affiche rien, puis téléverse elle-même dans le dossier du groupe sur le Drive (`Groupe_01/`), **au même niveau** :
+   - le dossier `Groupe_01_Cas_01/`, pris dans le dépôt **tel quel** ;
    - `fiche_contribution.pdf`.
-2. Ne **pas** déposer `AGENTS.md`, `travail/`, `tests/`, ni d'autres fichiers de l'espace de travail (D-04).
+3. Rien d'autre n'est déposé : ni `AGENTS.md`, ni `travail/`, ni `tests/`, ni aucun autre fichier de l'espace de travail (D-04).
+4. Attendre la confirmation de Leddycia (heure du téléversement), à noter dans le journal de bord.
 
 ### 5. Test sur un autre ordinateur (C-14)
 
-1. **Sur un PC différent de celui de R5**, télécharger le dossier **depuis le Drive**.
+1. **Sur un PC différent de celui de R5**, télécharger le dossier **depuis le Drive**, une fois le téléversement de Leddycia confirmé.
 2. Récupérer `energie_college.csv` dans le dossier du cas fourni par l'enseignant, ou dans `docs/` du dépôt, et le placer **hors** du dossier livrable.
 3. Double-cliquer sur le prototype, hors ligne (fiche 05, contrôles transverses), et charger ce CSV.
 4. Vérifier une valeur par période avec l'oracle.
-5. Compléter la section « Conditions de test » du README (qui, quand, sur quel PC et quel navigateur), puis **redéposer le README sur le Drive** à la place de l'ancien.
-6. Si quelque chose casse, corriger dans le dépôt, retester, puis remettre le dossier sur le Drive.
+5. Compléter la section « Conditions de test » du README (qui, quand, sur quel PC et quel navigateur), dire **« sauvegarde du relais »**, puis, une fois la sauvegarde vérifiée, donner le nouveau hash à **Leddycia** : elle fait `git pull`, vérifie le hash et remplace le README sur le Drive (choisir « Remplacer le fichier existant », jamais « Conserver les deux »). Noter l'heure de sa confirmation au journal de bord.
+6. Si quelque chose casse : corriger dans le dépôt, retester, dire « sauvegarde du relais », puis Leddycia fait `git pull`, supprime l'ancien dossier `Groupe_01_Cas_01` du Drive (Drive ne fusionne pas deux dossiers du même nom) et téléverse le nouveau, ou remplace un à un les fichiers modifiés. Un seul dossier `Groupe_01_Cas_01` doit rester dans `Groupe_01/`.
 
 ## Procédure (1 h)
 
@@ -86,19 +88,19 @@ Rendre le projet **complet, cohérent et remis à temps** :
 | 0 à 10 min | Démarrage, audit A2 à A5 et A1 réduit (« Toute la période » plus un mois) |
 | 10 à 25 min | README (tâche 1) |
 | 25 à 30 min | `prompts.md` §2 à §4 (tâche 2) |
-| 30 à 35 min | `fiche_contribution.pdf` (tâche 3) |
-| 35 à 45 min | Dépôt sur le Drive (tâche 4), **au plus tard à la 45e minute**, même si le README reste perfectible |
-| 45 à 55 min | Test sur un autre PC (tâche 5) |
-| 55 à 60 min | Conditions de test dans le README, nouveau dépôt du README sur le Drive, commit, tag annoté `relais-6`, push (`AGENTS.md` §9) |
+| 30 à 35 min | `fiche_contribution.pdf` à la racine du dépôt (tâche 3) |
+| 35 à 45 min | « sauvegarde du relais », puis téléversement par Leddycia (tâche 4), **au plus tard à la 45e minute**, même si le README reste perfectible |
+| 45 à 55 min | Test depuis le Drive sur un autre PC (tâche 5) |
+| 55 à 60 min | Conditions de test dans le README, « sauvegarde du relais », remplacement du README sur le Drive par Leddycia, puis **« fin de notre relais »** (commit, tag annoté `relais-6`, push : `AGENTS.md` §9) |
 
 ## Checklist de sortie (DoD)
 
 - [ ] Le README contient un statut et une preuve pour **chaque** CA du Sprint 01 ; il mentionne `index.html`, ou explique son absence.
 - [ ] `prompts.md` : RMTCEV, 2 ou 3 autres prompts, au moins une correction ou un rejet avec sa raison, section écarts.
-- [ ] `fiche_contribution.pdf` : un tableau unique, une ligne par membre.
-- [ ] Drive : `Groupe_01/fiche_contribution.pdf` et `Groupe_01/Groupe_01_Cas_01/`, rien d'autre.
-- [ ] Test sur un autre PC fait et noté dans le README, et ce README redéposé sur le Drive. **Tout est remis avant le 18/10/2026 à 23 h 59.**
-- [ ] Commit, tag annoté `relais-6` et push (`AGENTS.md` §9) ; `relais-6` apparaît dans `git ls-remote --tags origin` ; R6 passé à « REMIS » dans `ETAT_PROJET.md`.
+- [ ] `fiche_contribution.pdf` : un tableau unique, une ligne par membre ; à la racine du dépôt.
+- [ ] Drive (téléversé par Leddycia) : `Groupe_01/fiche_contribution.pdf` et `Groupe_01/Groupe_01_Cas_01/`, rien d'autre.
+- [ ] Test depuis le Drive sur un autre PC fait et noté dans le README, et ce README remplacé sur le Drive par Leddycia. **Tout est remis avant le 18/10/2026 à 23 h 59.**
+- [ ] Commit, tag annoté `relais-6` et push (`AGENTS.md` §9) ; `relais-6` apparaît dans `git ls-remote --tags origin` ; R6 passé à « REMIS » dans `ETAT_PROJET.md` selon le critère du protocole (« Cas du dernier relais »), sinon « FAIT (remise à confirmer) » puis complément.
 
 ## Interdits
 
@@ -117,8 +119,8 @@ N'ajoute rien au livrable hors C-01, ne touche jamais version_IA.html, n'ajoute 
 
 ## À écrire dans `ETAT_PROJET.md` à la passation
 
-- R6 passé à « REMIS » ; porte G7 atteinte ou non.
-- Date et heure du dépôt sur le Drive, et du nouveau dépôt du README.
+- R6 passé à « REMIS » (téléversement et remplacement du README confirmés par Leddycia, test noté dans le README), sinon « FAIT (remise à confirmer : … ») ; porte G7 atteinte ou non.
+- Date et heure du téléversement sur le Drive par Leddycia, et du remplacement du README.
 - Test sur un autre PC : qui, quand, sur quel PC et quel navigateur.
 - Les écarts et les captures restants, s'il y en a.
 

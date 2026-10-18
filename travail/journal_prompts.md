@@ -103,3 +103,31 @@
 - **Ce qu'il a produit** : D-12 mise à jour (dépôt laissé public), O-8 résolu, commit du socle R1, tag annoté `relais-1`, push et contrôle `git ls-remote`.
 - **Ce que l'humain a vérifié ou corrigé** : l'IA a d'abord vérifié la visibilité (accès anonyme : dépôt toujours public) et a refusé de pousser tant que la décision n'était pas prise ; Leddycia a tranché.
 - **Candidat pour `prompts.md`** : non. Décision d'organisation.
+
+### JP-08 : Remise par Leddycia, invitations et protocole « fin de notre relais »
+
+- **Relais / membre** : R1 (complément) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, vers 10:40
+- **Prompt (texte exact)** :
+  > On continue.
+  >
+  > Je me chargerai moi-meme de televerser les elements sur le drive.
+  >
+  > J'ai envoye les invitations.
+  >
+  > Fait en sorte que etat_projet.md se mets a jour quand la personne en question travaille. On aura qu'a dire fin de notre relais pour que tout se met a jour
+- **Ce qu'il a produit** : `agents/00_protocole_relais.md` (phrases de commande, journal de bord, passation complète, variante IA web) ; branchement dans `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `ETAT_PROJET.md` (§8) et les fiches ; décisions D-13 et D-14 ; O-3 et O-7 mis à jour.
+- **Ce que l'humain a vérifié ou corrigé** : le plan a été déduit de ce prompt et exécuté sans validation explicite préalable ; Leddycia a ensuite demandé la clôture (JP-09), ce qui vaut acceptation du travail réalisé. Relecture détaillée du protocole par un membre : non consignée, à faire par R2 lors de son audit.
+- **Candidat pour `prompts.md`** : possible. Il montre comment l'équipe a organisé le travail assisté par l'IA en relais.
+
+### JP-09 : Clôture du complément de R1
+
+- **Relais / membre** : R1 (complément) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, 11:37
+- **Prompt (texte exact)** :
+  > fin de notre relais
+- **Ce qu'il a produit** : première exécution réelle de la passation automatique (`agents/00_protocole_relais.md` §4) : journaux, `travail/audits/R1_audit.md`, ETAT §1 à §8, commit et push sans tag (complément : `relais-1` existait déjà), message de passation.
+- **Ce que l'humain a vérifié ou corrigé** : à faire (relecture du compte rendu et du message avant envoi).
+- **Candidat pour `prompts.md`** : possible. Il illustre la passation automatisée du travail en relais.

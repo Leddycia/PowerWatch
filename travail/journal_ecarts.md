@@ -180,3 +180,16 @@
 - **Raison** : un arbitrage proposé par l'IA ne doit pas passer pour une décision de l'équipe.
 - **Correction** : socle R1 (`relais-1`) : validation humaine du 2026-10-18 consignée dans `travail/decisions.md` (§1, §3 et §4) et dans `ETAT_PROJET.md` §7
 - **Vérifié après correction** : à faire (relecture humaine avant le commit de R1, puis audit de R2)
+
+### E-13 : Protocole de relais v1 incomplet (journal effacé, Git en un seul bloc, R7 inexistant)
+
+- **Date / relais / membre** : 2026-10-18 / R1 (complément) / Leddycia
+- **Source** : IA assistante de R1 (Claude Code, Claude Opus 5.5)
+- **Observé** : la première version de `agents/00_protocole_relais.md` vidait ETAT §8 avant de le recopier dans le rapport d'audit ; mettait contrôle, commit, tag et push dans un seul bloc (un fichier interdit pouvait partir avant toute lecture) ; demandait d'écrire dans ETAT §7 le hash d'un commit pas encore créé ; ne gérait ni le tag déjà existant, ni un dépôt distant qui a avancé (cas réel : commit a468c31 fait sur le web), ni PowerShell, ni la sandbox de Codex ; visait un « R7 » à la fin de R6 ; faisait régénérer ETAT en entier par une IA web ; déclenchait un commit et un push sur le seul mot « sauvegarde ».
+- **Attendu** : une passation qui ne perd aucune information, ne publie jamais un original de `docs/` ni `version_IA.html`, et fonctionne avec chaque outil (D-14, RG-08, C-09).
+- **Référence** : D-14, RG-08, RG-11, C-09
+- **Gravité** : majeur
+- **Décision** : corrigé
+- **Raison** : détecté par deux passes de simulation automatisées (Claude Code, Codex, Antigravity, IA web, cohérence) : 87 puis 28 constats confirmés après tentative de réfutation.
+- **Correction** : complément de R1 (commit postérieur au tag `relais-1`), dans `agents/00_protocole_relais.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `ETAT_PROJET.md`, `agents/06_finalisation_soutenance.md`, `PLAN_CADRAGE.md`
+- **Vérifié après correction** : oui pour les commandes Git (testées dans un dépôt de test) ; relecture humaine à faire à la clôture

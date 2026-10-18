@@ -1,7 +1,7 @@
 # Fiche de rôle 05 : Vérificateur QA, tests et preuves (relais R5, partie 1 ; réutilisée par R6)
 
 > À lire après `AGENTS.md` et `ETAT_PROJET.md`. Porte visée : **G5**.
-> Le relais R5 enchaîne, sur 60 min : **démarrage** (0 à 5 min) ; **vérification de `version_IA.html`**, qui tient lieu d'audit d'entrée (cette fiche, 5 à 20 min) ; **corrections** (fiche 04, 20 à 40 min) ; **nouvelle vérification et captures d'`index.html`** (cette fiche, 40 à 50 min) ; **passation** (50 à 60 min). À la 50e minute, les captures manquantes sont notées dans `ETAT_PROJET.md` pour R6 (fiche 06, A3).
+> Le relais R5 enchaîne, sur 60 min : **démarrage** (0 à 5 min) ; **vérification de `version_IA.html`**, qui tient lieu d'audit d'entrée (cette fiche, 5 à 20 min) ; **corrections** (fiche 04, 20 à 40 min) ; **nouvelle vérification et captures d'`index.html`** (cette fiche, 40 à 50 min) ; **passation** : « fin de notre relais » (50 à 60 min). À la 50e minute, les captures manquantes sont notées dans `ETAT_PROJET.md` pour R6 (fiche 06, A3).
 
 ## Rôle et objectif
 
