@@ -30,8 +30,8 @@
 
 | | |
 |---|---|
-| **Porte atteinte** | G5 (`version_IA.html` vérifié : 20 CA du Sprint 01 et Test-P04 respectés ; 34 captures ; `index.html` non créé, C-09) ; G4 confirmée par l'audit de R5 |
-| **Relais terminé** | R5 (vérification, captures) |
+| **Porte atteinte** | G5 (`version_IA.html` vérifié : 20 CA du Sprint 01 et Test-P04 respectés ; 34 captures ; `index.html` non créé, C-09) ; G4 confirmée par l'audit de R5 ; complément de R5 : preuve de CA-03.02 refaite, captures sans données personnelles |
+| **Relais terminé** | R5 (vérification, captures), puis son complément (corrections avant R6) |
 | **Relais en cours** | **Aucun (voir §8)** |
 | **Prochain relais** | **R6 : README, `prompts.md` final, fiche de contribution, test depuis le Drive** (fiche `agents/06_finalisation_soutenance.md`) |
 | **Échéance de remise** | **Dimanche 18/10/2026, 23 h 59**, sur le Drive (C-19) |
@@ -46,7 +46,7 @@
 | R2 | Leddycia | Claude Code (Claude Opus 5.5) | 18/10, matin | G2 | **FAIT** (10:49 → 11:48) | `relais-2` |
 | R3 | Leddycia | Claude Code (application de bureau, Claude Opus 5.5) | *à compléter* | G3 | **FAIT** (11:55 → 12:06) | `relais-3` |
 | R4 | Bradley | Antigravity (Gemini 3.8 Flash High) | *à compléter* | G4 | **FAIT** (12:47 → 13:42) | `relais-4`, `version-ia` |
-| R5 | Louis | Claude Code (Claude Opus 5.5) | *à compléter* | G5 | **FAIT** (14:00 → 14:37) | `relais-5` |
+| R5 | Louis | Claude Code (Claude Opus 5.5) | *à compléter* | G5 | **FAIT** (14:00 → 14:37) ; complément FAIT (15:04 → 15:53, non tagué) | `relais-5` |
 | R6 | Petiote | *à compléter* | *à compléter* | G6 et G7 | À FAIRE | `relais-6` |
 
 **Statuts** : À FAIRE / EN COURS (début HH:MM) / FAIT (HH:MM → HH:MM) / FAIT (partiel) / FAIT (remise à confirmer) / REMIS. La colonne « Créneau prévu » ne change pas pendant le relais.
@@ -96,10 +96,16 @@
 | `index.html` **non créé** : aucun écart sur les CA du Sprint 01 (C-09, fiche 04) | — | R5 |
 | 34 captures (29 automatiques dont 3 montages « fuseau », 5 manuelles de Louis dont 3 photos de l'écran) | `Groupe_01_Cas_01/captures/` | R5 |
 | Audit d'entrée de R4 (A1 à A4 conformes ; A2b et A3b remontés) ; E-22 (environnement Linux) ; JP-20 à JP-23 | `travail/audits/R5_audit.md`, `travail/journal_ecarts.md`, `travail/journal_prompts.md` | R5 |
+| Q-01 remise au statut « provisoire » (l'hypothèse ne change pas ; ce n'est pas une réponse du client) | `travail/decisions.md` | R5 (complément) |
+| f01 refait : les jours à égalité y sont dans un ordre non chronologique, ce qui rend CA-03.02 vérifiable ; résultat attendu inchangé | `tests/fixtures/f01_lignes_melangees.csv`, `docs/oracle.md` §8 | R5 (complément) |
+| 4 captures de CA-03.02 refaites avec le nouveau f01 (Windows 11, Chrome 155 sans interface, fuseau d'Haïti et coupure réseau émulés) | `Groupe_01_Cas_01/captures/US03_CA02_*.png`, `tests/plan_de_test.md` §3 | R5 (complément) |
+| Données personnelles masquées ou recadrées dans 4 captures manuelles (CA-01.01, CA-01.02 Firefox, CA-01.03, CA-01.08) | `Groupe_01_Cas_01/captures/` | R5 (complément) |
+| Affichage des blocs de `prompts.md` réparé (texte du prompt inchangé, identique à `b170333`) | `Groupe_01_Cas_01/prompts.md` | R5 (complément) |
+| Audit de la livraison de R5 et corrections ; E-23 à E-26 ; JP-24 et JP-25 ; relectures indépendantes avant le commit (vérificateurs en lecture seule ; détail : `travail/audits/R5_audit.md`, section « Complément ») | `travail/audits/R5_audit.md` (section « Complément »), `travail/journal_ecarts.md`, `travail/journal_prompts.md` | R5 (complément) |
 
 ## 4. Ce qui reste (par ordre de priorité)
 
-1. **Reste de R5, à reprendre par R6** : rien de partiel. Faire confirmer par Bradley les points A2b et A3b (O-13) et harmoniser `prompts.md` §1.1.
+1. **Reste de R5 et de son complément, à reprendre par R6** : rien de partiel. Faire confirmer par Bradley les points A2b et A3b (O-13) et harmoniser `prompts.md` §1.1 ; dans le README, expliquer qu'une même capture prouve plusieurs CA et la lecture retenue pour CA-02.02 ; dans la fiche de contribution, attribuer R5 à Louis et son complément à Leddycia (`travail/audits/R5_audit.md`, section « Complément », C6 à C8) ; RG-09 : remplacer les prénoms par les rôles dans `prompts.md` l. 15 et dans `tests/plan_de_test.md` §3 (point antérieur au complément).
 2. **R6** : README, `prompts.md` final, `fiche_contribution.pdf` (à la racine du dépôt), test depuis le Drive sur un autre PC (G6 et G7). **Téléversement sur le Drive : Leddycia** (D-13).
 3. **Tous** : préparation de la soutenance (mode coach, fiche 06).
 
@@ -115,12 +121,13 @@
 | O-6 | **Résolu par R4** : D-10 validé (règles et valeurs de l'oracle fournies sans dicter les solutions d'implémentation des pièges techniques) | Rien (résolu) | R4 |
 | O-7 | **Résolu le 2026-10-18 : Leddycia téléverse elle-même sur le Drive** (D-13) le dossier `Groupe_01_Cas_01/` et `fiche_contribution.pdf`, pris dans le dépôt. Elle doit être **joignable pendant le créneau de R6** (vers la 35e minute, puis pour le README final). | Rien (résolu) | Leddycia |
 | O-8 | **Résolu le 2026-10-18 : dépôt laissé public, décision de Leddycia** (D-12), prise en connaissance de cause après vérification (accès anonyme possible). Tout ce qui est poussé est public : noms des membres, journaux, e-mail de l'auteur de chaque commit. Adresse noreply fortement recommandée pour chaque membre (§0). | Rien (résolu) | Leddycia (propriétaire du dépôt) ; chaque membre pour son adresse |
-| O-9 | **Résolu par R4** : Q-01 confirmé (format des litres toujours à une décimale avec virgule française, ex. « 71,0 L », résolvant l'ambiguïté B-14 / R-04) | Rien (résolu) | R4 |
+| O-9 | **Résolu par R4** : l'équipe garde l'hypothèse provisoire Q-01 pour le Sprint 01 (format des litres toujours à une décimale avec virgule française, ex. « 71,0 L »), ce qui règle l'ambiguïté B-14 / R-04 ; ce n'est pas une réponse du client (statut corrigé au complément de R5, E-23) | Rien (résolu) | R4 |
 | O-10 | **Résolu par R3 et R4** : points de R3 résolus par Q-18 à Q-20 ; points de R4 résolus par la création des fixtures f01 à f06, la complétion d'oracle §8, la précision de Q-10 (BOM traité en rejet Q-04) ; poste de la directrice renvoyé à R5/R6. | Rien (résolu) | R3, R4 |
 | O-11 | **Fiche 01** : sa DoD admet une CT citant un B-xx, sa structure (§7) les réserve aux consignes ; le CDC suit la structure | Rien | Équipe |
 | O-12 | **Fiche 02** : sa checklist d'audit A5 cite encore « Q-01 à Q-14 » ; le registre en compte désormais Q-01 à Q-20 | Rien | Équipe |
 | O-13 | **Délégation (audit R5, A2b et A3b)** : (a) le brut ne contient ni le bloc ```html exigé par le prompt ni aucun texte autour : la réponse est-elle conservée complète ? (b) mode de session « temporaire » (brut, l. 6) ou « nouvelle conversation » (`prompts.md` §1.1) ? | `prompts.md` final (R6) | Bradley confirme, R6 corrige `prompts.md` §1.1 |
 | O-14 | **Comportements hors CA de `version_IA.html`** (non corrigés, RG-04) : une ligne vide au milieu du fichier est ignorée sans message (lien avec Q-04) ; des heures décimales seraient affichées arrondies à l'entier (lien avec Q-16) ; aucun cas dans le CSV fourni | Rien ; à mentionner au README (« Écarts connus et points à confirmer ») | R6 |
+| O-15 | **Captures masquées au complément de R5 (E-25)** : les versions non masquées des 4 captures manuelles restent dans l'historique public du dépôt (commit 370abc6), qui n'est jamais réécrit (`AGENTS.md` §11, D-12) ; seule la remise sur le Drive est garantie sans ces données | Rien | Leddycia (propriétaire du dépôt) |
 
 ## 6. Mission du prochain relais : R6
 
@@ -129,12 +136,12 @@
 3. **Audit d'entrée (fiche 06, A1 à A5)** :
    - A1 : passe réduite sur **`version_IA.html`** (`index.html` est absent) : « Toute la période » plus un mois, fuseau d'Haïti, hors ligne en fin de passe ; résultats de R5 dans `tests/plan_de_test.md` §3 ;
    - A2 : `git diff version-ia -- Groupe_01_Cas_01/prototype/version_IA.html` vide ;
-   - A3 : 34 captures dans `captures/`, au moins une par CA ; **aucune capture manquante** ; CA-03.02 est prouvé par 4 fichiers `US03_CA02_lignes_melangees_<période>.png` ; CA-01.05, CA-02.04 et CA-03.04 par des montages des 3 mois ;
+   - A3 : 34 captures dans `captures/`, au moins une par CA ; **aucune capture manquante** ; CA-03.02 est prouvé par 4 fichiers `US03_CA02_lignes_melangees_<période>.png`, refaits au complément de R5 avec un f01 dont les jours à égalité sont dans un ordre non chronologique (E-24) ; CA-01.05, CA-02.04 et CA-03.04 par des montages des 3 mois ; 4 captures manuelles masquées ou recadrées (E-25) : vérifier qu'aucune donnée personnelle n'y reste lisible ;
    - A4 et A5 : cohérence des ID entre livrables ; aucun fichier parasite dans `Groupe_01_Cas_01/`.
 4. **Livrables (fiche 06)** :
-   - `Groupe_01_Cas_01/README.md` : tableau des statuts par CA (tous « respecté », repris de `tests/plan_de_test.md` §3, avec le lien vers chaque capture) ; **expliquer l'absence d'`index.html`** (aucun écart sur les CA, C-09) ; conditions de test (Linux, fuseau America/Port-au-Prince, Chromium et Firefox, E-22) ; écarts connus et points à confirmer (O-14) ;
-   - `prompts.md` final : §2 à partir de `travail/journal_prompts.md` ; §3 au moins une proposition de l'IA corrigée ou rejetée (`travail/journal_ecarts.md`, par exemple E-16 ou E-21 : aucune correction n'a été nécessaire sur `version_IA.html`) ; §4 : aucun écart du prototype par rapport à la demande du client ; corriger §1.1 selon la réponse de Bradley (O-13) ;
-   - `fiche_contribution.pdf` à la racine du dépôt (R1 à R4 : Leddycia et Bradley ; R5 : Louis ; R6 : Petiote).
+   - `Groupe_01_Cas_01/README.md` : tableau des statuts par CA (tous « respecté », repris de `tests/plan_de_test.md` §3, avec le lien vers chaque capture) ; **expliquer l'absence d'`index.html`** (aucun écart sur les CA, C-09) ; conditions de test (Linux, fuseau America/Port-au-Prince, Chromium et Firefox, E-22 ; les 4 captures de CA-03.02 ont été refaites au complément de R5 sous Windows 11, Chrome 155 sans interface, fuseau et coupure réseau émulés, E-24) ; écarts connus et points à confirmer (O-14) ; dire qu'une même capture sert de preuve à plusieurs CA (fichiers identiques, par exemple l'écran « Toute la période ») ; pour CA-02.02, le prix de référence de 300 gourdes par litre est affiché dans le bloc de chargement, sur le même écran que le coût (lecture retenue par R5) ;
+   - `prompts.md` final : §2 à partir de `travail/journal_prompts.md` ; §3 au moins une proposition de l'IA corrigée ou rejetée (`travail/journal_ecarts.md`, par exemple E-23 ou E-24, corrigées au complément de R5, ou E-16, E-21 : aucune correction n'a été nécessaire sur `version_IA.html`) ; §4 : aucun écart du prototype par rapport à la demande du client ; corriger §1.1 selon la réponse de Bradley (O-13) ; l'affichage des blocs du §1 est déjà réparé (complément de R5, E-26) : ne pas toucher au texte du prompt ; RG-09 (règle d'or) : au §1.1 (l. 15), remplacer les prénoms des relecteurs par leur rôle (membre de R3, membre de R4), et de même pour le prénom du membre de R5 dans `tests/plan_de_test.md` §3 ;
+   - `fiche_contribution.pdf` à la racine du dépôt (R1 à R4 : Leddycia et Bradley ; R5 : Louis, même si le commit et le tag de R5 portent une autre identité Git ; complément de R5 : Leddycia ; R6 : Petiote).
 5. **Remise et test sur un autre PC (fiche 06, tâches 4 et 5)** : « sauvegarde du relais », hash donné à **Leddycia**, qui téléverse sur le Drive ; test depuis le Drive sur un **PC différent de celui de R5** (idéalement sous Windows, fuseau « (UTC-05:00) Haïti ») ; README complété puis remplacé sur le Drive par Leddycia. Échéance : **23 h 59**.
    - Point d'attention pour la démonstration (fiche 06, étape 5 « Montrer une correction faite sur la version de l'IA ») : il n'y a pas de correction du prototype ; montrer à la place une proposition de l'IA rejetée ou corrigée (journal des écarts) et la vérification par l'oracle.
 6. **Passation** : dire **« fin de notre relais »** à ton IA (passation complète, tag `relais-6`, `agents/00_protocole_relais.md` §4, cas du dernier relais).
@@ -235,6 +242,17 @@
 - **Points d'attention pour R6** : la démonstration ne peut pas montrer de correction du prototype (aucune n'a été nécessaire) : montrer une proposition de l'IA rejetée (journal des écarts) ; refaire le test sur un autre PC, idéalement sous Windows avec le fuseau « (UTC-05:00) Haïti » ; R6 démarre au plus tard à 22 h 00.
 - **Porte** : G5 atteinte.
 - **Tag** : `relais-5`. Le hash du commit figure dans le compte rendu et le message de passation.
+
+### R5 (complément) : corrections avant R6 (2026-10-18, 15:04 → 15:53)
+
+- **Membre et outil** : Leddycia, Claude Code (application de bureau, Claude Opus 5.5) ; fait avant le démarrage de R6 (Leddycia a confirmé que R6 n'avait pas encore fait de `git pull`).
+- **Audit d'entrée** : relecture du dépôt après le push de R5 : livraison de R5 conforme sur le tag `relais-5`, l'intégrité de `version_IA.html`, les originaux de `docs/` et le CSV (C1) ; preuve de CA-03.02 non probante (C3) et 4 captures à masquer (C4) ; 4 points à corriger (C2 à C5) : statut de Q-01, f01 qui ne départageait pas les égalités, données personnelles dans 4 captures, blocs mal fermés dans `prompts.md` (détail : `travail/audits/R5_audit.md`, section « Complément »).
+- **Fait** : Q-01 remise à « provisoire » (E-23) ; f01 refait et oracle §8 mis à jour (E-24) ; 4 captures de CA-03.02 refaites, statut de CA-03.02 inchangé (respecté) ; données personnelles masquées ou recadrées dans 4 captures (E-25) ; affichage des blocs de `prompts.md` réparé, texte du prompt inchangé (E-26) ; JP-24, JP-25. Chaque étape a été contrôlée trois fois (diff relu, contrôle par script, relecture indépendante ou visuelle), puis l'ensemble a été relu par des vérificateurs indépendants avant le commit.
+- **Reste** : O-13 (Bradley, puis R6) ; README : captures communes à plusieurs CA et lecture de CA-02.02 ; fiche de contribution : R5 attribué à Louis (à reprendre par R6).
+- **Décisions** : aucune nouvelle décision ; Q-01 : statut corrigé, hypothèse inchangée. L'entrée de R4 ci-dessus écrit encore « Q-01 confirmé » : ce journal ne se réécrit pas ; le bon statut est celui du registre (« provisoire »).
+- **Points d'attention pour R6** : les versions non masquées des 4 captures restent dans l'historique public du dépôt (O-15) ; seule la remise sur le Drive en est garantie exempte ; vérifier les captures à l'audit A3 ; les 4 captures de CA-03.02 viennent d'un autre poste que celles de R5 (Windows 11, Chrome 155, fuseau et coupure réseau émulés) ; RG-09 : `prompts.md` l. 15 et `tests/plan_de_test.md` §3 nomment des membres (point antérieur au complément).
+- **Porte** : G5 confirmée.
+- **Tag** : complément, commit non tagué (le tag `relais-5` reste sur le commit de R5). Le hash du commit figure dans le compte rendu et le message de passation.
 
 ---
 

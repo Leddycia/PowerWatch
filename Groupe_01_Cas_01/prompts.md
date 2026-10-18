@@ -17,7 +17,7 @@
 
 ### 1.2 Texte exact du prompt RMTCEV envoyé
 
-```markdown
+````markdown
 ## R : Rôle
 Tu es un développeur front-end expérimenté qui livre des prototypes HTML autonomes, hors ligne, en français.
 
@@ -507,7 +507,7 @@ Ces éléments ne fondent aucune exigence (EF, ENF ou RM) ; certains sont seulem
 ## V : Validation
 Avant de répondre, vérifie toi-même chaque critère d'acceptation du Sprint 01 (CA-01.01 à CA-01.11, CA-02.01 à CA-02.05, CA-03.01 à CA-03.04) et confirme que tes calculs redonnent rigoureusement les résultats attendus ci-dessus.
 Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de code HTML (```html ... ```), sans aucun texte d'introduction ni de conclusion, sans explication.
-```
+````
 
 ---
 

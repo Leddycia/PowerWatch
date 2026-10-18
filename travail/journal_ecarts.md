@@ -310,3 +310,55 @@
 - **Raison** : le piège P-01 dépend d'un décalage négatif et non du système d'exploitation ; le décalage de −4 h (heure d'été d'Haïti en octobre 2026, comme le réglage Windows) le déclenche. Le pilotage par script rend la passe reproductible. Restent manuels, faits par Louis à l'écran : la coupure réseau réelle, le second navigateur (Firefox), la liste déroulante ouverte (CA-01.03, CA-01.10) et l'empreinte du CSV (CA-01.08). Le test sous Windows sur un autre PC reste prévu par R6 (test depuis le Drive).
 - **Correction** : aucune (procédure documentée dans `tests/plan_de_test.md` §3)
 - **Vérifié après correction** : sans objet
+
+### E-23 : Hypothèse Q-01 présentée comme « confirmée »
+
+- **Date / relais / membre** : 2026-10-18 / R5 (complément) / Leddycia
+- **Source** : arbitrage de l'IA assistante de R4 (Antigravity, Gemini 3.8 Flash High), validé par Bradley d'un « vas y » (JP-18)
+- **Observé** : Q-01 au statut « provisoire (confirmé) » dans le registre (`travail/decisions.md`, tableau Q et journal des changements) ; « Q-01 confirmé » dans ETAT_PROJET (O-9, entrée R4 du §7) et dans `travail/audits/R4_audit.md`.
+- **Attendu** : le statut « provisoire » (en attente du client), seul prévu par la légende du registre ; l'équipe peut garder l'hypothèse pour le Sprint 01, sans la présenter comme une réponse du client.
+- **Référence** : RG-02, `AGENTS.md` §4 (« Ne présente jamais une hypothèse Q-xx comme une règle du client »), légende de `travail/decisions.md`
+- **Gravité** : mineur (l'hypothèse elle-même ne change pas, ni le prototype)
+- **Décision** : corrigé
+- **Raison** : au jury ou au client, « confirmé » laisserait croire que le client a fixé le format des litres.
+- **Correction** : `travail/decisions.md` (Q-01 « provisoire » ; justification reformulée : « tranche le point O-9 » retiré, remplacé par « l'équipe garde cette hypothèse pour le Sprint 01 ; le client n'a pas répondu » ; ligne ajoutée au journal des changements) ; ETAT §5 (O-9) reformulé. Les traces historiques (entrée R4 d'ETAT §7, `R4_audit.md`, JP-18) ne sont pas réécrites (RG-10).
+- **Vérifié après correction** : oui, par l'IA assistante du complément (statuts du tableau Q relus par script ; recherche de « confirmé » associé à Q-01 dans tout le dépôt : seules les traces historiques restent), puis par des vérificateurs indépendants en lecture seule (sous-agents Claude Code) avant le commit
+
+### E-24 : Fichier de test f01 « mélangé » qui ne départage pas les égalités
+
+- **Date / relais / membre** : 2026-10-18 / R5 (complément) / Leddycia
+- **Source** : fixture créée par l'IA assistante de R4 (Antigravity, Gemini 3.8 Flash High) ; jugée conforme par l'audit d'entrée de l'IA assistante de R5 (Claude Code, Claude Opus 5.5, A4)
+- **Observé** : seules 5 lignes d'août changeaient de place ; les 11 jours à 5 h restaient dans l'ordre chronologique. Par simulation : un prototype qui suit l'ordre du fichier avec `>` affichait les bons jours (06/08, 08/09, 02/10, 06/08) ; f01 ne détectait que l'erreur `>=`, déjà détectée par le CSV d'origine.
+- **Attendu** : un fichier qui prouve CA-03.02 (« quel que soit l'ordre des lignes dans le fichier », RM-02 du cahier des charges, d'après B-13 : « le premier de ces jours dans l'ordre chronologique ») : le jour attendu ne doit pas être le premier des jours à égalité dans le fichier.
+- **Référence** : CA-03.02, B-13, RM-02, P-03, `docs/oracle.md` §8
+- **Gravité** : majeur pour la preuve de CA-03.02 (sans effet sur le prototype, qui donne les bons jours sur les deux versions de f01)
+- **Décision** : corrigé
+- **Raison** : un critère d'acceptation n'est vérifié que si le test peut échouer pour un prototype fautif (C-18, « capacité à vérifier »).
+- **Correction** : `tests/fixtures/f01_lignes_melangees.csv` refait (mélange par script à graine fixe, jours à 5 h : 16/10, 02/10, 12/08, 13/10, 11/09, 05/10, 08/10, 06/08, 08/09, 15/10, 09/09) ; `docs/oracle.md` §8 ; 4 captures `US03_CA02_lignes_melangees_*.png` refaites ; ligne CA-03.02 de `tests/plan_de_test.md` §3
+- **Vérifié après correction** : oui, par l'IA assistante du complément (mêmes 36 lignes et même en-tête que le CSV, 727 octets, CRLF ; simulation : le nouveau f01 détecte les trois erreurs, ordre du fichier avec `>`, ordre du fichier avec `>=` (sauf en août, où le bon jour sort par coïncidence) et tri par date puis `>=` (comme le CSV d'origine) ; `version_IA.html` sous Windows 11 dans Chrome 155 sans interface, fuseau d'Haïti et coupure réseau émulés : valeurs de l'oracle ; images relues), puis par des vérificateurs indépendants en lecture seule (sous-agents Claude Code) avant le commit
+
+### E-25 : Données personnelles visibles dans des captures du livrable
+
+- **Date / relais / membre** : 2026-10-18 / R5 (complément) / Leddycia
+- **Source** : captures manuelles de R5 (Louis), ajoutées au livrable par l'IA assistante de R5 (Claude Code, Claude Opus 5.5) sans contrôle de ce qu'elles montraient en dehors de la page
+- **Observé** : `US01_CA01_etat_initial.png`, `US01_CA02_firefox_toute_periode.png`, `US01_CA03_liste_periodes.png` et `US01_CA08_lecture_seule.png` montraient le chemin personnel du poste (nom d'utilisateur), l'invite du terminal (nom d'utilisateur et nom du poste) et des favoris du navigateur sans rapport avec le projet.
+- **Attendu** : des captures qui ne montrent que la preuve ; les noms des personnes ne figurent que dans ETAT_PROJET, PLAN_CADRAGE, `travail/`, le README et la fiche de contribution ; aucune autre donnée personnelle réelle.
+- **Référence** : RG-09, C-01, C-13
+- **Gravité** : majeur (livrable à remettre et à noter, déjà versé sur un dépôt public)
+- **Décision** : corrigé
+- **Raison** : ces informations n'apportent aucune preuve et exposent une personne.
+- **Correction** : CA-01.01 : barre des favoris remplie de sa couleur de fond, nom d'utilisateur masqué dans l'adresse ; CA-01.02 (Firefox) et CA-01.03 : bandeau du haut recadré ; CA-01.08 : 10 masques gris (adresse, titre et invites du terminal, fragment de la barre des favoris, chemin du résultat de `sha256sum`). L'onglet « about:sessionrestore » (page interne du navigateur, sans donnée personnelle) est conservé sur CA-01.01 et CA-01.08. Les valeurs de preuve restent lisibles (adresse `file:///…/version_IA.html`, empreinte `320155c7…a84b`, valeurs affichées). L'historique Git n'est pas réécrit : les versions précédentes restent dans les commits de R5 (`AGENTS.md` §11).
+- **Vérifié après correction** : oui, par l'IA assistante du complément (images relues en entier et agrandies ; script : recadrages exacts et aucun pixel modifié hors des masques prévus ; aucune métadonnée dans les 34 captures), puis par des vérificateurs indépendants en lecture seule (sous-agents Claude Code), qui ont relu les 34 captures avant le commit
+
+### E-26 : Blocs de code mal fermés dans `prompts.md`
+
+- **Date / relais / membre** : 2026-10-18 / R5 (complément) / Leddycia
+- **Source** : `Groupe_01_Cas_01/prompts.md` assemblé par l'IA assistante de R4 (Antigravity, Gemini 3.8 Flash High) et commité avant l'envoi (`b170333`)
+- **Observé** : le bloc du prompt s'ouvrait l. 20 avec trois accents graves ; les blocs internes (cahier des charges, Sprint 01) utilisaient aussi trois accents graves, si bien que la l. 384 fermait le bloc du prompt trop tôt et que la l. 510 ouvrait un bloc jamais fermé. À l'affichage (GitHub ou tout lecteur Markdown), la fin du prompt sortait du bloc et les sections 2 à 4 de `prompts.md` apparaissaient comme du code.
+- **Attendu** : le prompt affiché en un seul bloc, et les sections 2 à 4 lisibles.
+- **Référence** : C-08 (prompt de délégation RMTCEV consigné dans `prompts.md`), DoD de `prompts.md` (`AGENTS.md` §12 : prompt « tel qu'envoyé »)
+- **Gravité** : mineur (le texte envoyé n'est pas en cause)
+- **Décision** : corrigé
+- **Raison** : le livrable est lu par l'enseignant sous sa forme affichée.
+- **Correction** : l. 20 et 510 en quatre accents graves ; le texte du prompt (l. 21 à 509) n'est pas modifié.
+- **Vérifié après correction** : oui, par l'IA assistante du complément (texte des l. 21 à 509 identique octet pour octet à `b170333` ; analyse des blocs selon les règles CommonMark : un seul bloc, l. 20 à 510, sections 2 à 4 hors bloc), puis par des vérificateurs indépendants en lecture seule (sous-agents Claude Code) avant le commit
