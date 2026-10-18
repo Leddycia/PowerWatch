@@ -9,11 +9,11 @@
 
 ### 1.1 Informations de traçabilité
 
-- **Date et heure d'envoi** : 2026-10-18 *(heure exacte à renseigner lors de la délégation)*
-- **Outil et modèle prévus** : IA déléguée en session vierge (D-09)
-- **Mode exact de la session vierge** : Session vierge isolée, mémoire et instructions personnalisées désactivées, hors de tout projet/gem/GPT personnalisé, sans aucun document joint autre que le texte du prompt (D-09).
+- **Date et heure d'envoi** : 2026-10-18 à 13:12
+- **Outil et modèle** : ChatGPT (OpenAI, GPT-4o)
+- **Mode exact de la session vierge** : Nouvelle conversation web sur chatgpt.com, mémoire et instructions personnalisées désactivées, sans document joint, hors de tout projet ou GPT personnalisé (D-09).
 - **Relecture préalable** : relu et validé par Leddycia (membre de R3) et Bradley (R4) le 2026-10-18 à 13:03.
-- **Commit avant délégation** : ce prompt est commité dans Git avant d'être soumis à l'IA déléguée (C-08).
+- **Commit avant délégation** : `b170333` (`docs(r4): prompt RMTCEV final, avant délégation`, C-08).
 
 ### 1.2 Texte exact du prompt RMTCEV envoyé
 
