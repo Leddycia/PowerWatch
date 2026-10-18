@@ -15,6 +15,8 @@
 - **Relecture préalable** : relu et validé par Leddycia (membre de R3) et Bradley (R4) le 2026-10-18 à 13:03.
 - **Commit avant délégation** : `b170333` (`docs(r4): prompt RMTCEV final, avant délégation`, C-08).
 
+**Note d'audit R6 (O-13, non résolu au 2026-10-18)** : le fichier brut décrit une « Nouvelle conversation web temporaire » et commence directement par `<!DOCTYPE html>`, sans clôtures de bloc Markdown ni texte autour. Bradley n'a pas répondu à la demande de confirmation de R6. Le mode exact et la complétude de l'archive au regard du format demandé restent donc à confirmer ; les informations ci-dessus reprennent la traçabilité inscrite par R4 et ne constituent pas une confirmation indépendante de R6.
+
 ### 1.2 Texte exact du prompt RMTCEV envoyé
 
 ```markdown
@@ -513,16 +515,39 @@ Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de co
 
 ## 2. Autres prompts importants
 
-*(Section à compléter par le relais R6 à partir de `travail/journal_prompts.md`)*
+### JP-01 : Analyse et cadrage initial
+
+- **Relais, membre, outil et modèle** : R1, Leddycia, Claude Code (application de bureau), Claude Opus 5.5.
+- **Prompt exact** :
+
+> Lis les docs car on va faire le projet powerwatch. Analyse minutieusement tout ca. Nous allons construire des md d'agents egalement au cas ou les autres membres travaillent avec gemini ou codex. Planifie tout ca mais ne code encore rien. Tout doit d'abord etre parfaitement cadrer
+
+- **Production** : première version de `PLAN_CADRAGE.md`, couvrant les sources B-xx/C-xx, risques, questions et organisation des agents.
+- **Vérification humaine** : l'équipe a répondu aux questions de cadrage et validé le travail en relais ainsi que le Sprint 01 à trois US (D-01, D-05). Le cadrage a ensuite été enrichi et audité.
+
+### JP-05 : Validation et application des corrections
+
+- **Relais, membre, outil et modèle** : R1, Leddycia, Claude Code (application de bureau), Claude Opus 5.5.
+- **Prompt exact** :
+
+> Oui, applique toutes les corrections confirmées avec tes recommandations : je valide D-06 à D-09 et H-01 à H-06, retire CA-01.02/Q-08, corrige la mention de l'oracle, et consigne les erreurs de l'IA R1 dans journal_ecarts.md. Je passe moi-même le dépôt en privé.
+
+- **Production** : corrections ciblées du socle et consignation des erreurs de l'IA en E-01 à E-12. La mention du passage en privé a ensuite été remplacée par la décision documentée de laisser le dépôt public (JP-07, D-12).
+- **Vérification humaine** : Leddycia a validé les décisions et les corrections indiquées ; la relecture adversariale avait relevé les erreurs avant application. Les décisions de visibilité ont été vérifiées et tranchées séparément par Leddycia.
 
 ---
 
 ## 3. Propositions de l'IA corrigées ou rejetées
 
-*(Section à compléter par les relais R5 et R6 à partir de `travail/journal_ecarts.md`)*
+### E-16 : « Toute la période » limitée à l'échantillon fourni
+
+- **Proposition produite** : le brouillon du cahier des charges définissait « toute la période » comme tous les jours du fichier fourni, du 3 août au 16 octobre 2026.
+- **Pourquoi c'était incorrect** : B-03 indique que l'intendant recopie le registre chaque semaine ; fixer dans la définition les dates de l'échantillon aurait exclu d'autres fichiers et contredit la question ouverte Q-02. La période entière doit être interprétée à partir de toutes les lignes du fichier chargé, pas de dates codées en dur.
+- **Correction** : le CDC a été corrigé avant son premier commit : « tous les jours du fichier chargé (sur le fichier fourni : du 3 août au 16 octobre 2026) ». L'équipe a conservé les dates de l'échantillon uniquement comme précision descriptive.
+- **Vérification** : correction confirmée par les vérificateurs du workflow de rédaction (E-16, B-03, B-09, Q-02).
 
 ---
 
 ## 4. Écarts par rapport à la demande du client
 
-*(Section à compléter par les relais R5 et R6 : consignation des écarts éventuels constatés dans le prototype brut `version_IA.html` par rapport aux exigences du client ou aux contraintes C-12)*
+**Aucun écart à C-12 n'a été constaté.** R5 a vérifié que les données du CSV ne sont pas intégrées dans `version_IA.html` et que le fichier est chargé à la demande par l'utilisateur. Aucun autre écart du prototype aux exigences du client n'a été constaté sur les critères du Sprint 01. Les comportements hors CA consignés en O-14 ne sont pas présentés comme des écarts aux critères testés et n'ont pas été corrigés, afin de ne pas ajouter de fonctionnalité hors Sprint 01 (RG-04).

@@ -32,8 +32,8 @@
 |---|---|
 | **Porte atteinte** | G5 (`version_IA.html` vérifié : 20 CA du Sprint 01 et Test-P04 respectés ; 34 captures ; `index.html` non créé, C-09) ; G4 confirmée par l'audit de R5 |
 | **Relais terminé** | R5 (vérification, captures) |
-| **Relais en cours** | **Aucun (voir §8)** |
-| **Prochain relais** | **R6 : README, `prompts.md` final, fiche de contribution, test depuis le Drive** (fiche `agents/06_finalisation_soutenance.md`) |
+| **Relais en cours** | **R6 (finalisation, G6 et G7)** |
+| **Prochain relais** | **Aucun (dernier relais ; préparation de la soutenance après remise)** |
 | **Échéance de remise** | **Dimanche 18/10/2026, 23 h 59**, sur le Drive (C-19) |
 | **Sprint 01** | US-01 (chargement et totaux), US-02 (coût), US-03 (jour max) (D-01) |
 | **Dépôt** | `https://github.com/Leddycia/PowerWatch.git` (HTTPS, pour cloner : §0) ou `git@github.com:Leddycia/PowerWatch.git` (SSH, si ta clé est enregistrée), branche `main` ; dépôt **public**, laissé public par décision de Leddycia (D-12, O-8) |
@@ -47,7 +47,7 @@
 | R3 | Leddycia | Claude Code (application de bureau, Claude Opus 5.5) | *à compléter* | G3 | **FAIT** (11:55 → 12:06) | `relais-3` |
 | R4 | Bradley | Antigravity (Gemini 3.8 Flash High) | *à compléter* | G4 | **FAIT** (12:47 → 13:42) | `relais-4`, `version-ia` |
 | R5 | Louis | Claude Code (Claude Opus 5.5) | *à compléter* | G5 | **FAIT** (14:00 → 14:37) | `relais-5` |
-| R6 | Petiote | *à compléter* | *à compléter* | G6 et G7 | À FAIRE | `relais-6` |
+| R6 | Petiote | Claude (modèle non précisé) | *à compléter* | G6 et G7 | **EN COURS** (début 16:59) | `relais-6` |
 
 **Statuts** : À FAIRE / EN COURS (début HH:MM) / FAIT (HH:MM → HH:MM) / FAIT (partiel) / FAIT (remise à confirmer) / REMIS. La colonne « Créneau prévu » ne change pas pendant le relais.
 
@@ -242,4 +242,19 @@
 
 > Rempli automatiquement selon `agents/00_protocole_relais.md`. Vidé à « fin de notre relais ».
 
-**Aucun relais en cours.** Prochain relais : voir §1.
+| Relais | Membre | Outil et modèle | Fiche | Porte visée | Début |
+|---|---|---|---|---|---|
+| R6 | Petiote | Claude (modèle non précisé) | `agents/06_finalisation_soutenance.md` | G6 et G7 | 16:59 |
+
+**Plan validé** : 1. Finaliser le README avec les preuves pour chaque CA, les conditions et les limites vérifiées. 2. Compléter `prompts.md` §2 à §4 en gardant O-13 non résolu tant que Bradley n'a pas répondu. 3. Préparer `fiche_contribution.pdf` à la racine. 4. Faire téléverser le dossier par Leddycia, puis tester depuis le Drive sur un autre PC et compléter le README avec les faits réels. 5. Clôturer R6 avec le tag `relais-6` après la vérification Git ; indiquer « remise à confirmer » si le téléversement ou le test manque.
+
+**Audit d'entrée (synthèse)** : A1 passe réduite sur `version_IA.html` conforme en local : 97 h / 280,0 L / 84 000 gourdes / 06/08/2026, puis septembre 30 h / 84,0 L / 25 200 gourdes / 08/09/2026 après coupure réseau simulée ; fuseau navigateur `America/Port-au-Prince`. A2 tags et diff vérifiés : `version-ia` présent, diff vide. A3 34 noms de captures recensés, couverture des CA conforme ; lisibilité non vérifiée image par image. A4 cohérence des US et CA conforme au backlog, au plan de test et au prompt. A5 aucun fichier parasite dans l'inventaire du livrable ; README absent, à produire par R6. O-13 non résolu : Bradley n'a pas répondu ; le mode exact et l'absence des clôtures de code du brut ne peuvent pas être confirmés. O-14 : ligne vide ignorée et heures décimales arrondies, hors CA, non corrigés (RG-04). Synchronisation initiale : `main` propre, tags `relais-1` à `relais-5` et `version-ia` présents, historique à `370abc6` ; `git fetch --tags origin` effectué.
+
+**Journal de bord**
+
+| Heure | Étape | Ce qui a été fait | Fichiers | État |
+|---|---|---|---|---|
+| 16:59 | étape 1 | R6 marqué EN COURS après validation du plan ; contrôles Git et audit d'entrée A1 à A5 réalisés ; O-13 déclaré non résolu | `ETAT_PROJET.md` | fait |
+| 17:58 | étape 2 | Reprise synchronisée par fetch ; `main` est en retard de 4 commits distants et l'arbre contient les travaux R6 non commités. Le JavaScript de l'`index.html` distant est identique à celui de `version_IA.html` ; sauvegarde intermédiaire demandée, sans tag | `ETAT_PROJET.md`, `Groupe_01_Cas_01/prompts.md`, `Groupe_01_Cas_01/README.md`, `travail/audits/R6_audit.md` | partiel |
+
+**Points ouverts du relais** : Bradley n'a pas répondu sur O-13. Leddycia doit confirmer les heures de téléversement et de remplacement du README ; le testeur, l'ordinateur et le navigateur du test Drive restent à préciser. Le modèle Claude utilisé par R6 n'a pas été précisé.
