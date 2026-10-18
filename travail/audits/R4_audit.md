@@ -61,3 +61,70 @@
 | 13:42 | étape 8 | Clôture du relais R4, mise à jour des documents et passation complète vers R5 (relais-4) | `ETAT_PROJET.md`, `travail/audits/R4_audit.md` | fait |
 
 **Points ouverts du relais** : D-10 validé (règles et oracle sans solutions d'implémentation) ; O-9 résolu (Q-01 confirmé, litres à 1 décimale systématique) ; Q-10 précisé (BOM traité comme rejet Q-04).
+
+## Complément (2026-10-18 15:59 → 16:31)
+
+Complément fait par Leddycia avec Claude Code (application de bureau, Claude Opus 5.5), après le complément de R5 et avant le démarrage de R6 (JP-26). Les points corrigés ici sont les points restants relevés sur le travail de R4 lors de la relecture du dépôt que Leddycia a demandée dans la session de son IA après le push de R4 (texte exact : « R4 done », 13:50 ; non consigné en JP à ce moment), puis rappelés à sa question « Les corrections de R4 ont ete faits? » (15:55). Les autres points de cette relecture (Q-01, f01), relevés aussi après le push de R5 (C2 et C3 de `travail/audits/R5_audit.md`), et les blocs de `prompts.md` ont été corrigés au complément de R5 (E-23, E-24, E-26).
+
+### Audit (points restants sur le travail de R4)
+
+| # | Constat | Preuve (fichier:ligne, B/C/CA) | Gravité (conforme / à corriger / bloquant) | Action (corrigé / laissé / remonté) |
+|---|---|---|---|---|
+| K0 | Contrôle préalable : tag `relais-4` sur le dépôt distant (commit ffee9e6) ; `version_IA.html` identique au tag `version-ia` ; originaux de `docs/` inchangés, CSV `320155c7…a84b` ; dépôt distant sur b797c0c, pas de tag `relais-6` | `git ls-remote --tags origin` ; `git diff version-ia` vide ; `Get-FileHash` | conforme | laissé |
+| K1 | La précision de Q-10 est résumée par « BOM traité en rejet Q-04 » (ETAT O-10) et par « BOM UTF-8 traité en rejet Q-04 sans planter » (journal des changements du registre) ; or la formulation de Q-10 dans le registre ne rejette un BOM UTF-8 que s'il altère le nom de la première colonne, et `version_IA.html` accepte un fichier avec BOM (`FileReader.readAsText`, qu'il utilise, retire le BOM : Obs-3 de R5). Le cahier des charges §11.1 et le prompt envoyé gardent la formulation plus large « tout autre format est rejeté » | ETAT §5 (O-10) ; `travail/decisions.md` l. 61 (Q-10) et l. 106 (journal) ; `travail/audits/R5_audit.md` (Obs-3) ; `Groupe_01_Cas_01/cahier_des_charges.md` §11.1 (Q-10) | à corriger | corrigé (résumés) ; remonté (cahier des charges, R6) |
+| K2 | ETAT §3 annonce `prompts.md` v1 « sections 1 à 4 complétées » ; les sections 2 à 4 sont des emplacements annoncés pour R5 et R6, non remplis par R5 | ETAT §3 l. 88 ; `Groupe_01_Cas_01/prompts.md` §2 à §4 | à corriger | corrigé |
+| K3 | Le plan de test dit de créer `index.html` dans tous les cas, alors que la fiche 04 ne le prévoit qu'en cas d'écart (C-09) | `tests/plan_de_test.md` l. 63 ; `agents/04_developpeur.md` l. 8 et 10 ; `tests/plan_de_test.md` l. 75 | à corriger | corrigé |
+| K4 | Le prompt RMTCEV reprend la bonne pratique de trois pièges, alors que D-10 exclut les solutions d'implémentation des pièges : l. 36 « à l'aide de l'API FileReader » (P-06), l. 40 réinitialisation de l'état (P-09), l. 69 « CSS et JavaScript natifs » (P-05) ; aucun E-xx ne le consigne | `Groupe_01_Cas_01/prompts.md` l. 36, 40, 69 ; `travail/decisions.md` (D-10) ; `AGENTS.md` §7 | à corriger | consigné (E-27) ; prompt laissé tel quel (texte envoyé : C-08 ; `AGENTS.md` §12, « tel qu'envoyé ») |
+| K5 | O-13 (complétude de la réponse brute, mode de session) | ETAT §5 | ouvert | laissé (Bradley, puis R6) |
+| K6 | Les commits de R4 portent une adresse e-mail personnelle | `git log` (b170333, 624003a, ffee9e6) | non corrigeable (historique jamais réécrit, `AGENTS.md` §11) | laissé |
+
+### Ce qui a été seulement survolé ; résultats donnés par le membre
+
+- Survolé : le reste du travail de R4, déjà audité par R5 (`travail/audits/R5_audit.md`) et par le complément de R5.
+- Donné par Leddycia : à 15:58, R6 n'avait pas encore fait de `git pull`.
+
+### Corrections apportées (une ligne par correction)
+
+- K1 : ETAT §5, O-10 reformulé ; `travail/decisions.md`, ligne de rectificatif ajoutée au journal des changements (la ligne R4 n'est pas réécrite), après un essai réel sous Chrome 155 : CSV avec BOM accepté, CSV à `;` rejeté (E-28).
+- K2 : ETAT §3, ligne `prompts.md` : « section 1 remplie (§1.1 encore à corriger par R6 : O-13, RG-09) ; sections 2 à 4 : emplacements créés, encore vides, à compléter par R6 » (E-28).
+- K3 : `tests/plan_de_test.md` §2 : `index.html` seulement en cas d'écart sur les CA, les règles du client ou les consignes ; sinon, l'écrire dans ETAT et le README (fiche 04, C-09) (E-28).
+- K4 : aucune correction du prompt (texte envoyé) ; E-27 ajoutée.
+
+### Points remontés à l'équipe (complément)
+
+- K1 : le cahier des charges §11.1 garde la formulation plus large de Q-10 ; le registre prime (`AGENTS.md` §2) ; à signaler par R6 dans le README (« écarts connus et points à confirmer »), ETAT §6.
+- E-27 peut illustrer la précision des prompts (C-18) dans `prompts.md`, citée à part et signalée comme acceptée telle quelle (pas comme une proposition corrigée ou rejetée du §3, exigée par C-08) (ETAT §6).
+- K5 (O-13) et K6 : inchangés.
+
+### Ce que j'ai produit pendant le complément
+
+- `ETAT_PROJET.md` (§3, §4, §5 O-10, §6) ; `travail/decisions.md` (journal des changements) ; `tests/plan_de_test.md` (§2).
+- E-27, E-28 ; JP-26, JP-27 ; cette section.
+- Relecture indépendante avant la clôture : 3 vérificateurs en lecture seule (exactitude, dont l'essai refait du BOM et du `;` ; traçabilité ; intégrité et protocole) ; aucun point bloquant ; 18 remarques (3 « à corriger », 15 mineures, dont plusieurs relevées en double), toutes traitées (E-27 complétée, l. 40 et 69 ; état de `prompts.md` ; citations exactes ; formulation sur le BOM ; cahier des charges signalé ; plan de test précisé ; E-27 hors des exemples de C-08 ; K0 et sous-section « survolé » ajoutés ; origine des points précisée).
+
+### Journal de bord du complément (copie intégrale d'ETAT §8, ajoutée à la clôture)
+
+> Rempli automatiquement selon `agents/00_protocole_relais.md`. Vidé à « fin de notre relais ».
+
+| Relais | Membre | Outil et modèle | Fiche | Porte visée | Début |
+|---|---|---|---|---|---|
+| R4 (complément, après le tag `relais-4`) | Leddycia | Claude Code (application de bureau, Claude Opus 5.5) | `agents/03_prompt_engineer.md`, `agents/00_protocole_relais.md` | G4 (corrections avant R6) | 15:59 |
+
+**Plan validé** (demande de Leddycia, JP-26 ; uniquement si R6 n'a pas encore fait de `git pull` : dépôt distant inchangé depuis b797c0c, pas de tag `relais-6`, Leddycia confirme à 15:58 que R6 n'a pas fait de `git pull`) : 1. Ouvrir le complément (ETAT §1, §2, §8 ; section « Complément » de `travail/audits/R4_audit.md`). 2. Q-10 : corriger les deux résumés de sa précision, « BOM traité en rejet Q-04 » (ETAT §5, O-10) et « BOM UTF-8 traité en rejet Q-04 sans planter » (journal des changements du registre, par une ligne ajoutée), après un essai réel dans un navigateur. 3. ETAT §3 : `prompts.md` « sections 1 à 4 complétées » → état réel. 4. `tests/plan_de_test.md` §2 : création d'`index.html` seulement en cas d'écart (fiche 04). 5. Consigner en E-xx l'indication « API FileReader » du prompt (D-10). 6. Journaux, relecture indépendante, puis clôture sur demande. Chaque étape est contrôlée trois fois (diff relu, contrôle par script ou essai, relecture).
+
+**Audit d'entrée (synthèse)** : ETAT O-10 (« BOM traité en rejet Q-04 ») et `travail/decisions.md` (journal des changements, ligne R4 de Q-10 : « BOM UTF-8 traité en rejet Q-04 sans planter ») résument mal la précision de Q-10, alors que la formulation de Q-10 ne rejette un BOM que s'il altère l'en-tête, et que `version_IA.html` accepte un fichier avec BOM (Obs-3 de R5) | à corriger ; ETAT §3 l. 88 : `prompts.md` « sections 1 à 4 complétées », alors que les sections 2 à 4 restent à compléter par R6 | à corriger ; `tests/plan_de_test.md` l. 63 : `index.html` à créer dans tous les cas, contraire à la fiche 04 (l. 10) et au §3 du même fichier (l. 75) | à corriger ; `prompts.md` l. 36 : « à l'aide de l'API FileReader », solution d'implémentation du piège P-06, contraire à D-10, sans E-xx | à consigner (le prompt envoyé ne se modifie pas) ; hors de portée : O-13 (Bradley), adresses e-mail des commits de R4 (historique jamais réécrit). Détail : `travail/audits/R4_audit.md`, section « Complément ».
+
+**Journal de bord**
+
+| Heure | Étape | Ce qui a été fait | Fichiers | État |
+|---|---|---|---|---|
+| 15:59 | étape 1 | Complément de R4 ouvert : R4 « complément EN COURS » ; contrôle préalable (dépôt distant inchangé, pas de `relais-6`, Leddycia confirme que R6 n'a pas fait de `git pull`) | `ETAT_PROJET.md`, `travail/audits/R4_audit.md` | fait |
+| 16:00 | étape 2 | Q-10 : essai réel sous Chrome 155 sans interface (Windows 11) : `version_IA.html` accepte le CSV précédé d'un BOM UTF-8 (97 h, 280,0 L) et rejette le CSV à `;` (« Erreur à la ligne 1 (en-tête) … »), conformément à la formulation de Q-10 ; résumé d'O-10 corrigé ; ligne de rectificatif ajoutée au journal des changements du registre (la ligne R4 n'est pas réécrite) (E-28). Contrôles : diff relu ; formulation de Q-10 dans le tableau inchangée ; recherche dans tout le dépôt : seules restent des traces historiques, suivies du rectificatif | `ETAT_PROJET.md`, `travail/decisions.md` | fait |
+| 16:00 | étapes 3 et 4 | ETAT §3 : `prompts.md` « section 1 complète ; sections 2 à 4 créées, encore à compléter par R5 et R6 » ; `tests/plan_de_test.md` §2 : `index.html` seulement en cas d'écart (fiche 04, C-09) (E-28). Contrôles : diff relu (une ligne par fichier) ; `prompts.md` contient toujours 3 emplacements « Section à compléter » ; plan de test cohérent avec la fiche 04 (l. 10) et avec son §3 (l. 75) | `ETAT_PROJET.md`, `tests/plan_de_test.md` | fait |
+| 16:01 | étapes 5 et 6 | E-27 (indication « API FileReader » du prompt, laissée telle quelle : texte envoyé ; seule indication de ce type dans le prompt) ; E-28 ; JP-26 ; « Corrections apportées », « Points remontés » et « Ce que j'ai produit » dans `R4_audit.md` ; E-27 proposée à R6 pour `prompts.md` §3 (§6). Relecture indépendante à faire avant la clôture | `travail/journal_ecarts.md`, `travail/journal_prompts.md`, `travail/audits/R4_audit.md`, `ETAT_PROJET.md` | fait |
+| 16:18 | étape 6 | Relecture indépendante (3 vérificateurs en lecture seule, dont un a refait l'essai du BOM et du `;`) : aucun point bloquant ; 3 « à corriger » et 12 mineurs, traités. Rectificatifs des lignes précédentes : l'indication FileReader n'est pas la seule (l. 40, P-09, et l. 69, P-05, reprennent aussi une bonne pratique de piège : E-27 complétée et classée « accepté tel quel ») ; ETAT §3 : « section 1 remplie (§1.1 encore à corriger par R6) ; sections 2 à 4 encore vides, à compléter par R6 » ; l'entrée R4 du §7 garde le résumé inexact de Q-10 et sera signalée dans l'entrée du complément. Autres corrections : citations exactes des deux résumés de Q-10 ; « `FileReader.readAsText` retire le BOM » au lieu de « un navigateur » ; formulation plus large de Q-10 dans le cahier des charges signalée (E-28, ETAT §5 et §6 : à mentionner au README par R6, cahier des charges non modifié) ; plan de test §2 précisé (écarts sur les CA, règles ou consignes ; où l'écrire) ; E-27 retirée des exemples de propositions corrigées ou rejetées du §6 ; `R4_audit.md` complété (constat conforme K0, sous-section « survolé ») | `travail/journal_ecarts.md`, `travail/decisions.md`, `ETAT_PROJET.md`, `tests/plan_de_test.md`, `travail/audits/R4_audit.md`, `travail/journal_prompts.md` | fait |
+| 16:20 | étape 6 | « fin de notre relais » (JP-27, 16:19) : clôture du complément ; bilan : étapes 1 à 6 faites, aucune partielle ; relecture indépendante finale, puis commit et push sans tag | `ETAT_PROJET.md`, `travail/audits/R4_audit.md`, `travail/journal_prompts.md` | fait |
+
+**Points ouverts du relais** : O-13 reste à Bradley et R6.
+
+**Rectificatifs après la copie** (relecture indépendante finale, avant le commit ; la copie ci-dessus n'est pas modifiée) : à 16:18, la première relecture a produit 18 remarques (3 « à corriger », 15 mineures, dont plusieurs en double), et non « 3 « à corriger » et 12 mineurs » ; le texte final d'ETAT §3 est celui cité en K2 (« section 1 remplie (§1.1 encore à corriger par R6 : O-13, RG-09) ; sections 2 à 4 : emplacements créés, encore vides, à compléter par R6 ») ; la relecture finale (2 vérificateurs en lecture seule) a relevé 7 points mineurs, traités avant le commit (JP-27 et §4 ajoutés à « Ce que j'ai produit » et à ETAT §3, complément de R4 attribué à Leddycia pour la fiche de contribution, place d'E-27 dans `prompts.md`, liste des autres lignes d'E-27 présentée comme non exhaustive, comptes ci-dessus).

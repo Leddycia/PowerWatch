@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerWatch · Suivi de la génératrice</title>
+    <style>
+        :root {
+            --encre: #12324a;
+            --ardoise: #4a5d6e;
+            --soleil: #f2a516;
+            --soleil-survol: #e09a10;
+            --soleil-fonce: #8a5300;
+            --soleil-bord: #ebcb8b;
+            --fond: #f4f6f7;
+            --surface: #ffffff;
+            --bordure: #d9e0e5;
+            --succes: #1d6b45;
+            --succes-pale: #e7f4ec;
+            --erreur: #b42318;
+            --erreur-pale: #fdecea;
+            --entete-texte: #c9d6e0;
+            --entete-bord: #3b5a72;
+            --police-titre: Bahnschrift, "DIN Alternate", "Roboto Condensed", "Segoe UI", Arial, sans-serif;
+            --police-texte: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--fond);
+            color: var(--encre);
+            font-family: var(--police-texte);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        button,
+        select,
+        input {
+            font: inherit;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--police-titre);
+            line-height: 1.2;
+        }
+
+        .sprites {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .topbar {
+            background: var(--encre);
+            color: var(--surface);
+            padding: 18px 24px;
+        }
+
+        .topbar-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+        }
+
+        .brand-name span {
+            color: var(--soleil);
+        }
+
+        .brand-subtitle {
+            margin: 2px 0 0;
+            color: var(--entete-texte);
+            font-size: 14px;
+        }
+
+        .topbar-tag {
+            margin: 0;
+            padding: 6px 14px;
+            border: 1px solid var(--entete-bord);
+            border-radius: 999px;
+            color: var(--entete-texte);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        main {
+            width: min(1080px, calc(100% - 36px));
+            margin: 30px auto 44px;
+            display: grid;
+            gap: 20px;
+        }
+
+        .page-heading h2 {
+            margin: 0 0 6px;
+            font-size: 30px;
+            letter-spacing: -0.3px;
+        }
+
+        .page-heading p {
+            margin: 0;
+            color: var(--ardoise);
+        }
+
+        .panel {
+            padding: 22px;
+            background: var(--surface);
+            border: 1px solid var(--bordure);
+            border-radius: 14px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 16px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--soleil);
+            color: var(--encre);
+            font-size: 17px;
+        }
+
+        .upload-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+        }
+
+        .upload-description {
+            display: grid;
+            gap: 4px;
+            min-width: 0;
+            flex: 1 1 320px;
+        }
+
+        .upload-description strong {
+            font-size: 17px;
+            overflow-wrap: anywhere;
+        }
+
+        .upload-description p {
+            margin: 0;
+            color: var(--ardoise);
+            font-size: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .file-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 12px 22px;
+            border: 0;
+            border-radius: 10px;
+            background: var(--soleil);
+            color: var(--encre);
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .file-button:hover {
+            background: var(--soleil-survol);
+        }
+
+        .file-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .file-button:focus-visible,
+        select:focus-visible {
+            outline: 3px solid var(--encre);
+            outline-offset: 3px;
+        }
+
+        .price-note {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 16px 0 0;
+            color: var(--ardoise);
+            font-size: 15px;
+        }
+
+        .price-note strong {
+            color: var(--encre);
+        }
+
+        .price-note svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .error-message,
+        .success-message,
+        .error-help {
+            display: none;
+            margin-top: 16px;
+            font-size: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .error-message.visible {
+            display: block;
+            padding: 13px 16px;
+            border-left: 4px solid var(--erreur);
+            border-radius: 8px;
+            background: var(--erreur-pale);
+            color: var(--erreur);
+            font-weight: 600;
+        }
+
+        .error-message.visible + .error-help {
+            display: block;
+            margin-top: 10px;
+            color: var(--ardoise);
+        }
+
+        .success-message.visible {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: var(--succes-pale);
+            color: var(--succes);
+        }
+
+        .success-message.visible::before {
+            content: "";
+            flex-shrink: 0;
+            width: 6px;
+            height: 12px;
+            margin: 2px 2px 0 4px;
+            border-right: 3px solid currentColor;
+            border-bottom: 3px solid currentColor;
+            transform: rotate(45deg);
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.visible {
+            display: grid;
+            gap: 20px;
+        }
+
+        .period-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .period-panel .section-heading {
+            margin: 0;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            width: 9px;
+            height: 9px;
+            border-right: 2px solid var(--encre);
+            border-bottom: 2px solid var(--encre);
+            transform: translateY(-70%) rotate(45deg);
+            pointer-events: none;
+        }
+
+        .select-wrapper select {
+            -webkit-appearance: none;
+            appearance: none;
+            min-width: 230px;
+            min-height: 48px;
+            padding: 11px 48px 11px 14px;
+            border: 1px solid #b7c4ce;
+            border-radius: 10px;
+            background: var(--surface);
+            color: var(--encre);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .select-wrapper select:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .metric-card {
+            display: grid;
+            align-content: start;
+            gap: 8px;
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid var(--bordure);
+            border-radius: 14px;
+            background: var(--surface);
+        }
+
+        .metric-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metric-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            color: var(--encre);
+        }
+
+        .metric-label {
+            margin: 0;
+            color: var(--ardoise);
+            font-family: var(--police-texte);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            margin: 4px 0 0;
+            font-family: var(--police-titre);
+            font-size: clamp(30px, 3.6vw, 42px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            font-variant-numeric: tabular-nums;
+            overflow-wrap: anywhere;
+        }
+
+        .metric-value.no-operation {
+            font-family: var(--police-texte);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 0;
+            line-height: 1.4;
+        }
+
+        .metric-description {
+            margin: 0;
+            color: var(--ardoise);
+            font-size: 15px;
+        }
+
+        .cost-card {
+            border-color: var(--soleil-bord);
+            border-top: 5px solid var(--soleil);
+        }
+
+        .reference-notice {
+            margin: 8px 0 0;
+            padding-top: 12px;
+            border-top: 1px solid var(--soleil-bord);
+            color: var(--soleil-fonce);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .footer {
+            padding-top: 16px;
+            border-top: 1px solid var(--bordure);
+            color: var(--ardoise);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            .topbar {
+                padding: 16px;
+            }
+
+            .brand-name {
+                font-size: 24px;
+            }
+
+            .topbar-tag {
+                display: none;
+            }
+
+            main {
+                width: calc(100% - 28px);
+                margin-top: 22px;
+            }
+
+            .page-heading h2 {
+                font-size: 26px;
+            }
+
+            .panel,
+            .metric-card {
+                padding: 18px;
+            }
+
+            .upload-area > div,
+            .file-button,
+            .select-wrapper,
+            .select-wrapper select {
+                width: 100%;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .file-button {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="sprites" aria-hidden="true" focusable="false">
+        <symbol id="logo" viewBox="0 0 64 64">
+            <rect width="64" height="64" rx="15" fill="#12324A"/>
+            <path d="M10 46H54" stroke="#F2A516" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M16 46A16 16 0 0 1 48 46" fill="none" stroke="#F2A516" stroke-width="4" stroke-linecap="round"/>
+            <g stroke="#F2A516" stroke-width="3.2" stroke-linecap="round">
+                <path d="M13.8 35.5L9.5 33"/>
+                <path d="M21.5 27.8L19 23.5"/>
+                <path d="M32 25V20"/>
+                <path d="M42.5 27.8L45 23.5"/>
+                <path d="M50.2 35.5L54.5 33"/>
+            </g>
+            <path transform="translate(32 46) rotate(35)" fill="#FFFFFF" d="M1.2-16.5L-3.6-6.4H-0.6L-1.8 1.5H1L3.8-9.4H0.7Z"/>
+            <circle cx="32" cy="46" r="3" fill="#F2A516" stroke="#12324A" stroke-width="1.2"/>
+        </symbol>
+        <symbol id="icone-fichier" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/>
+                <path d="M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/>
+            </g>
+        </symbol>
+        <symbol id="icone-info" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <circle cx="12" cy="12" r="8.5"/>
+                <path d="M12 11v5.5M12 7.6v.2"/>
+            </g>
+        </symbol>
+        <symbol id="icone-horloge" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="8.5"/>
+                <path d="M12 7.5V12l3 2"/>
+            </g>
+        </symbol>
+        <symbol id="icone-goutte" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.5c3 4 5.5 7 5.5 10a5.5 5.5 0 0 1-11 0c0-3 2.5-6 5.5-10z"/>
+        </symbol>
+        <symbol id="icone-billet" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+                <rect x="3" y="6.5" width="18" height="11" rx="2"/>
+                <circle cx="12" cy="12" r="2.6"/>
+            </g>
+        </symbol>
+        <symbol id="icone-calendrier" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="5" width="17" height="15" rx="2"/>
+                <path d="M3.5 9.5h17M8 3v4M16 3v4"/>
+                <path d="M12 12.2l1 2 2.2.3-1.6 1.5.4 2.2-2-1.1-2 1.1.4-2.2-1.6-1.5 2.2-.3z"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <svg class="brand-mark" aria-hidden="true" focusable="false"><use href="#logo"></use></svg>
+                <div>
+                    <h1 class="brand-name">Power<span>Watch</span></h1>
+                    <p class="brand-subtitle">Collège Les Palmistes · Suivi de la génératrice</p>
+                </div>
+            </div>
+            <p class="topbar-tag">Lecture seule · Fonctionne sans Internet</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h2>Suivi de la génératrice</h2>
+            <p>Chargez le fichier du registre, puis choisissez une période.</p>
+        </section>
+
+        <section class="panel" aria-labelledby="upload-title">
+            <h2 class="section-heading" id="upload-title">
+                <span class="step-number" aria-hidden="true">1</span>
+                Charger le fichier du registre
+            </h2>
+
+            <div class="upload-area">
+                <div class="upload-description">
+                    <strong id="file-name">Aucun fichier chargé</strong>
+                    <p>Colonnes attendues&nbsp;: date, heures_solaire, heures_generatrice, litres_carburant.</p>
+                </div>
+
+                <div>
+                    <input
+                        type="file"
+                        id="csv-file"
+                        accept=".csv,text/csv"
+                        hidden
+                    >
+                    <button
+                        type="button"
+                        class="file-button"
+                        id="choose-file"
+                    ><svg aria-hidden="true" focusable="false"><use href="#icone-fichier"></use></svg>Choisir un fichier</button>
+                </div>
+            </div>
+
+            <p class="price-note">
+                <svg aria-hidden="true" focusable="false"><use href="#icone-info"></use></svg>
+                <span>Prix de référence&nbsp;: <strong>300 gourdes par litre</strong></span>
+            </p>
+
+            <div
+                id="error-message"
+                class="error-message"
+                role="alert"
+                aria-live="assertive"
+            ></div>
+            <p class="error-help">Corrigez le fichier, puis cliquez de nouveau sur «&nbsp;Choisir un fichier&nbsp;». Le fichier d'origine n'est jamais modifié.</p>
+
+            <div
+                id="success-message"
+                class="success-message"
+                role="status"
+                aria-live="polite"
+            ></div>
+        </section>
+
+        <section class="dashboard" id="dashboard" aria-label="Résultats de la période">
+            <section class="panel period-panel">
+                <h2 class="section-heading">
+                    <span class="step-number" aria-hidden="true">2</span>
+                    <label for="period-select">Choisir la période</label>
+                </h2>
+
+                <div class="select-wrapper">
+                    <select id="period-select" disabled>
+                        <option value="all">Toute la période</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="metrics-grid" aria-label="Totaux et indicateurs">
+                <article class="metric-card">
+                    <div class="metric-top">
+                        <svg class="metric-icon" aria-hidden="true" focusable="false"><use href="#icone-horloge"></use></svg>
+                        <h3 class="metric-label">Heures de génératrice</h3>
+                    </div>
+                    <p class="metric-value" id="total-hours"></p>
+                    <p class="metric-description">Total des heures de fonctionnement sur la période</p>
+                </article>
+
+                <article class="metric-card">
+                    <div class="metric-top">
+                        <svg class="metric-icon" aria-hidden="true" focusable="false"><use href="#icone-goutte"></use></svg>
+                        <h3 class="metric-label">Carburant consommé</h3>
+                    </div>
+                    <p class="metric-value" id="total-litres"></p>
+                    <p class="metric-description">Total des litres consommés sur la période</p>
+                </article>
+
+                <article class="metric-card cost-card">
+                    <div class="metric-top">
+                        <svg class="metric-icon" aria-hidden="true" focusable="false"><use href="#icone-billet"></use></svg>
+                        <h3 class="metric-label">Coût estimé</h3>
+                    </div>
+                    <p class="metric-value" id="total-cost"></p>
+                    <p class="metric-description">Calcul du coût estimé&nbsp;: litres consommés × 300 gourdes par litre</p>
+                    <p class="reference-notice">Ce prix est un prix de référence de l'intendance, pas un prix officiel.</p>
+                </article>
+
+                <article class="metric-card">
+                    <div class="metric-top">
+                        <svg class="metric-icon" aria-hidden="true" focusable="false"><use href="#icone-calendrier"></use></svg>
+                        <h3 class="metric-label">Jour de fonctionnement maximal</h3>
+                    </div>
+                    <p class="metric-value" id="maximum-day"></p>
+                    <p class="metric-description">En cas d'égalité, le premier de ces jours dans l'ordre chronologique</p>
+                </article>
+            </section>
+        </section>
+
+        <footer class="footer">
+            PowerWatch · Suivi énergétique du Collège Les Palmistes
+        </footer>
+    </main>
+
+    <script>
+        "use strict";
+
+        const PRIX_PAR_LITRE = 300;
+
+        const inputFichier = document.getElementById("csv-file");
+        const boutonChoisir = document.getElementById("choose-file");
+        const nomFichier = document.getElementById("file-name");
+        const selectPeriode = document.getElementById("period-select");
+        const tableauDeBord = document.getElementById("dashboard");
+        const messageErreur = document.getElementById("error-message");
+        const messageSucces = document.getElementById("success-message");
+
+        const affichageHeures = document.getElementById("total-hours");
+        const affichageLitres = document.getElementById("total-litres");
+        const affichageCout = document.getElementById("total-cost");
+        const affichageMaximum = document.getElementById("maximum-day");
+
+        const COLONNES_REQUISES = [
+            "date",
+            "heures_solaire",
+            "heures_generatrice",
+            "litres_carburant"
+        ];
+
+        const MOIS_FRANCAIS = [
+            "Janvier", "Février", "Mars", "Avril",
+            "Mai", "Juin", "Juillet", "Août",
+            "Septembre", "Octobre", "Novembre", "Décembre"
+        ];
+
+        let donneesChargees = [];
+        let nomFichierCharge = "";
+
+        boutonChoisir.addEventListener("click", function () {
+            inputFichier.click();
+        });
+
+        selectPeriode.addEventListener("change", function () {
+            actualiserIndicateurs();
+        });
+
+        inputFichier.addEventListener("change", function (evenement) {
+            const fichier = evenement.target.files[0];
+
+            if (!fichier) {
+                return;
+            }
+
+            reinitialiserApplication();
+            nomFichier.textContent = fichier.name;
+
+            const lecteur = new FileReader();
+
+            lecteur.onload = function (resultat) {
+                try {
+                    const contenu = resultat.target.result;
+
+                    if (typeof contenu !== "string" || contenu.length === 0) {
+                        throw new Error("Le fichier CSV est vide.");
+                    }
+
+                    const nouvellesDonnees = analyserCSV(contenu);
+
+                    donneesChargees = nouvellesDonnees;
+                    nomFichierCharge = fichier.name;
+
+                    construireListePeriodes();
+
+                    selectPeriode.value = "all";
+                    selectPeriode.disabled = false;
+
+                    tableauDeBord.classList.add("visible");
+
+                    messageSucces.textContent =
+                        "Fichier chargé et vérifié avec succès : " +
+                        fichier.name + ".";
+
+                    messageSucces.classList.add("visible");
+
+                    actualiserIndicateurs();
+                } catch (erreur) {
+                    reinitialiserApplication();
+                    nomFichier.textContent = fichier.name;
+
+                    afficherErreur(erreur.message);
+                }
+            };
+
+            lecteur.onerror = function () {
+                reinitialiserApplication();
+                nomFichier.textContent = fichier.name;
+                afficherErreur("Impossible de lire le fichier sélectionné.");
+            };
+
+            lecteur.readAsText(fichier, "UTF-8");
+        });
+
+        function reinitialiserApplication() {
+            donneesChargees = [];
+            nomFichierCharge = "";
+
+            tableauDeBord.classList.remove("visible");
+
+            selectPeriode.replaceChildren();
+            selectPeriode.add(
+                new Option("Toute la période", "all")
+            );
+            selectPeriode.value = "all";
+            selectPeriode.disabled = true;
+
+            affichageHeures.textContent = "—";
+            affichageLitres.textContent = "—";
+            affichageCout.textContent = "—";
+            affichageMaximum.textContent = "—";
+            affichageMaximum.classList.remove("no-operation");
+
+            messageErreur.textContent = "";
+            messageErreur.classList.remove("visible");
+
+            messageSucces.textContent = "";
+            messageSucces.classList.remove("visible");
+        }
+
+        function afficherErreur(message) {
+            messageErreur.textContent = message;
+            messageErreur.classList.add("visible");
+        }
+
+        function analyserCSV(contenu) {
+            const lignes = decouperCSV(contenu);
+
+            if (lignes.length === 0) {
+                throw new Error(
+                    "Erreur à la ligne 1 : l'en-tête du fichier CSV est absent."
+                );
+            }
+
+            const entete = lignes[0].valeurs;
+
+            for (const colonne of COLONNES_REQUISES) {
+                if (!entete.includes(colonne)) {
+                    throw new Error(
+                        "Erreur à la ligne 1 (en-tête) : " +
+                        "la colonne obligatoire « " + colonne +
+                        " » est absente."
+                    );
+                }
+            }
+
+            const indices = {
+                date: entete.indexOf("date"),
+                solaire: entete.indexOf("heures_solaire"),
+                generatrice: entete.indexOf("heures_generatrice"),
+                litres: entete.indexOf("litres_carburant")
+            };
+
+            const resultats = [];
+            const datesRencontrees = new Set();
+
+            for (let index = 1; index < lignes.length; index++) {
+                const ligne = lignes[index];
+                const valeurs = ligne.valeurs;
+                const numeroLigne = ligne.numero;
+
+                if (
+                    valeurs.length === 1 &&
+                    valeurs[0].trim() === ""
+                ) {
+                    continue;
+                }
+
+                if (valeurs.length !== entete.length) {
+                    throw new Error(
+                        "Erreur à la ligne " + numeroLigne +
+                        " : le nombre de valeurs ne correspond pas " +
+                        "au nombre de colonnes de l'en-tête."
+                    );
+                }
+
+                const dateBrute = valeurs[indices.date].trim();
+
+                if (!dateEstValide(dateBrute)) {
+                    throw new Error(
+                        "Erreur à la ligne " + numeroLigne +
+                        " : date invalide. Le format attendu est AAAA-MM-JJ."
+                    );
+                }
+
+                if (datesRencontrees.has(dateBrute)) {
+                    throw new Error(
+                        "Erreur à la ligne " + numeroLigne +
+                        " : la date " + dateBrute +
+                        " est présente plusieurs fois dans le fichier."
+                    );
+                }
+
+                datesRencontrees.add(dateBrute);
+
+                const heuresSolaires = lireNombre(
+                    valeurs[indices.solaire],
+                    "heures_solaire",
+                    numeroLigne
+                );
+
+                const heuresGeneratrice = lireNombre(
+                    valeurs[indices.generatrice],
+                    "heures_generatrice",
+                    numeroLigne
+                );
+
+                const litresCarburant = lireNombre(
+                    valeurs[indices.litres],
+                    "litres_carburant",
+                    numeroLigne
+                );
+
+                resultats.push({
+                    date: dateBrute,
+                    mois: dateBrute.slice(0, 7),
+                    heuresSolaires: heuresSolaires,
+                    heuresGeneratrice: heuresGeneratrice,
+                    litresCarburant: litresCarburant
+                });
+            }
+
+            if (resultats.length === 0) {
+                throw new Error(
+                    "Le fichier ne contient aucune ligne de données exploitable."
+                );
+            }
+
+            return resultats;
+        }
+
+        function decouperCSV(contenu) {
+            const lignes = [];
+            let valeurs = [];
+            let champ = "";
+            let dansGuillemets = false;
+            let numeroLigne = 1;
+            let numeroLigneDebut = 1;
+
+            for (let index = 0; index < contenu.length; index++) {
+                const caractere = contenu[index];
+
+                if (dansGuillemets) {
+                    if (caractere === '"') {
+                        if (contenu[index + 1] === '"') {
+                            champ += '"';
+                            index++;
+                        } else {
+                            dansGuillemets = false;
+                        }
+                    } else {
+                        if (caractere === "\n") {
+                            numeroLigne++;
+                        } else if (
+                            caractere === "\r" &&
+                            contenu[index + 1] !== "\n"
+                        ) {
+                            numeroLigne++;
+                        }
+
+                        champ += caractere;
+                    }
+
+                    continue;
+                }
+
+                if (caractere === '"' && champ.length === 0) {
+                    dansGuillemets = true;
+                    continue;
+                }
+
+                if (caractere === ",") {
+                    valeurs.push(champ);
+                    champ = "";
+                    continue;
+                }
+
+                if (caractere === "\n" || caractere === "\r") {
+                    valeurs.push(champ);
+
+                    lignes.push({
+                        valeurs: valeurs,
+                        numero: numeroLigneDebut
+                    });
+
+                    valeurs = [];
+                    champ = "";
+
+                    if (
+                        caractere === "\r" &&
+                        contenu[index + 1] === "\n"
+                    ) {
+                        index++;
+                    }
+
+                    numeroLigne++;
+                    numeroLigneDebut = numeroLigne;
+                    continue;
+                }
+
+                champ += caractere;
+            }
+
+            if (dansGuillemets) {
+                throw new Error(
+                    "Erreur à la ligne " + numeroLigne +
+                    " : un champ CSV contient des guillemets non fermés."
+                );
+            }
+
+            if (champ.length > 0 || valeurs.length > 0) {
+                valeurs.push(champ);
+
+                lignes.push({
+                    valeurs: valeurs,
+                    numero: numeroLigneDebut
+                });
+            }
+
+            return lignes;
+        }
+
+        function dateEstValide(date) {
+            const correspondance = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+
+            if (!correspondance) {
+                return false;
+            }
+
+            const annee = Number(correspondance[1]);
+            const mois = Number(correspondance[2]);
+            const jour = Number(correspondance[3]);
+
+            if (annee < 1 || mois < 1 || mois > 12 || jour < 1) {
+                return false;
+            }
+
+            const joursDansMois = new Date(
+                Date.UTC(annee, mois, 0)
+            ).getUTCDate();
+
+            return jour <= joursDansMois;
+        }
+
+        function lireNombre(valeur, colonne, numeroLigne) {
+            const texte = valeur.trim();
+
+            if (
+                texte === "" ||
+                !/^(?:\d+(?:\.\d+)?|\.\d+)$/.test(texte)
+            ) {
+                throw new Error(
+                    "Erreur à la ligne " + numeroLigne +
+                    " : la valeur de « " + colonne +
+                    " » doit être un nombre valide positif ou nul."
+                );
+            }
+
+            const nombre = Number(texte);
+
+            if (!Number.isFinite(nombre) || nombre < 0) {
+                throw new Error(
+                    "Erreur à la ligne " + numeroLigne +
+                    " : valeur numérique invalide dans « " + colonne + " »."
+                );
+            }
+
+            return nombre;
+        }
+
+        function construireListePeriodes() {
+            const moisPresents = [...new Set(
+                donneesChargees.map(function (ligne) {
+                    return ligne.mois;
+                })
+            )].sort();
+
+            selectPeriode.replaceChildren();
+
+            moisPresents.forEach(function (mois) {
+                const parties = mois.split("-");
+                const annee = Number(parties[0]);
+                const numeroMois = Number(parties[1]);
+
+                const libelle =
+                    MOIS_FRANCAIS[numeroMois - 1] + " " + annee;
+
+                selectPeriode.add(
+                    new Option(libelle, mois)
+                );
+            });
+
+            selectPeriode.add(
+                new Option("Toute la période", "all")
+            );
+        }
+
+        function actualiserIndicateurs() {
+            if (donneesChargees.length === 0) {
+                return;
+            }
+
+            const periode = selectPeriode.value;
+
+            const donneesPeriode = donneesChargees.filter(
+                function (ligne) {
+                    return periode === "all" || ligne.mois === periode;
+                }
+            );
+
+            let totalHeures = 0;
+            let totalLitres = 0;
+            let maximumHeures = 0;
+            let jourMaximum = null;
+
+            for (const ligne of donneesPeriode) {
+                totalHeures += ligne.heuresGeneratrice;
+                totalLitres += ligne.litresCarburant;
+
+                if (
+                    ligne.heuresGeneratrice > maximumHeures ||
+                    (
+                        ligne.heuresGeneratrice === maximumHeures &&
+                        ligne.heuresGeneratrice > 0 &&
+                        jourMaximum !== null &&
+                        ligne.date < jourMaximum.date
+                    )
+                ) {
+                    maximumHeures = ligne.heuresGeneratrice;
+                    jourMaximum = ligne;
+                }
+            }
+
+            affichageHeures.textContent =
+                formaterNombre(totalHeures, 0) + " h";
+
+            affichageLitres.textContent =
+                formaterNombre(totalLitres, 1) + " L";
+
+            affichageCout.textContent =
+                formaterMontant(totalLitres * PRIX_PAR_LITRE) +
+                " gourdes";
+
+            if (maximumHeures === 0 || jourMaximum === null) {
+                affichageMaximum.textContent =
+                    "Aucun fonctionnement de la génératrice sur la période";
+
+                affichageMaximum.classList.add("no-operation");
+            } else {
+                affichageMaximum.textContent =
+                    formaterDate(jourMaximum.date) +
+                    " (" + formaterNombre(maximumHeures, 0) + " h)";
+
+                affichageMaximum.classList.remove("no-operation");
+            }
+        }
+
+        function formaterNombre(nombre, decimales) {
+            return nombre.toLocaleString("fr-FR", {
+                minimumFractionDigits: decimales,
+                maximumFractionDigits: decimales,
+                useGrouping: true
+            });
+        }
+
+        function formaterMontant(montant) {
+            const arrondi = Math.round(montant);
+
+            return arrondi.toLocaleString("fr-FR", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+                useGrouping: true
+            }).replace(/[\u202f\u00a0]/g, " ");
+        }
+
+        function formaterDate(date) {
+            const parties = date.split("-");
+
+            return parties[2] + "/" + parties[1] + "/" + parties[0];
+        }
+    </script>
+</body>
+</html>

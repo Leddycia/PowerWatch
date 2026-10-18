@@ -319,3 +319,49 @@
 - **Ce qu'il a produit** : passation complète (`agents/00_protocole_relais.md` §4) : ETAT §1 à §8, `travail/audits/R5_audit.md`, commit, tag annoté `relais-5`, push ; Petiote inscrite comme membre de R6.
 - **Ce que l'humain a vérifié ou corrigé** : prénom du membre de R6 fourni.
 - **Candidat pour `prompts.md`** : non.
+
+### JP-24 : Complément de R5, corrections avant le démarrage de R6
+
+- **Relais / membre** : R5 (complément, après le tag `relais-5`) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 15:03
+- **Prompt (texte exact)** :
+  > Corrige tous les points en prenant le soin de faire un triple check a chaque etape si aucun pull pour le relais suivant n'a encore ete effectue
+- **Contexte** : ce prompt suit, dans la même session, une relecture du dépôt après le push de R5 demandée par Leddycia (texte exact : « R5 a ete push. Verifie »), qui a relevé les points corrigés ici (`travail/audits/R5_audit.md`, section « Complément »).
+- **Ce qu'il a produit** : complément de R5 : Q-01 remise à « provisoire » (E-23) ; f01 refait avec des égalités dans un ordre non chronologique et oracle §8 mis à jour (E-24) ; 4 captures de CA-03.02 refaites ; données personnelles masquées dans 4 captures manuelles (E-25) ; affichage des blocs de `prompts.md` réparé sans toucher au texte du prompt (E-26) ; chaque étape contrôlée trois fois (journal de bord du complément : `travail/audits/R5_audit.md`, section « Complément »).
+- **Ce que l'humain a vérifié ou corrigé** : avant toute écriture, Leddycia a confirmé (15:07) que R6 n'avait pas encore fait de `git pull` et que le complément est fait à son nom.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-25 : Clôture du complément de R5
+
+- **Relais / membre** : R5 (complément) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 15:16
+- **Prompt (texte exact)** :
+  > fin de notre relais
+- **Ce qu'il a produit** : clôture du complément (`agents/00_protocole_relais.md` §4, règle « Complément ») : `R5_audit.md` complété, ETAT §1 à §7 (R5 « complément FAIT », nouvelle entrée au §7, mission de R6 précisée), §8 vidé ; relecture indépendante avant le commit (vérificateurs en lecture seule, chacun avec un angle différent) ; commit et push sans tag (`relais-5` est déjà posé).
+- **Ce que l'humain a vérifié ou corrigé** : compte rendu et message de passation à relire avant envoi.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-26 : Complément de R4, quatre points mineurs avant le démarrage de R6
+
+- **Relais / membre** : R4 (complément, après le tag `relais-4`) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 15:57
+- **Prompt (texte exact)** :
+  > Oui, corrige les quatre points mineurs restants de R4, si R6 n'a pas encore fait de git pull.
+- **Contexte** : réponse à la question « Je corrige les quatre points mineurs maintenant ? », posée après la question de Leddycia « Les corrections de R4 ont ete faits? » (15:55) et le bilan des points relevés sur R4 qui restaient à corriger. Ces points venaient de la relecture du dépôt demandée après le push de R4 (texte exact : « R4 done », 13:50).
+- **Ce qu'il a produit** : complément de R4 : résumés de Q-10 corrigés après un essai réel du BOM et du `;` (E-28) ; ETAT §3, état réel de `prompts.md` (E-28) ; `tests/plan_de_test.md` §2, `index.html` seulement en cas d'écart (E-28) ; bonnes pratiques de pièges reprises dans le prompt consignées (E-27) ; journal de bord du complément (copié dans `travail/audits/R4_audit.md`, section « Complément », à la clôture).
+- **Ce que l'humain a vérifié ou corrigé** : avant toute écriture, Leddycia a confirmé (15:58) que R6 n'avait pas encore fait de `git pull`.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-27 : Clôture du complément de R4
+
+- **Relais / membre** : R4 (complément) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 16:19
+- **Prompt (texte exact)** :
+  > fin de notre relais
+- **Ce qu'il a produit** : clôture du complément (`agents/00_protocole_relais.md` §4, règle « Complément ») : `R4_audit.md` complété avec la copie du journal de bord, ETAT §1 à §7 (R4 « complément FAIT », nouvelle entrée au §7), §8 vidé ; relecture indépendante finale avant le commit ; commit et push sans tag (`relais-4` est déjà posé).
+- **Ce que l'humain a vérifié ou corrigé** : compte rendu et message de passation à relire avant envoi.
+- **Candidat pour `prompts.md`** : non.
