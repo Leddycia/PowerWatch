@@ -30,10 +30,10 @@
 
 | | |
 |---|---|
-| **Porte atteinte** | G3 (product backlog v1, Sprint 01 = US-01 à US-03 avec 20 CA chiffrés) ; G2 confirmée par l'audit de R3 (relecture humaine mot à mot du CDC : conforme) |
-| **Relais terminé** | R3 (product backlog) |
-| **Relais en cours** | Aucun (voir §8) |
-| **Prochain relais** | **R4 : prompt RMTCEV, délégation, `version_IA.html`, plan de test et fixtures** (fiche `agents/03_prompt_engineer.md`) |
+| **Porte atteinte** | G4 (prompt RMTCEV, délégation ChatGPT GPT-4o, version_IA.html tagué version-ia, plan de test et fixtures) ; G2 et G3 confirmées par les audits de R3 et R4 |
+| **Relais terminé** | R4 (prompt engineer) |
+| **Relais en cours** | **Aucun (voir §8)** |
+| **Prochain relais** | **R5 : vérification, journal des écarts, `index.html`, captures** (fiches `agents/04_developpeur.md` et `agents/05_verificateur.md`) |
 | **Échéance de remise** | **Dimanche 18/10/2026, 23 h 59**, sur le Drive (C-19) |
 | **Sprint 01** | US-01 (chargement et totaux), US-02 (coût), US-03 (jour max) (D-01) |
 | **Dépôt** | `https://github.com/Leddycia/PowerWatch.git` (HTTPS, pour cloner : §0) ou `git@github.com:Leddycia/PowerWatch.git` (SSH, si ta clé est enregistrée), branche `main` ; dépôt **public**, laissé public par décision de Leddycia (D-12, O-8) |
@@ -45,7 +45,7 @@
 | R1 | Leddycia | Claude Code (Claude Opus 5.5) | 18/10, matin | G0 et G1 | **FAIT** (commit tagué `relais-1`) ; complément FAIT (10:40 → 11:37, non tagué) | `relais-1` |
 | R2 | Leddycia | Claude Code (Claude Opus 5.5) | 18/10, matin | G2 | **FAIT** (10:49 → 11:48) | `relais-2` |
 | R3 | Leddycia | Claude Code (application de bureau, Claude Opus 5.5) | *à compléter* | G3 | **FAIT** (11:55 → 12:06) | `relais-3` |
-| R4 | Bradley | Antigravity (Gemini), modèle à préciser au démarrage | *à compléter* | G4 | À FAIRE | `relais-4`, `version-ia` |
+| R4 | Bradley | Antigravity (Gemini 3.8 Flash High) | *à compléter* | G4 | **FAIT** (12:47 → 13:42) | `relais-4`, `version-ia` |
 | R5 | *à compléter* | *à compléter* | *à compléter* | G5 | À FAIRE | `relais-5` |
 | R6 | *à compléter* | *à compléter* | *à compléter* | G6 et G7 | À FAIRE | `relais-6` |
 
@@ -85,47 +85,59 @@
 | Audit d'entrée du CDC (A1 à A6 conformes ; relecture humaine mot à mot conforme) | `travail/audits/R3_audit.md` | R3 |
 | Q-18 (colonnes du tableau jour par jour), Q-19 (ordre chronologique du tableau), Q-20 (rappel du prix de référence), dans le registre et ajoutées de façon ciblée au CDC (§4, RM-01, §11.1, §12.1) | `travail/decisions.md`, `Groupe_01_Cas_01/cahier_des_charges.md` | R3 |
 | Journaux : JP-15 à JP-17, E-20 et E-21 | `travail/journal_prompts.md`, `travail/journal_ecarts.md` | R3 |
+| Livrable `prompts.md` v1 : prompt de délégation RMTCEV intégrant le CDC intégral et la spécification Sprint 01 complète avec ses 20 CA chiffrés, relu par Leddycia (R3) et commité avant délégation (`b170333`, C-08) ; sections 1 à 4 complétées | `Groupe_01_Cas_01/prompts.md` | R4 |
+| Réponse brute intégrale de la délégation ChatGPT (GPT-4o) en session vierge (D-09) | `travail/brut/delegation_reponse_brute.md` | R4 |
+| Prototype brut `version_IA.html` extrait sans altération (`git diff --no-index` vide), commité avec tag annoté `version-ia` (`624003a`, C-09, RG-08) | `Groupe_01_Cas_01/prototype/version_IA.html` | R4 |
+| Plan de test exhaustif des 20 CA du Sprint 01 et Test-P04 avec procédure pas à pas, fixtures associées et nommage exact des captures PNG attendues | `tests/plan_de_test.md` | R4 |
+| 6 fixtures de test CSV (`f01` à `f06`) couvrant l'ensemble des cas limites (ordre mélangé, colonne manquante, valeur non numérique, mois sans génératrice, décimales, sous-ensemble août-septembre) | `tests/fixtures/f01_*.csv` à `f06_*.csv` | R4 |
+| Oracle §8 complété avec les résultats attendus déterministes pour les 6 fixtures de test | `docs/oracle.md` | R4 |
+| Rapport d'audit d'entrée R4, journal de bord intégral et traçabilité des arbitrages D-10, Q-01, Q-10 | `travail/audits/R4_audit.md` | R4 |
 
 ## 4. Ce qui reste (par ordre de priorité)
 
-1. **Reste de R3, à reprendre par R4** : rien de partiel. À traiter avant le prompt : O-9 (format des litres, §5) ; fichier de test « août et septembre seuls » (CA-01.09, CA-01.10) à ajouter à `docs/oracle.md` §8.
-2. **R4** : prompt RMTCEV, délégation en session vierge, `version_IA.html`, plan de test et fixtures (G4).
-3. **R5** : vérification, journal des écarts, `index.html`, captures (G5).
-4. **R6** : README, `prompts.md` final, `fiche_contribution.pdf` (à la racine du dépôt), test depuis le Drive sur un autre PC (G6 et G7). **Téléversement sur le Drive : Leddycia** (D-13).
-5. **Tous** : préparation de la soutenance (mode coach, fiche 06).
+1. **Reste de R4, à reprendre par R5** : rien de partiel. `version_IA.html` est figé et tagué `version-ia`.
+2. **R5** : vérification de `version_IA.html`, journal des écarts, `index.html`, captures (G5).
+3. **R6** : README, `prompts.md` final, `fiche_contribution.pdf` (à la racine du dépôt), test depuis le Drive sur un autre PC (G6 et G7). **Téléversement sur le Drive : Leddycia** (D-13).
+4. **Tous** : préparation de la soutenance (mode coach, fiche 06).
 
 ## 5. Points ouverts et bloquants
 
 | # | Point | Bloque | Qui |
 |---|---|---|---|
 | O-1 | **Numéro du groupe** (D-11) : **résolu**, Groupe 01. Livrable `Groupe_01_Cas_01/`, dossier Drive `Groupe_01/`. | Plus rien | Équipe |
-| O-2 | **Noms, ordre des relais et outil d'IA de chaque membre** (§2) : R2 et R3 = Leddycia (Claude Code) ; R4 = Bradley (Antigravity, Gemini ; modèle à préciser au démarrage) ; **R5 et R6 à compléter** avant leur créneau | Organisation ; message de passation de R4 | Équipe |
+| O-2 | **Noms, ordre des relais et outil d'IA de chaque membre** (§2) : R2 et R3 = Leddycia (Claude Code) ; R4 = Bradley (Antigravity, Gemini 3.8 Flash High) ; **R5 et R6 à compléter** avant leur créneau | Organisation ; message de passation de R4 | Équipe |
 | O-3 | **Accès au dépôt GitHub** : invitations **envoyées** par Leddycia le 2026-10-18. Chaque membre doit les **accepter** avant son créneau (§0, étape 1). | `push` de chaque relais | Chaque membre |
 | O-4 | Définition exacte de RMTCEV dans le cours (hypothèse D-02 en vigueur) | Rien (hypothèse en place) ; à remplacer avant R4 si elle est retrouvée | Tout membre |
 | O-5 | **Résolu par R2** : questions au client Q-01 à Q-17 listées au §11.1 du CDC avec leur hypothèse provisoire (Q-15 à Q-17 ajoutées par R2, JP-13) | Rien (résolu) | R2 |
-| O-6 | Décision D-10 (pièges dans le prompt ou non) | Prompt RMTCEV | R4 |
+| O-6 | **Résolu par R4** : D-10 validé (règles et valeurs de l'oracle fournies sans dicter les solutions d'implémentation des pièges techniques) | Rien (résolu) | R4 |
 | O-7 | **Résolu le 2026-10-18 : Leddycia téléverse elle-même sur le Drive** (D-13) le dossier `Groupe_01_Cas_01/` et `fiche_contribution.pdf`, pris dans le dépôt. Elle doit être **joignable pendant le créneau de R6** (vers la 35e minute, puis pour le README final). | Rien (résolu) | Leddycia |
 | O-8 | **Résolu le 2026-10-18 : dépôt laissé public, décision de Leddycia** (D-12), prise en connaissance de cause après vérification (accès anonyme possible). Tout ce qui est poussé est public : noms des membres, journaux, e-mail de l'auteur de chaque commit. Adresse noreply fortement recommandée pour chaque membre (§0). | Rien (résolu) | Leddycia (propriétaire du dépôt) ; chaque membre pour son adresse |
-| O-9 | **B-14 contre R-04** : le brief dit « les litres peuvent avoir une décimale » ; `AGENTS.md` R-04 et la fiche 01 écrivent « au plus une décimale ». Le CDC garde le texte du client (RM-03) et renvoie le format exact à Q-01 ; les CA du backlog citent l'hypothèse Q-01 (toujours une décimale). | À trancher dans `decisions.md` avant le prompt de R4 | Équipe, R4 |
-| O-10 | **12 points non fixés par le client, renvoyés à R3 et R4** (liste : `travail/audits/R2_audit.md`, « Points remontés ») : **part de R3 résolue** (#1, #2 et #11 → Q-18 à Q-20 ; #4 et #5 → CA-01.10 et CA-01.09) ; reste pour R4 : fixtures (#3, #6 à #9), précision de Q-10 (fichier avec BOM, #10), poste de la directrice (#12, avec R5) | Fixtures, prompt | R4 |
+| O-9 | **Résolu par R4** : Q-01 confirmé (format des litres toujours à une décimale avec virgule française, ex. « 71,0 L », résolvant l'ambiguïté B-14 / R-04) | Rien (résolu) | R4 |
+| O-10 | **Résolu par R3 et R4** : points de R3 résolus par Q-18 à Q-20 ; points de R4 résolus par la création des fixtures f01 à f06, la complétion d'oracle §8, la précision de Q-10 (BOM traité en rejet Q-04) ; poste de la directrice renvoyé à R5/R6. | Rien (résolu) | R3, R4 |
 | O-11 | **Fiche 01** : sa DoD admet une CT citant un B-xx, sa structure (§7) les réserve aux consignes ; le CDC suit la structure | Rien | Équipe |
 | O-12 | **Fiche 02** : sa checklist d'audit A5 cite encore « Q-01 à Q-14 » ; le registre en compte désormais Q-01 à Q-20 | Rien | Équipe |
 
-## 6. Mission du prochain relais : R4
+## 6. Mission du prochain relais : R5
 
-1. Après les prérequis du §0 : `git pull`, puis `git fetch --tags` et `git tag -l` (`relais-1`, `relais-2` et `relais-3` doivent apparaître), puis ouvrir ton IA (Antigravity dans le dépôt : voir `GEMINI.md` ; ou le kit web de `AGENTS.md` §13) et vérifier le chargement : lui demander « Cite mot pour mot la règle RG-08 d'AGENTS.md ».
-2. Lancer le prompt d'amorçage de `AGENTS.md` §14, en remplaçant `<X>` par `4` et `<fiche>` par `03_prompt_engineer`. Une fois le plan validé, l'IA marque R4 « EN COURS » ici (§1, §2 et §8), crée `travail/audits/R4_audit.md` et tient le journal de bord de §8 pendant tout le relais. Donne-lui le modèle exact de ton outil (§2, « modèle à préciser »).
-3. **Audit du product backlog de R3** (checklist A1 à A5 de ta fiche ; démarrage et audit : 10 min). En particulier :
-   - vérifie d'abord que ton IA a lu en entier `Groupe_01_Cas_01/cahier_des_charges.md` (33 ko) et `Groupe_01_Cas_01/product_backlog.md` (24,5 ko) : la limite de 24 000 octets d'Antigravity vaut pour ses fichiers de règles ; demande-lui de citer la dernière ligne du §12.3 du CDC et le dernier point de la DoD du §5 du backlog ;
-   - A3 : comparer chaque valeur des CA du Sprint 01 à `docs/oracle.md` §2 et §4, ainsi qu'au §5 pour les CA du fuseau ; CA-01.10 (54 h et 155,0 L) est la somme des valeurs d'août et de septembre de l'oracle §2.1 ;
-   - A5 : fuseau d'Haïti (CA-01.05, CA-02.04, CA-03.04), fichier mélangé (CA-03.02), hors ligne (CA-01.01), empreinte du CSV (CA-01.08).
-4. Mission selon la fiche 03 :
-   - avant le prompt : trancher D-10 et, avec l'équipe, O-9 (format des litres) ; préciser Q-10 pour un fichier avec BOM (O-10 #10) dans `travail/decisions.md` ;
-   - rédiger le prompt RMTCEV : il embarque le cahier des charges **intégral** et la section Sprint 01 **complète**, avec US-01 à US-03 et **tous leurs CA** (CA-01.01 à CA-01.11, CA-02.01 à CA-02.05, CA-03.01 à CA-03.04) ; relecture par Leddycia (membre de R3) entre la 20e et la 30e minute ; prompt commité dans `prompts.md` §1 **avant** la délégation ;
-   - déléguer **une seule fois** en session vierge (D-09) : de préférence une IA web en conversation temporaire ; Antigravity CLI seulement dans un dossier vide hors du dépôt et si `~/.gemini/GEMINI.md` n'existe pas ; jamais la session qui a lu ce dépôt. `version_IA.html` brut, contrôle `git diff --no-index` vide, commit, tag annoté `version-ia` et push ;
-   - `prompts.md` v1 (sections 1 à 4) ; plan de test et fichiers de test : les cinq cités par les CA du Sprint 01 (lignes mélangées, colonne manquante, valeur `abc`, mois sans génératrice, et un nouveau : l'en-tête et les 24 lignes d'août et de septembre, pour CA-01.09 et CA-01.10), plus f05 (décimales) ; leurs résultats attendus dans `docs/oracle.md` §8, calculés hors de l'IA déléguée.
-   - Points d'attention : les hypothèses Q-01 à Q-06, Q-09, Q-16, Q-17 et Q-20 sont appliquées par le Sprint 01, jamais présentées comme des règles du client ; Q-18 et Q-19 ne concernent que l'US-04, hors sprint ; aucune fonction hors Sprint 01 (ni tableau jour par jour, ni graphique, ni stockage local).
-5. Passation : dire **« fin de notre relais »** à ton IA. Elle met à jour ce fichier, complète `travail/audits/R4_audit.md` et les journaux, commite, pose le tag annoté `relais-4`, pousse (`git ls-remote --tags origin` doit afficher `relais-4` et `version-ia`) et te donne le message à envoyer au groupe (`agents/00_protocole_relais.md` §4). Relis son compte rendu avant d'envoyer le message. Avec une IA web, c'est toi qui colles les contenus et lances les commandes qu'elle te donne, en deux blocs (protocole, « Variante pour une IA web »).
+1. Après les prérequis du §0 : `git pull`, puis `git fetch --tags` et `git tag -l` (`relais-1`, `relais-2`, `relais-3`, `relais-4` et `version-ia` doivent apparaître), puis ouvrir ton IA dans le dépôt (voir `AGENTS.md` et fiche 05) et vérifier le chargement : lui demander « Cite mot pour mot la règle RG-08 d'AGENTS.md ».
+2. Lancer le prompt d'amorçage de `AGENTS.md` §14, en remplaçant `<X>` par `5` et `<fiche>` par `05_verificateur` (puis `04_developpeur`). Une fois le plan validé, l'IA marque R5 « EN COURS » ici (§1, §2 et §8), crée `travail/audits/R5_audit.md` et tient le journal de bord de §8 pendant tout le relais. Complète ton nom et ton outil au §2.
+3. **Audit d'entrée et vérification de `version_IA.html` (fiche 05, 5 à 20 min)** :
+   - A1 : vérifier que `version_IA.html` est tagué `version-ia` et intact (`git diff version-ia -- Groupe_01_Cas_01/prototype/version_IA.html` doit être vide) ;
+   - A2 : vérifier la fidélité de l'extraction brute de la réponse ChatGPT (`git diff --no-index` vide) ;
+   - A3 : vérifier le prompt RMTCEV dans `prompts.md` ;
+   - A4 : vérifier le plan de test et les 6 fixtures dans `tests/` et `docs/oracle.md` §8 ;
+   - Préparer l'environnement de test : régler le fuseau horaire Windows sur **« (UTC-05:00) Haïti »** et vérifier le hash SHA-256 du CSV (`320155c7…a84b`) ;
+   - Exécuter pas à pas le plan de test `tests/plan_de_test.md` sur `version_IA.html` pour chaque CA du Sprint 01 et consigner tout écart dans `travail/journal_ecarts.md` (E-xx).
+4. **Corrections de `index.html` (fiche 04, 20 à 40 min)** :
+   - Si `version_IA.html` respecte déjà l'intégralité des 20 CA et règles, ne pas créer `index.html`, l'indiquer dans ETAT_PROJET et pour R6 dans le README (C-09) ;
+   - Si des écarts sont constatés : initialiser `index.html` par copie exacte de `version_IA.html`, puis apporter des corrections minimales et ciblées pour chaque E-xx (ne jamais modifier `version_IA.html`, RG-08) ;
+   - Refuser toute fonctionnalité hors sprint (US-04 tableau, graphiques, stockage local, etc.).
+5. **Vérification finale et captures (fiche 05, 40 à 50 min)** :
+   - Contrôler `index.html` (ou `version_IA.html`) sur tous les CA ;
+   - Enregistrer au moins une capture d'écran par CA du Sprint 01 dans `Groupe_01_Cas_01/captures/` selon la nomenclature exacte `USxx_CAyy_<detail>.png` ;
+   - Effectuer les contrôles transverses (mode hors ligne en fin de passe, aucune ressource externe, aucune donnée en dur).
+6. **Passation (50 à 60 min)** :
+   - Dire **« fin de notre relais »** à ton IA pour exécuter la passation complète, mettre à jour ce fichier, poser le tag annoté `relais-5` et pousser sur origin (`agents/00_protocole_relais.md` §4).
 
 ---
 
@@ -194,6 +206,21 @@
   - outil de R4 : Antigravity ; la délégation ne se fait jamais depuis la session qui a lu le dépôt (D-09).
 - **Porte** : G3 atteinte.
 - **Tag** : `relais-3`. Le hash du commit figure dans le compte rendu et le message de passation.
+
+### R4 : prompt RMTCEV, délégation, version_IA.html, plan de test et fixtures (2026-10-18, 12:47 → 13:42)
+
+- **Membre et outil** : Bradley, Antigravity (Gemini 3.8 Flash High) ; délégation confiée à ChatGPT (GPT-4o) en session vierge (D-09).
+- **Audit d'entrée** : product backlog de R3 conforme sur A1 à A5 (8 US, 20 CA du Sprint 01 chiffrés avec l'oracle §2, §4, §5, fuseau Haïti et égalités) ; CDC (33,4 ko) et backlog (24,7 ko) lus intégralement ; SHA-256 du CSV vérifié `320155c7…a84b` (`True`) (détail : `travail/audits/R4_audit.md`).
+- **Fait** : prompt RMTCEV complet intégrant CDC et Sprint 01 intégraux, relu et validé par Leddycia (R3) et Bradley (JP-19), commité avant délégation (`b170333`, C-08) ; délégation en session vierge ChatGPT (GPT-4o), réponse brute archivée dans `travail/brut/delegation_reponse_brute.md` ; extraction 100% fidèle de `Groupe_01_Cas_01/prototype/version_IA.html` (`git diff --no-index` vide), commité avec tag annoté `version-ia` (`624003a`, C-09, RG-08) ; `prompts.md` v1 (sections 1 à 4) ; 6 fixtures de test CSV créées dans `tests/fixtures/` (`f01` à `f06`) ; résultats attendus déterministes ajoutés à `docs/oracle.md` §8 ; plan de test exhaustif des 20 CA et Test-P04 dans `tests/plan_de_test.md` ; arbitrages D-10, Q-01, Q-10 consignés dans `travail/decisions.md` ; JP-18 et JP-19.
+- **Reste** : rien de partiel pour R4. R5 prend la suite pour vérification, journal des écarts, `index.html` et captures.
+- **Décisions** : D-10 validé (prompt fournissant toutes les règles sans souffler le code des pièges techniques) ; Q-01 confirmé (résout O-9, 1 décimale avec virgule française ex. « 71,0 L ») ; Q-10 précisé (rejet propre Q-04 en cas de BOM UTF-8).
+- **Points d'attention pour R5** :
+  - `version_IA.html` est intouchable (RG-08, tag `version-ia`) ;
+  - `version_IA.html` donne des résultats exacts sur le CSV nominal et gère déjà l'égalité chronologique, le fuseau horaire par split de chaîne, l'absence de génératrice et le rejet des colonnes/valeurs invalides ;
+  - Point d'attention ergonomique mineur : dans le sélecteur, l'option « Toute la période » est insérée après les mois individuels (bien que sélectionnée par défaut) ;
+  - Appliquer la fiche 05 pour l'audit et les tests, puis fiche 04 pour `index.html` si des écarts sont consignés, puis captures dans `Groupe_01_Cas_01/captures/`.
+- **Porte** : G4 atteinte.
+- **Tag** : `relais-4` (plus `version-ia` déjà posé et poussé). Le hash du commit figure dans le compte rendu et le message de passation.
 
 ---
 

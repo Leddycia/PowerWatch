@@ -253,3 +253,27 @@
 - **Ce qu'il a produit** : passation complète (`agents/00_protocole_relais.md` §4) : journaux, `travail/audits/R3_audit.md`, ETAT §1 à §8, commit, tag annoté `relais-3`, push, message de passation ; membre de R4 inscrit au §2.
 - **Ce que l'humain a vérifié ou corrigé** : relecture du product backlog (aucune correction) et relecture mot à mot du cahier des charges contre le brief (conforme) ; compte rendu et message de passation à relire avant envoi.
 - **Candidat pour `prompts.md`** : non.
+
+### JP-18 : Démarrage et validation du plan du relais R4
+
+- **Relais / membre** : R4 / Bradley
+- **Outil et modèle** : Antigravity (Gemini 3.8 Flash High)
+- **Date et heure** : 2026-10-18, 12:49
+- **Prompt (texte exact)** :
+  > vas y
+- **Ce qu'il a produit** : Validation du rapport d'audit A1 à A5 et du plan de travail pour le relais R4 ; passage de R4 à EN COURS dans `ETAT_PROJET.md` (§1, §2, §8) ; création de `travail/audits/R4_audit.md` ; validation de D-10, confirmation de Q-01 (point O-9 résolu) et précision de Q-10 (point O-10 #10) dans `travail/decisions.md`.
+- **Ce que l'humain a vérifié ou corrigé** : Validation explicite du plan et des arbitrages par Bradley.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-19 : Relecture croisée et validation du prompt RMTCEV
+
+- **Relais / membre** : R4 / Bradley (avec Leddycia, membre de R3)
+- **Outil et modèle** : Antigravity (Gemini 3.8 Flash High)
+- **Date et heure** : 2026-10-18, 13:03
+- **Prompt (texte exact)** :
+  > c'est valide
+- **Ce qu'il a produit** : Validation de la relecture croisée du prompt RMTCEV final contenu dans `Groupe_01_Cas_01/prompts.md` §1 (C-08) ; mise à jour de la mention de relecture préalable dans `prompts.md` §1.1 et dans `ETAT_PROJET.md` §8.
+- **Ce que l'humain a vérifié ou corrigé** : Relecture humaine du texte complet du prompt (CDC intégral, Sprint 01 et CA, format RMTCEV).
+- **Candidat pour `prompts.md`** : non.
+
+

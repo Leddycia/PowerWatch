@@ -160,14 +160,15 @@ Les valeurs « telles que dans le fichier » ne doivent jamais être modifiées 
 - **Graphique par mois (US-05, B-21)** : barres attendues août 24 h, septembre 30 h, octobre 43 h. Octobre s'arrête au 16/10 (Q-14).
 - **Part solaire (US-07, B-23)** : **aucune valeur de référence** tant que la formule n'est pas fixée par le client (Q-11). Il ne faut pas en inventer une.
 
-## 8. Fixtures de test (à compléter par R4)
+## 8. Fixtures de test (complété par R4)
 
-Le relais R4 crée les fichiers fictifs de `tests/fixtures/` et ajoute ici, pour chacun, les résultats attendus calculés indépendamment de l'IA déléguée et du prototype, en indiquant comment (script ou calcul à la main).
+Le relais R4 a créé les fichiers fictifs de `tests/fixtures/` et consigne ci-dessous, pour chacun, les résultats attendus calculés indépendamment de l'IA déléguée et du prototype (vérifications par calcul exact et script déterministe).
 
-| Fixture | Objet | Résultat attendu |
-|---|---|---|
-| `f01_lignes_melangees.csv` | Mêmes 36 lignes, dans un ordre aléatoire (B-13, P-03) | Identique aux §2 et §4 |
-| `f02_colonne_manquante.csv` | En-tête sans `litres_carburant` (Q-04) | *À compléter* |
-| `f03_valeur_non_numerique.csv` | Une valeur `abc` dans les heures (Q-04) | *À compléter* |
-| `f04_mois_sans_generatrice.csv` | Un mois avec 0 h partout (Q-05) | *À compléter* |
-| `f05_decimales.csv` | Petit fichier (en-tête et quelques lignes) dont un même mois contient des litres `0.1` et `0.2` écrits avec un point décimal, comme dans le CSV original (la virgule n'apparaît qu'à l'affichage, Q-01). R4 vérifie par script que la somme brute présente un artefact de flottant, par exemple `0.30000000000000004` (B-14, P-04) | *À compléter* ; attendu à l'écran : valeur arrondie à 1 décimale |
+| Fixture | Objet | Résultat attendu | Méthode de calcul |
+|---|---|---|---|
+| `f01_lignes_melangees.csv` | Mêmes 36 lignes que `energie_college.csv`, dans un ordre aléatoire (B-13, P-03, CA-03.02) | Strictement identique aux §2 et §4 (Août: 24 h / 71,0 L / 21 300 gourdes / 06/08/2026 (5 h) ; Septembre: 30 h / 84,0 L / 25 200 gourdes / 08/09/2026 (5 h) ; Octobre: 43 h / 125,0 L / 37 500 gourdes / 02/10/2026 (5 h) ; Toute la période: 97 h / 280,0 L / 84 000 gourdes / 06/08/2026 (5 h)). | Permutation déterministe des lignes de l'oracle de référence. |
+| `f02_colonne_manquante.csv` | En-tête sans `litres_carburant` (Q-04, CA-01.07) | Rejet complet du fichier avec message d'erreur clair désignant la ligne d'en-tête (ligne 1) comme fautive ; aucun total ni indicateur affiché. | Déduction directe de la règle Q-04 et du critère CA-01.07. |
+| `f03_valeur_non_numerique.csv` | Valeur non numérique `abc` dans `heures_generatrice` à la ligne 3 (Q-04, CA-01.11) | Rejet complet du fichier avec message d'erreur clair indiquant le numéro de la ligne fautive (ligne 3) ; aucun total affiché. | Déduction directe de la règle Q-04 et du critère CA-01.11. |
+| `f04_mois_sans_generatrice.csv` | 8 jours en août 2026 avec 0 h partout (Q-05, CA-03.03) | Totaux : 0 h et 0,0 L ; Coût : 0 gourdes ; Jour max : affichage du message exact « Aucun fonctionnement de la génératrice sur la période ». | Déduction directe de Q-05 et calcul trivial (8 × 0 = 0). |
+| `f05_decimales.csv` | 2 jours (0.1 L et 0.2 L) générant un artefact de calcul flottant IEEE 754 (B-14, P-04, Q-01) | Somme brute flottante vérifiée par script : `0.30000000000000004` ; Affichage attendu à l'écran : « 0,3 L » (arrondi à 1 décimale, virgule française) ; Heures : 2 h ; Coût estimé : 0,3 × 300 = 90 gourdes ; Jour max : 03/08/2026 (1 h). | Calcul arithmétique et contrôle d'artefact flottant par script déterministe. |
+| `f06_aout_septembre.csv` | En-tête et les 24 lignes d'août et septembre seules (CA-01.09, CA-01.10) | Périodes proposées : exactement « Août 2026 », « Septembre 2026 » et « Toute la période » (Octobre absent) ; « Toute la période » affiche 54 h (24+30) et 155,0 L (71+84) ; Coût estimé : 155 × 300 = 46 500 gourdes ; Jour max : 06/08/2026 (5 h). | Somme exacte des valeurs des §2.1 et §2.2 pour les mois d'août et septembre. |
