@@ -193,3 +193,81 @@
 - **Raison** : détecté par deux passes de simulation automatisées (Claude Code, Codex, Antigravity, IA web, cohérence) : 87 puis 28 constats confirmés après tentative de réfutation.
 - **Correction** : complément de R1 (commit postérieur au tag `relais-1`), dans `agents/00_protocole_relais.md`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `ETAT_PROJET.md`, `agents/06_finalisation_soutenance.md`, `PLAN_CADRAGE.md`
 - **Vérifié après correction** : oui pour les commandes Git (testées dans un dépôt de test) ; relecture humaine à faire à la clôture
+
+### E-14 : Texte de B-08 paraphrasé (« période choisie »)
+
+- **Date / relais / membre** : 2026-10-18 / R2 / Leddycia
+- **Source** : agents de rédaction du workflow de R2 (Claude Code, Claude Opus 5.5)
+- **Observé** : le brouillon du CDC écrivait « B-07, B-08 et B-10 demandent les mêmes affichages pour la période choisie » et « EF-06 (litres de la période choisie, B-08) ».
+- **Attendu** : B-08 dit seulement « pour la période » ; l'assimilation à la période choisie est une lecture de l'équipe et doit être présentée comme telle.
+- **Référence** : B-08, C-02, RG-01
+- **Gravité** : mineur
+- **Décision** : corrigé
+- **Raison** : une paraphrase présentée comme le texte du client aurait été rejetée au contrôle mot à mot.
+- **Correction** : CDC v1, avant son premier commit (§4, notes « Priorités » ; source d'EF-06 ; RM-01)
+- **Vérifié après correction** : oui (vérificateurs du workflow, puis contrôle des citations par script)
+
+### E-15 : « Jour ouvrable » transformé en critère de calcul
+
+- **Date / relais / membre** : 2026-10-18 / R2 / Leddycia
+- **Source** : agents de rédaction du workflow de R2 (Claude Code, Claude Opus 5.5)
+- **Observé** : « Jour : un jour ouvrable présent dans le fichier chargé ».
+- **Attendu** : B-02 et B-18 décrivent le registre et l'échantillon ; aucun élément de B-06 à B-15 ne limite les calculs aux jours ouvrables. Définition retenue : « une ligne de données du fichier chargé, désignée par sa date (B-19) ».
+- **Référence** : B-02, B-18, RG-01, RG-02
+- **Gravité** : majeur
+- **Décision** : corrigé
+- **Raison** : lue par l'IA déléguée, la définition pouvait faire filtrer ou rejeter les dates de week-end, une règle que le client n'a pas fixée.
+- **Correction** : CDC v1, avant son premier commit (§4, « Termes employés ») ; le cas d'une date non ouvrable est renvoyé à R4 (`R2_audit.md`, point 9)
+- **Vérifié après correction** : oui (vérificateurs du workflow)
+
+### E-16 : « Toute la période » bornée aux dates de l'échantillon
+
+- **Date / relais / membre** : 2026-10-18 / R2 / Leddycia
+- **Source** : agents de rédaction du workflow de R2 (Claude Code, Claude Opus 5.5)
+- **Observé** : « pour toute la période, sur le fichier fourni, tous ses jours, du 3 août au 16 octobre 2026 (B-18) ».
+- **Attendu** : « pour toute la période, tous les jours du fichier chargé (sur le fichier fourni : du 3 août au 16 octobre 2026, B-18) », conforme au glossaire d'`AGENTS.md` et à Q-02.
+- **Référence** : B-03, B-09, Q-02
+- **Gravité** : majeur
+- **Décision** : corrigé
+- **Raison** : la définition n'était pas testable sur un autre fichier et poussait à figer ces dates dans le code, contre la recopie hebdomadaire (B-03).
+- **Correction** : CDC v1, avant son premier commit (§4, « Termes employés »)
+- **Vérifié après correction** : oui (vérificateurs du workflow)
+
+### E-17 : CT-04 lisible comme une permission d'intégrer les données
+
+- **Date / relais / membre** : 2026-10-18 / R2 / Leddycia
+- **Source** : agents de rédaction du workflow de R2 (Claude Code, Claude Opus 5.5)
+- **Observé** : « Les données ne doivent pas être intégrées directement dans la page ; les y intégrer constituerait un écart par rapport à la demande du client, à signaler et à justifier dans prompts.md. »
+- **Attendu** : une seule obligation, sans échappatoire : « Les données ne doivent pas être intégrées directement dans la page du prototype » (C-12, D-06).
+- **Référence** : C-12, D-06, P-06
+- **Gravité** : majeur
+- **Décision** : corrigé
+- **Raison** : deux obligations dans un même élément ; l'IA déléguée, qui ne connaît pas `prompts.md`, pouvait lire la seconde comme une permission sous condition.
+- **Correction** : CDC v1, avant son premier commit (§7, CT-04 ; la conséquence prévue par C-12 reste au §12.2)
+- **Vérifié après correction** : oui (vérificateurs du workflow)
+
+### E-18 : Règle B-14 affaiblie, puis proposition de la durcir
+
+- **Date / relais / membre** : 2026-10-18 / R2 / Leddycia
+- **Source** : agents de rédaction et vérificateur « DoD et structure » du workflow de R2 (Claude Code, Claude Opus 5.5)
+- **Observé** : la note sur RM-03 disait « seul le format des montants est imposé » ; un vérificateur a ensuite proposé « les litres doivent être affichés avec au plus une décimale ».
+- **Attendu** : RM-03 garde le texte du client (« les litres peuvent avoir une décimale ») ; le format exact des litres reste le point à confirmer Q-01.
+- **Référence** : B-14, Q-01, RG-02
+- **Gravité** : mineur
+- **Décision** : corrigé (note) et rejeté (durcissement)
+- **Raison** : la première formulation affaiblit B-14, la seconde le durcit en règle : les deux tranchent un point que le client n'a pas fixé. L'écart entre B-14 et `AGENTS.md` R-04 est remonté à l'équipe (`R2_audit.md`, constat 10).
+- **Correction** : CDC v1, avant son premier commit (§6, notes)
+- **Vérifié après correction** : oui (correcteur du workflow)
+
+### E-19 : Choix de l'équipe (H-xx) présentés comme soumis au client
+
+- **Date / relais / membre** : 2026-10-18 / R2 / Leddycia
+- **Source** : agents de rédaction du workflow de R2, à partir des instructions de l'IA assistante de R2 (Claude Code, Claude Opus 5.5)
+- **Observé** : « soumis au client, qui peut les modifier » au §11.2 ; raison de H-05 : « le libellé par défaut varie selon le navigateur » ; puis, après correction, « H-01 à H-05 … sont à soumettre au client », mention qui venait des instructions de l'IA assistante elle-même.
+- **Attendu** : `decisions.md` §3 présente les H-xx comme des choix de présentation de l'équipe, sans soumission au client ; le libellé « Choisir un fichier » est imposé par C-12 (CT-03) ; la raison technique de H-05 donnait l'indice du piège P-07, alors que D-10 reste à trancher par R4.
+- **Référence** : `travail/decisions.md` §3, C-12, D-10, P-07
+- **Gravité** : mineur
+- **Décision** : corrigé
+- **Raison** : affirmation sans source, et indice de solution technique donné à l'IA déléguée avant la décision D-10.
+- **Correction** : CDC v1, avant son premier commit (§11.2) : les deux premières par le correcteur du workflow, la troisième par l'IA assistante lors de son contrôle
+- **Vérifié après correction** : oui (contrôle par l'IA assistante) ; relecture humaine du CDC à confirmer par Leddycia

@@ -131,3 +131,84 @@
 - **Ce qu'il a produit** : première exécution réelle de la passation automatique (`agents/00_protocole_relais.md` §4) : journaux, `travail/audits/R1_audit.md`, ETAT §1 à §8, commit et push sans tag (complément : `relais-1` existait déjà), message de passation.
 - **Ce que l'humain a vérifié ou corrigé** : à faire (relecture du compte rendu et du message avant envoi).
 - **Candidat pour `prompts.md`** : possible. Il illustre la passation automatisée du travail en relais.
+
+### JP-10 : Démarrage du relais R2
+
+- **Relais / membre** : R2 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, 10:49
+- **Prompt (texte exact)** :
+  > Pendant que l'autre session travaille, passe au relais 2
+- **Ce qu'il a produit** : protocole de démarrage (`AGENTS.md` §0) : lecture d'ETAT, du protocole et de la fiche 01 ; audit A1 à A5 en lecture seule (diffs `.docx` et PDF contre les transcriptions, empreinte du CSV, cohérence des décisions, état Git) ; rapport d'audit et plan présentés sans rien écrire. Constat bloquant : le complément de R1 n'était pas clôturé (session R1 encore active dans le même dossier).
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a validé le plan (JP-11).
+- **Candidat pour `prompts.md`** : non. Démarrage de relais.
+
+### JP-11 : Validation du plan et rédaction du cahier des charges
+
+- **Relais / membre** : R2 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5 ; rédaction confiée à un workflow Claude Code de 9 agents (même modèle)
+- **Date et heure** : 2026-10-18, 10:56
+- **Prompt (texte exact)** :
+  > Plan validé. Commence le brouillon du CDC hors dépôt ; je fais le contrôle mot à mot et le recalcul d'août et septembre.
+- **Instructions transmises aux agents de rédaction** (rédigées par l'IA assistante de R2 à partir de la fiche 01 et des arbitrages validés ; texte exact, sans le bloc de contexte commun ni les angles de rédaction et de vérification) :
+  > Arbitrages validés par l'humain du relais (audit R2, constat 9), qui corrigent la liste indicative de la fiche 01 :
+  > 1. EF-01 (charger le fichier) cite B-06 (B-05b pour l'acteur) ; le libellé exact « Choisir un fichier » et le fait de ne pas intégrer les données viennent des consignes : contrainte du projet CT (C-12, lecture retenue D-06), pas EF.
+  > 2. B-14 et B-15 sont des règles du client (rubrique « Les règles à respecter ») : seulement en RM (RM-03, RM-04), pas en ENF. Les ENF couvrent les contraintes du client B-16 et B-17 (rubrique « Nos contraintes »), B-27 pouvant appuyer ENF-02.
+  > 3. Le comportement en cas de fichier invalide (Q-04) n'est pas une exigence : il reste uniquement au §11, sous la forme « À confirmer … (hypothèse provisoire : …) ».
+  > 4. Aucune valeur de l'oracle dans le CDC : les valeurs attendues chiffrées iront dans les critères d'acceptation du backlog (R3).
+  >
+  > Rédige le contenu complet du futur fichier Groupe_01_Cas_01/cahier_des_charges.md (markdown), selon la structure exacte de agents/01_analyste_cdc.md : titre « # Cahier des charges : PowerWatch (Collège Les Palmistes) », sections 1 à 12 et 10 bis, avec les intitulés de la fiche (sans les étoiles ni les commentaires entre parenthèses de la fiche).
+  > Exigences de fond :
+  > - En tête, un court encadré : objet du document, sources (brief = B-xx, consignes = C-xx, decisions.md = D/Q/H), version et date 2026-10-18, relais R2.
+  > - Chaque EF, ENF et RM est une phrase testable avec « doit », une seule capacité, et cite au moins un B-xx exact qui la justifie ; chaque CT cite son C-xx et porte la mention « contrainte du projet ».
+  > - Tables EF et ENF : ID | exigence | source | priorité du client (rang 1 à 4 uniquement s'il découle d'un B-20.x, en citant ce B-20.x ; sinon une mention exacte comme « non classée par le client » ou « contrainte du client »).
+  > - RM-01 = B-12, RM-02 = B-13, RM-03 = B-14, RM-04 = B-15, fidèles au texte du client (ne pas durcir « les litres peuvent avoir une décimale » en règle : le format exact est l'hypothèse Q-01).
+  > - Aucune solution technique (décrire quoi, pas comment) ; seuls les CT du §7 peuvent reprendre les termes des consignes qu'ils citent.
+  > - §8 Données d'entrée : uniquement ce que disent B-18 et B-19 (table des colonnes reprise).
+  > - §9 Périmètre de la V1 : B-06 à B-11 et B-20.1 à B-20.4 (ordre de priorité du client), renvoi aux EF ; pas de sprint, pas de user story.
+  > - §10 Hors périmètre : B-25 à B-27 recopiés mot pour mot, entre guillemets, avec leur identifiant ; préciser que ce sont des décisions du client (C-03).
+  > - §10 bis Souhaits ultérieurs : B-21 à B-24 mot pour mot, « non tranchés par le client (C-04) », classement, justification et compatibilité renvoyés au product backlog (D-08) ; signaler les points dépendants (Q-11 à Q-14) ; pour B-24, on peut rappeler la décision d'équipe D-08 en la présentant comme une décision de l'équipe, pas du client.
+  > - §11 Points à confirmer ou à décider : toutes les Q-01 à Q-14, chacune sous la forme « À confirmer : <question> (hypothèse provisoire : <hypothèse de decisions.md>) » ou, pour les Q au statut ouvert, « (aucune hypothèse : <conséquence de decisions.md>) », avec le statut et l'élément concerné ; puis une sous-section distincte « Choix de présentation de l'équipe » pour H-01 à H-06, présentés comme des choix de l'équipe à soumettre au client, non comme des demandes du client ; puis D-10 si utile, en une ligne. Si tu repères un point que le client n'a pas fixé et qu'aucune Q ne couvre, ne l'ajoute pas au CDC : liste-le dans nouvelles_questions.
+  > - §12 Matrice de traçabilité : une ligne par élément du brief, de B-01 à B-27 (B-05a, B-05b, B-05c et B-20.1 à B-20.4 compris), vers les sections et identifiants qui le couvrent ; chaque B-06 à B-17 renvoie à au moins une EF, ENF ou RM ; une seconde table C-xx vers CT ; termine par la liste des B-xx qui ne sont couverts par aucune exigence, avec la raison (contexte, hors périmètre, souhait ultérieur).
+  > - Pas de user stories, pas de MoSCoW, pas de critères d'acceptation (rôle de R3).
+  > Rends : markdown (le fichier complet), nouvelles_questions, ecarts_fiche (chaque point où tu t'écartes de la liste indicative ou de la structure de la fiche, avec la raison).
+- **Ce qu'il a produit** : deux brouillons indépendants (angle « fidélité au texte du client » et angle « lecteur IA déléguée »), une synthèse, cinq vérifications adverses (traçabilité, invention et périmètre, fidélité textuelle, DoD et structure, lecteur IA déléguée : 35 constats), une correction (29 constats appliqués, 6 rejetés avec leur raison). Résultat : `Groupe_01_Cas_01/cahier_des_charges.md` v1, contrôlé ensuite par script (citations, chiffres, termes techniques, tableaux, couverture).
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a retenu Q-15 à Q-17 parmi les points relevés (JP-13) ; sa relecture mot à mot du brouillon reste à confirmer. L'IA assistante a retiré une mention qu'elle avait elle-même introduite dans ses instructions (E-19).
+- **Candidat pour `prompts.md`** : **oui**. Prompt qui a produit le cahier des charges, avec la vérification adverse de l'IA par l'IA (C-08, C-18).
+
+### JP-12 : Contre-vérification A3 remplacée par un recalcul automatique
+
+- **Relais / membre** : R2 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, entre 11:00 et 11:04
+- **Prompt (texte exact)**, en trois messages :
+  > Je n'ai pas de chiffres a ajouter. Le CSV recu n'est que les elements donnees
+  >
+  > Je ne fais pas de recalcul. Assure-toi que le calcul est le bon
+  >
+  > Oui : consigne D-15 dans decisions.md et mets les deux scripts en annexe de R2_audit.md, au moment d'écrire dans le dépôt.
+- **Ce qu'il a produit** : explication de l'étape A3 (lignes brutes d'août et de septembre affichées, sans aucun total) ; trois recalculs indépendants (Python, awk, PowerShell) et comparaison automatique avec l'oracle §1 à §6 : aucun écart ; décision D-15 ; scripts en annexe de `travail/audits/R2_audit.md`.
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a refusé le recalcul à la main ; la limite (contrôle non humain, même outil que R1) est écrite dans D-15.
+- **Candidat pour `prompts.md`** : non. Décision de méthode.
+
+### JP-13 : Nouvelles questions au client Q-15 à Q-17
+
+- **Relais / membre** : R2 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, 11:39
+- **Prompt (texte exact)** :
+  > Ajoute Q-15, Q-16 et Q-17 avec les hypothèses provisoires proposées ; renvoie les 12 autres points à R3 et R4 dans l'audit.
+- **Ce qu'il a produit** : Q-15 (périmètre du tableau jour par jour), Q-16 (format des heures) et Q-17 (affichage du jour maximal) dans `travail/decisions.md` et dans le CDC (§4, §6, §11.1, §12.1) ; 12 points renvoyés à R3 et R4 dans `travail/audits/R2_audit.md`.
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a choisi les 3 questions parmi 15 relevées par les vérificateurs, avec les hypothèses proposées par l'IA.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-14 : Clôture du relais R2
+
+- **Relais / membre** : R2 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, 11:46
+- **Prompt (texte exact)** :
+  > fin de notre relais
+- **Ce qu'il a produit** : passation complète (`agents/00_protocole_relais.md` §4) : journaux, `travail/audits/R2_audit.md`, ETAT §1 à §8, commit, tag annoté `relais-2`, push, message de passation. Prénom du membre de R3 demandé au membre (réponse : Leddycia).
+- **Ce que l'humain a vérifié ou corrigé** : à faire (relecture du compte rendu et du message avant envoi).
+- **Candidat pour `prompts.md`** : non.
