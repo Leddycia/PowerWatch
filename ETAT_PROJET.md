@@ -41,7 +41,7 @@
 | Relais | Membre | Outil d'IA | Créneau prévu | Porte | Statut | Tag |
 |---|---|---|---|---|---|---|
 | R1 | Leddycia | Claude Code (Claude Opus 5.5) | 18/10, matin | G0 et G1 | **FAIT** (commit tagué `relais-1`) | `relais-1` |
-| R2 | *à compléter* | *à compléter* | *à compléter* | G2 | À FAIRE | `relais-2` |
+| R2 | Leddycia  | Claude Code (Claude Opus 5.5)| 18/10, matin | G2 | À FAIRE | `relais-2` |
 | R3 | *à compléter* | *à compléter* | *à compléter* | G3 | À FAIRE | `relais-3` |
 | R4 | *à compléter* | *à compléter* | *à compléter* | G4 | À FAIRE | `relais-4`, `version-ia` |
 | R5 | *à compléter* | *à compléter* | *à compléter* | G5 | À FAIRE | `relais-5` |
