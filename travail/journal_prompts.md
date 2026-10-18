@@ -365,3 +365,103 @@
 - **Ce qu'il a produit** : clôture du complément (`agents/00_protocole_relais.md` §4, règle « Complément ») : `R4_audit.md` complété avec la copie du journal de bord, ETAT §1 à §7 (R4 « complément FAIT », nouvelle entrée au §7), §8 vidé ; relecture indépendante finale avant le commit ; commit et push sans tag (`relais-4` est déjà posé).
 - **Ce que l'humain a vérifié ou corrigé** : compte rendu et message de passation à relire avant envoi.
 - **Candidat pour `prompts.md`** : non.
+
+### JP-28 : Habillage du prototype, logo et question sur `index.html`
+
+- **Relais / membre** : R6 (en parallèle, pendant le relais de Petiote) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5), avec les compétences « ui-ux-pro-max » et « design »
+- **Date et heure** : 2026-10-18, 16:36
+- **Prompt (texte exact)** :
+  > Pendant que Petiote travaille, prepare-moi un plan pour faire un design plus propre et original du systeme. Si je m'en souviens bien, c'etait preciser qu'on pouvait faire notre propre index.html non?
+  >
+  > use /ui-ux-pro-max /design
+  > Cree un logo pour powerwatch et assure-toi que tout est en parfait francais, sans em-dash et user-friendly.
+- **Ce qu'il a produit** : réponse à la question (C-09 permet `index.html`, mais la fiche 04 et le plan de test §2 le limitent : d'où D-16) ; logo PowerWatch en SVG (soleil levant lu comme un cadran, aiguille en forme d'éclair pour la génératrice) ; plan d'habillage avec maquette, tableau des textes avant et après, éléments à ne pas toucher, horaire et limite de 19 h 30 ; page de proposition privée sur claude.ai. Proposition de l'outil de design rejetée : E-32 ; icône d'onglet retirée : E-33.
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a validé le plan et prévenu Petiote avant la construction (JP-29).
+- **Candidat pour `prompts.md`** : oui, pour §3 (proposition d'IA rejetée, E-32).
+
+### JP-29 : Construction d'`index.html`
+
+- **Relais / membre** : R6 (en parallèle) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 17:13
+- **Prompt (texte exact)** :
+  > Oui, construis index.html selon le plan. J'ai prévenu Petiote.
+- **Ce qu'il a produit** : `Groupe_01_Cas_01/prototype/index.html`, dont le bloc `<script>` est copié à l'identique depuis `version_IA.html` ; vérification automatique complète (Chrome 155 sans interface, fuseau `America/Port-au-Prince` et réseau coupé par émulation, chargement par le vrai `<input type="file">`) : 37 contrôles, 0 non respecté ; 17 captures suffixées `_index` ; textes de traçabilité pour Petiote (D-16, E-29 à E-33, JP-28 à JP-30, README, plan de test §4). Corrections faites par l'IA en cours de route : mise en page sur téléphone (bouton et liste trop étroits à 390 px) ; capture de CA-01.06 ajoutée, car l'écran d'octobre avait été pris après Septembre et non après « Toute la période ».
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a validé le commit et le push (17:35, texte exact : « Oui, commite et pousse index.html et les 17 captures _index sur main. ») ; commit `6f59584`, poussé sur `main`.
+- **Candidat pour `prompts.md`** : non (prompt court ; le contenu utile est dans E-29 à E-33).
+
+### JP-30 : Transmission des textes de traçabilité à R6
+
+- **Relais / membre** : R6 (en parallèle) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 17:37
+- **Prompt (texte exact)** :
+  > Push les textes pour Petiote et indique a son agent de les prendre en compte
+- **Ce qu'il a produit** : `travail/transmission_R6_index.md` (blocs à intégrer par R6 : D-16, E-29 à E-33, JP-28 à JP-30, plan de test §4, README), commité et poussé sur `main` sans toucher aux fichiers de R6 ; message envoyé à la session Claude Code ouverte dans le dépôt pour l'audit de R6.
+- **Ce que l'humain a vérifié ou corrigé** : blocs non intégrés par Petiote avant son push ; intégrés à la reprise de R6 par Leddycia (JP-31), numéros inchangés (encore libres).
+- **Candidat pour `prompts.md`** : non.
+
+### JP-31 : Reprise de R6 par Leddycia
+
+- **Relais / membre** : R6 (reprise, après le push de Petiote) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 18:36 (première heure lue après l'envoi), puis 18:40
+- **Prompt (texte exact)** :
+  > Petiote a push. On va continuer son relais
+  >
+  > Oui, je valide le plan. C'est bien moi, Leddycia, avec Claude Code (Claude Opus 5.5). Lance les étapes 1 à 4 ; je réponds aux autres questions en parallèle.
+- **Contexte** : le second message répond au rapport de reprise (contrôles K1 à K12 de `travail/audits/R6_audit.md`, section « Reprise ») et au plan complété (ETAT §8), présentés sans aucune écriture. Les étapes 1 à 4 du prompt sont celles de ce plan complété, notées depuis a à d (ETAT §8), et non celles du plan validé au début du relais.
+- **Ce qu'il a produit** : reprise inscrite (ETAT §2 et §8, audit R6) ; blocs 1 à 6 de `travail/transmission_R6_index.md` intégrés (D-16, E-29 à E-33, JP-28 à JP-30, plan de test) ; README, `prompts.md` et plan de test §3 corrigés (étapes c et d du plan complété).
+- **Ce que l'humain a vérifié ou corrigé** : validation du plan complété ; identité et outil confirmés par Leddycia.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-32 : Réponses de Leddycia pendant la reprise (O-13, éditeur, test depuis le Drive, membres)
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 18:44 (première heure lue après l'envoi)
+- **Prompt (texte exact)** :
+  > Note que Gervais et Delly vont faire des verifications completes du projet.
+  > Gervais fais le test depuis le drive
+  > L'editeur est antigravity
+  > C'etait une nouvelle session d'apres Bradley et le bloc html, fais ce qui doit etre conforme
+  >
+  > Les membres du groupe
+  >
+  > Delly J. Jifferson
+  > Gervais Carvens J. W.
+  > Joseph Djamy Bradley
+  > Louis Dülze Hkloë Sassie Shaikelta
+  > Petiote Samuel
+  > Saint-Vil Angie-Reyna Leddycia
+- **Contexte** : réponses aux questions 2 à 5 du rapport de reprise (fiche de contribution, O-13, test depuis le Drive, éditeur).
+- **Ce qu'il a produit** : O-13 clos dans `prompts.md` §1.1, sans modifier l'archive brute (E-34) ; éditeur « Antigravity » dans le README ; Gervais inscrit comme testeur depuis le Drive ; noms complets des 6 membres repris tels quels dans `fiche_contribution.pdf`.
+- **Ce que l'humain a vérifié ou corrigé** : confirmation du membre de R4 transmise par Leddycia ; liste des membres fournie par Leddycia.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-33 : Prompt d'audit complet de Gervais signalé par Leddycia
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 18:47 (première heure lue après l'envoi)
+- **Prompt (texte exact)** :
+  > Note aussi que Gervais a un master prompt pour faire la verif (voir la session prompt d'audit projet complet)
+- **Contexte** : le prompt d'audit est dans une autre session Claude Code de Leddycia (« Prompt d'audit projet complet ») : une vérification en lecture seule de tout le projet, que Gervais lancera après la sauvegarde du relais, de préférence avant le téléversement sur le Drive.
+- **Ce qu'il a produit** : relecture de ce prompt pour aligner les livrables sur ses contrôles (script identique dans `version_IA.html` et `index.html`, Firefox sur `index.html`, suppression de `travail/transmission_R6_index.md` à la passation, test depuis le Drive) ; README et points ouverts d'ETAT §8 complétés en conséquence.
+- **Ce que l'humain a vérifié ou corrigé** : à venir : résultat de l'audit de Gervais ; les corrections qui en découlent seront consignées dans un JP suivant et dans l'audit R6.
+- **Candidat pour `prompts.md`** : non (le prompt d'audit de Gervais pourra l'être, avec son résultat).
+
+### JP-34 : Suppression voulue de trois captures du livrable
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 19:20, puis 19:38 (premières heures lues après chaque envoi)
+- **Prompt (texte exact)** :
+  > La suppression est voulue. Je t'explique pourquoi ; mets à jour le README, le plan de test et les journaux en conséquence.
+  >
+  > Ce sont des photos de l'écran prises de biais, pas de vraies captures : peu lisibles et peu professionnelles pour le livrable.
+- **Contexte** : réponse à la question sur les trois captures de `version_IA.html` trouvées supprimées à 19:13, hors de la session de l'IA assistante (K15 de l'audit R6) ; le premier message est un bouton de réponse proposé par l'IA ; le second donne le motif, en réponse à la question de l'IA (bouton proposé, texte repris tel quel).
+- **Ce qu'il a produit** : README (colonne `version_IA.html` de CA-01.03, CA-01.08 et CA-01.10, paragraphe « Trois preuves de `version_IA.html` retirées »), plan de test §3 (rectificatif et colonne « Capture »), E-35, K15 de l'audit R6, ETAT §8.
+- **Ce que l'humain a vérifié ou corrigé** : décision de suppression et motif, donnés par Leddycia ; motif reporté dans E-35 et, en bref, dans le README.
+- **Candidat pour `prompts.md`** : non.

@@ -70,22 +70,24 @@
 ## 3. Résultats d'exécution (R5, 2026-10-18)
 
 **Version testée** : `Groupe_01_Cas_01/prototype/version_IA.html`, intacte (`git diff version-ia` vide).
-**Environnement** (écart de procédure E-22) : Kali Linux, fuseau système `America/Port-au-Prince` (décalage de 240 min au 01/09/2026, négatif comme celui d'Haïti : le piège P-01 se manifesterait) ; Chromium 150 en mode headless, piloté par le protocole DevTools (chargement par le vrai `<input type="file">`, choix de la période par l'événement `change`) ; Firefox pour le second navigateur (manuel, par Louis). Script de pilotage conservé hors du dépôt.
+**Environnement** (écart de procédure E-22) : Kali Linux, fuseau système `America/Port-au-Prince` (décalage de 240 min au 01/09/2026, négatif comme celui d'Haïti : le piège P-01 se manifesterait) ; Chromium 150 en mode headless, piloté par le protocole DevTools (chargement par le vrai `<input type="file">`, choix de la période par l'événement `change`) ; Firefox pour le second navigateur (manuel, par le membre de R5). Script de pilotage conservé hors du dépôt.
 **Empreinte du CSV** : `320155c7…a84b` avant et après les tests (`sha256sum`).
 **`index.html`** : non créé, car aucun écart n'a été constaté sur les CA du Sprint 01 (C-09, fiche 04).
+**Rectificatif (2026-10-18, D-16)** : `index.html` a été créé ensuite, pour l'habillage seulement (script identique à `version_IA.html`). Ses résultats sont au §4 ; ce tableau garde les résultats de R5 sur `version_IA.html`.
+**Rectificatif (2026-10-18, R6, E-35)** : les trois photos de l'écran prises sous Firefox (`US01_CA03_liste_periodes.png`, `US01_CA08_lecture_seule.png`, `US01_CA10_fichier_partiel.png`) ont été retirées du livrable par décision de l'équipe (photos prises de biais, peu lisibles). Les observations du membre de R5 restent consignées dans ce tableau ; pour CA-01.03, CA-01.08 et CA-01.10, les captures du livrable sont celles d'`index.html` (§4). Les noms de captures du §1 restent ceux du plan.
 
 | CA | Résultat attendu (oracle) | Observé sur `version_IA` | Statut `version_IA` | Observé sur `index` | Statut final | Capture |
 |---|---|---|---|---|---|---|
-| CA-01.01 | Page sans donnée, bouton « Choisir un fichier », hors ligne | Bouton visible « Choisir un fichier » ; indicateurs masqués ; seul le libellé fixe « 300 gourdes par litre » ; réseau coupé (émulé) : aucune requête, fonctionnement identique ; Firefox, réseau réellement coupé (Louis, 14:13) : page sans donnée, bouton « Choisir un fichier », barre `file:///` | respecté | sans objet | respecté | `US01_CA01_etat_initial.png` (manuelle) |
+| CA-01.01 | Page sans donnée, bouton « Choisir un fichier », hors ligne | Bouton visible « Choisir un fichier » ; indicateurs masqués ; seul le libellé fixe « 300 gourdes par litre » ; réseau coupé (émulé) : aucune requête, fonctionnement identique ; Firefox, réseau réellement coupé (membre de R5, 14:13) : page sans donnée, bouton « Choisir un fichier », barre `file:///` | respecté | sans objet | respecté | `US01_CA01_etat_initial.png` (manuelle) |
 | CA-01.02 | Sans erreur ; « Toute la période » ; 97 h, 280,0 L | Message de succès ; « Toute la période » ; 97 h ; 280,0 L | respecté | sans objet | respecté | `US01_CA02_chargement_toute_periode.png`, `US01_CA02_firefox_toute_periode.png` (Firefox, hors ligne) |
-| CA-01.03 | Exactement 4 choix | « Août 2026 », « Septembre 2026 », « Octobre 2026 », « Toute la période » ; Firefox, hors ligne (Louis, 14:18) : liste ouverte, mêmes 4 choix | respecté | sans objet | respecté | `US01_CA03_liste_periodes.png` (photo de l'écran, Firefox) |
+| CA-01.03 | Exactement 4 choix | « Août 2026 », « Septembre 2026 », « Octobre 2026 », « Toute la période » ; Firefox, hors ligne (membre de R5, 14:18) : liste ouverte, mêmes 4 choix | respecté | sans objet | respecté | `US01_CA03_liste_periodes.png` (photo de l'écran, Firefox ; retirée du livrable, E-35) |
 | CA-01.04 | 24 h / 71,0 L ; 30 h / 84,0 L ; 43 h / 125,0 L ; 97 h / 280,0 L | Identique pour les 4 périodes | respecté | sans objet | respecté | `US01_CA04_aout.png`, `_septembre`, `_octobre`, `_toute_periode` |
 | CA-01.05 | Totaux de CA-01.04 sous fuseau d'Haïti ; ni 26 h, ni 32 h, ni 39 h | 24 h, 30 h, 43 h (fuseau du navigateur `America/Port-au-Prince`) | respecté | sans objet | respecté | `US01_CA05_fuseau_haiti.png` (montage des 3 mois) |
 | CA-01.06 | Toute la période puis Octobre : 43 h, 125,0 L sans rechargement | 43 h ; 125,0 L | respecté | sans objet | respecté | `US01_CA06_changement_octobre.png` |
 | CA-01.07 | Message clair, ligne d'en-tête, aucun total | « Erreur à la ligne 1 (en-tête) : la colonne obligatoire « litres_carburant » est absente. » ; indicateurs masqués | respecté | sans objet | respecté | `US01_CA07_colonne_manquante.png` |
-| CA-01.08 | Empreinte identique ; aucun moyen de saisir ou d'enregistrer | Empreinte identique avant et après ; 0 champ éditable ; aucun bouton d'enregistrement ni d'export ; vu par Louis (14:31) : `sha256sum` = `320155c7…a84b` après les essais dans Firefox, page sans champ de saisie | respecté | sans objet | respecté | `US01_CA08_lecture_seule.png` (photo de l'écran, redressée) |
+| CA-01.08 | Empreinte identique ; aucun moyen de saisir ou d'enregistrer | Empreinte identique avant et après ; 0 champ éditable ; aucun bouton d'enregistrement ni d'export ; vu par le membre de R5 (14:31) : `sha256sum` = `320155c7…a84b` après les essais dans Firefox, page sans champ de saisie | respecté | sans objet | respecté | `US01_CA08_lecture_seule.png` (photo de l'écran, redressée ; retirée du livrable, E-35) |
 | CA-01.09 | f06 puis original : 97 h, 280,0 L | 97 h ; 280,0 L (également f04 puis original : 97 h, 280,0 L) | respecté | sans objet | respecté | `US01_CA09_reinitialisation_cumul.png` |
-| CA-01.10 | 3 choix ; 54 h et 155,0 L | « Août 2026 », « Septembre 2026 », « Toute la période » ; 54 h ; 155,0 L ; Firefox, hors ligne (Louis, 14:20) : liste ouverte avec 3 choix, 54 h, 155,0 L | respecté | sans objet | respecté | `US01_CA10_fichier_partiel.png` (photo de l'écran, Firefox) |
+| CA-01.10 | 3 choix ; 54 h et 155,0 L | « Août 2026 », « Septembre 2026 », « Toute la période » ; 54 h ; 155,0 L ; Firefox, hors ligne (membre de R5, 14:20) : liste ouverte avec 3 choix, 54 h, 155,0 L | respecté | sans objet | respecté | `US01_CA10_fichier_partiel.png` (photo de l'écran, Firefox ; retirée du livrable, E-35) |
 | CA-01.11 | Message clair, ligne 3, aucun total | « Erreur à la ligne 3 : la valeur de « heures_generatrice » doit être un nombre valide positif ou nul. » ; indicateurs masqués | respecté | sans objet | respecté | `US01_CA11_valeur_non_numerique.png` |
 | CA-02.01 | 21 300 ; 25 200 ; 37 500 ; 84 000 gourdes | Identique pour les 4 périodes | respecté | sans objet | respecté | `US02_CA01_cout_aout.png`, `_septembre`, `_octobre`, `_toute_periode` |
 | CA-02.02 | Libellé « coût estimé » et 300 gourdes par litre | Carte « Coût estimé » ; « Prix de référence : 300 gourdes par litre » | respecté | sans objet | respecté | `US02_CA02_libelle_prix_reference.png` |
@@ -102,10 +104,56 @@
 
 | Contrôle | Observé | Statut |
 |---|---|---|
-| Hors ligne | Réseau coupé par émulation (Chromium) : aucune requête, Septembre = 30 h, 84,0 L, 25 200 gourdes, 08/09/2026 (5 h). Coupure réelle (Louis, Firefox, 14:13 à 14:29) : chargement, Toute la période conforme (97 h, 280,0 L, 84 000 gourdes, 06/08/2026 (5 h)), liste des périodes et fichier f06 conformes | respecté |
+| Hors ligne | Réseau coupé par émulation (Chromium) : aucune requête, Septembre = 30 h, 84,0 L, 25 200 gourdes, 08/09/2026 (5 h). Coupure réelle (membre de R5, Firefox, 14:13 à 14:29) : chargement, Toute la période conforme (97 h, 280,0 L, 84 000 gourdes, 06/08/2026 (5 h)), liste des périodes et fichier f06 conformes | respecté |
 | Aucune ressource externe | Recherche des URL, `@import`, `fetch(`, `XMLHttpRequest`, `WebSocket`, `url(`, `src=`, `<link` : aucune occurrence ; 0 requête réseau pendant toute la passe | respecté |
 | Aucune donnée intégrée | `2026-08-03` absent du source ; à l'ouverture, aucune valeur calculée | respecté |
-| Bouton | « Choisir un fichier » dans Chromium et dans Firefox (Louis, 14:13) | respecté |
+| Bouton | « Choisir un fichier » dans Chromium et dans Firefox (membre de R5, 14:13) | respecté |
 | Lecture seule | Empreinte identique ; aucun champ éditable, aucun export | respecté |
 | Hors sprint | Aucune fonction au-delà d'US-01 à US-03 (pas de tableau, de graphique, de stockage local ni d'export) | respecté |
 | Rechargement (P-09) | f04 puis original et f06 puis original : 97 h, 280,0 L, 84 000 gourdes | respecté |
+
+---
+
+## 4. Résultats d'exécution sur `index.html` (2026-10-18, D-16)
+
+**Version testée** : `Groupe_01_Cas_01/prototype/index.html`. Son bloc `<script>` est identique, caractère pour caractère, à celui de `version_IA.html` (15 712 caractères ; empreinte SHA-256 du bloc commençant par `2f733dff58e7a89f`, fins de ligne LF). `version_IA.html` est intact (`git diff version-ia` vide).
+**Environnement** : Windows 11 Pro ; Google Chrome 155.0.8059.80 sans interface, piloté par le protocole DevTools (chargement par le vrai `<input type="file">`, période choisie par l'événement `change`) ; fuseau du navigateur `America/Port-au-Prince` par émulation (décalage de 240 min au 01/09/2026 ; témoin du piège P-01 : `new Date("2026-09-01")` donne ici le 31/8) ; réseau coupé par émulation. Script de pilotage conservé hors du dépôt. Firefox n'a pas été testé sur `index.html` : à vérifier lors du test depuis le Drive sur un autre PC (fiche 06).
+**Empreinte du CSV** : `320155c7…a84b` avant et après les tests.
+**Listes ouvertes** : une liste déroulante ne se capture pas sans interface ; pour CA-01.03 et CA-01.10, la liste est affichée en entier pendant la capture (attribut `size`), puis remise dans son état normal.
+
+| CA | Observé sur `index` | Statut | Capture |
+|---|---|---|---|
+| CA-01.01 | Bouton « Choisir un fichier » ; indicateurs masqués ; réseau coupé | respecté | `US01_CA01_etat_initial_index.png` |
+| CA-01.02 | Sans erreur ; « Toute la période » ; 97 h ; 280,0 L | respecté | `US01_CA02_toute_periode_index.png` |
+| CA-01.03 | « Août 2026 », « Septembre 2026 », « Octobre 2026 », « Toute la période » | respecté | `US01_CA03_liste_periodes_index.png` |
+| CA-01.04 | 24 h / 71,0 L ; 30 h / 84,0 L ; 43 h / 125,0 L ; 97 h / 280,0 L | respecté | `US01_CA04_aout_index.png`, `_septembre_index`, `_octobre_index`, `US01_CA02_toute_periode_index.png` |
+| CA-01.05 | 24 h, 30 h, 43 h ; ni 26 h, ni 32 h, ni 39 h | respecté | `US01_CA05_fuseau_haiti_index.png` (montage des 3 mois) |
+| CA-01.06 | Toute la période puis Octobre, sans rechargement : 43 h ; 125,0 L | respecté | `US01_CA06_changement_octobre_index.png` |
+| CA-01.07 | f02 : « Erreur à la ligne 1 (en-tête) : la colonne obligatoire « litres_carburant » est absente. » ; indicateurs masqués ; aide affichée | respecté | `US01_CA07_colonne_manquante_index.png` |
+| CA-01.08 | Empreinte identique avant et après ; 0 champ éditable ; seul bouton : « Choisir un fichier » ; 0 lien | respecté | `US01_CA08_lecture_seule_index.png` |
+| CA-01.09 | f06 puis original : Toute la période ; 97 h ; 280,0 L | respecté | `US01_CA09_reinitialisation_index.png` |
+| CA-01.10 | f06 : « Août 2026 », « Septembre 2026 », « Toute la période » ; 54 h ; 155,0 L | respecté | `US01_CA10_fichier_partiel_index.png` |
+| CA-01.11 | f03 : « Erreur à la ligne 3 : la valeur de « heures_generatrice » doit être un nombre valide positif ou nul. » ; indicateurs masqués | respecté | `US01_CA11_valeur_non_numerique_index.png` |
+| CA-02.01 | 21 300 ; 25 200 ; 37 500 ; 84 000 gourdes | respecté | captures de CA-01.04 |
+| CA-02.02 | Carte du coût : « Coût estimé » et « Calcul du coût estimé : litres consommés × 300 gourdes par litre » (E-29) | respecté | `US02_CA02_libelle_prix_index.png` |
+| CA-02.03 | Août puis Septembre : 25 200 gourdes | respecté | `US01_CA04_septembre_index.png` (pris juste après Août) |
+| CA-02.04 | 21 300, 25 200, 37 500 gourdes ; ni 23 100, ni 27 000, ni 33 900 | respecté | `US01_CA05_fuseau_haiti_index.png` |
+| CA-02.05 | « Ce prix est un prix de référence de l'intendance, pas un prix officiel. », dans la carte du coût, 15 px (E-30) | respecté | `US02_CA02_libelle_prix_index.png` |
+| CA-03.01 | 06/08/2026 (5 h) ; 08/09/2026 (5 h) ; 02/10/2026 (5 h) ; 06/08/2026 (5 h) | respecté | captures de CA-01.04 |
+| CA-03.02 | f01 : 06/08, 08/09, 02/10, 06/08 (5 h) | respecté | `US03_CA02_lignes_melangees_index.png` (montage des 4 périodes) |
+| CA-03.03 | f04, Août : « Aucun fonctionnement de la génératrice sur la période » (0 h ; 0,0 L ; 0 gourdes) | respecté | `US03_CA03_sans_generatrice_index.png` |
+| CA-03.04 | 06/08, 08/09, 02/10 ; ni 05/08, ni 07/09, ni 01/10 | respecté | `US01_CA05_fuseau_haiti_index.png` |
+| Test-P04 | f05 : 2 h ; 0,3 L ; 90 gourdes ; 03/08/2026 (1 h) | respecté | `TEST_P04_arrondi_decimales_index.png` |
+
+**Contrôles transverses sur `index.html`**
+
+| Contrôle | Observé | Statut |
+|---|---|---|
+| Hors ligne | Réseau coupé par émulation pendant toute la passe ; une seule requête, le fichier local lui-même | respecté |
+| Aucune ressource externe | Motif d'`AGENTS.md` §7, `url(`, `src=`, `<link` : aucune occurrence | respecté |
+| Aucune donnée intégrée | `2026-08-03` absent du source ; à l'ouverture, aucune valeur calculée | respecté |
+| Lecture seule | Empreinte du CSV identique ; aucun champ éditable, aucun export | respecté |
+| Hors sprint | Script identique à `version_IA.html` ; aucune information ni fonction ajoutée | respecté |
+| Rechargement (P-09) | f04 puis original : 97 h ; 280,0 L | respecté |
+| Lisibilité | Taille de texte minimale : 14 px ; aucun tiret cadratin ni demi-cadratin hors du script | respecté |
+| Téléphone | Largeur de 390 px : pas de défilement horizontal | respecté |

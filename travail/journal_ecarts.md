@@ -388,3 +388,94 @@
 - **Raison** : ces résumés sont repris par R6 dans le README et à la soutenance.
 - **Correction** : (1) ETAT §5, O-10 reformulé ; ligne de rectificatif ajoutée au journal des changements du registre (la ligne R4 n'est pas réécrite) ; (2) ETAT §3, ligne `prompts.md` ; (3) `tests/plan_de_test.md` §2. Les entrées historiques (ETAT §7, entrée R4 ; `travail/audits/R4_audit.md`, journal de bord) ne sont pas réécrites.
 - **Vérifié après correction** : oui, par l'IA assistante du complément (essai réel du BOM et du `;` sous Chrome 155 sans interface ; diff relu ; recherche dans tout le dépôt), puis par des vérificateurs indépendants en lecture seule (sous-agents Claude Code), dont l'un a refait l'essai du BOM et du `;`, avant le commit
+
+### E-29 : Prix de référence absent de la carte du coût (CA-02.02, lecture stricte)
+
+- **Date / relais / membre** : 2026-10-18 / R6 (en parallèle) / Leddycia
+- **Source** : `version_IA.html` (ChatGPT, GPT-4o)
+- **Observé** : la carte du coût affiche le libellé « Coût estimé » (l. 596) et la description « Estimation du coût du carburant » (l. 600). Le prix « 300 gourdes par litre » n'apparaît que dans le bloc de chargement : « Prix de référence : 300 gourdes par litre » (l. 542), loin de la carte.
+- **Attendu** : CA-02.02 : « son libellé contient les mots « coût estimé » et indique le prix de référence de 300 gourdes par litre ».
+- **Référence** : CA-02.02, B-08, B-12, RM-01
+- **Gravité** : mineur (R5 a retenu une lecture large : le prix est sur le même écran que le coût ; CA-02.02 respecté dans `tests/plan_de_test.md` §3)
+- **Décision** : corrigé
+- **Raison** : sous une lecture stricte (« son libellé »), le CA n'est pas respecté, et le jury peut retenir cette lecture.
+- **Correction** : `index.html`, carte du coût : « Calcul du coût estimé : litres consommés × 300 gourdes par litre ». Le bloc de chargement garde « Prix de référence : 300 gourdes par litre ». Commit : `6f59584`.
+- **Vérifié après correction** : oui, par l'IA assistante (texte de la carte du coût contrôlé sous Chrome 155 ; capture `US02_CA02_libelle_prix_index.png`)
+
+### E-30 : Mention du prix non officiel en très petits caractères (CA-02.05)
+
+- **Date / relais / membre** : 2026-10-18 / R6 (en parallèle) / Leddycia
+- **Source** : `version_IA.html` (ChatGPT, GPT-4o)
+- **Observé** : la mention « prix de référence de l'intendance, pas un prix officiel » (l. 602) est le plus petit texte de la page : 11 px (l. 398), sans majuscule ni point.
+- **Attendu** : CA-02.05 : la mention « est visible à côté du coût » ; Q-20 : elle évite de lire le coût comme une dépense réelle (B-04).
+- **Référence** : CA-02.05, B-12, Q-20
+- **Gravité** : mineur (la mention est présente et à côté du coût ; R5 l'a jugée respectée)
+- **Décision** : corrigé
+- **Raison** : c'est la seule mise en garde sur le coût, et c'était le texte le moins lisible de la page.
+- **Correction** : `index.html` : « Ce prix est un prix de référence de l'intendance, pas un prix officiel. », en 15 px, en gras, ambre foncé #8A5300 (contraste de 6,3:1 sur blanc). La mention exacte de CA-02.05 y figure mot pour mot, avec l'apostrophe droite. Commit : `6f59584`.
+- **Vérifié après correction** : oui, par l'IA assistante (texte exact présent et visible, taille 15 px ; capture `US02_CA02_libelle_prix_index.png`)
+
+### E-31 : Présentation de `version_IA.html` (contraste, tiret cadratin, pictogrammes, aide après une erreur)
+
+- **Date / relais / membre** : 2026-10-18 / R6 (en parallèle) / Leddycia
+- **Source** : `version_IA.html` (ChatGPT, GPT-4o)
+- **Observé** : (1) texte secondaire gris #718096 (l. 19) : contraste de 4,02:1 sur blanc et 3,71:1 sur le fond de la page ; (2) tiret cadratin dans le titre de l'onglet, entre « PowerWatch » et « Suivi énergétique » (l. 6) ; (3) pictogrammes en caractères Unicode, au rendu variable selon les polices, dont ♨ (« sources chaudes ») pour le carburant (l. 588) et la lettre « G » pour le coût (l. 597) ; (4) après un fichier refusé, rien n'indique quoi faire.
+- **Attendu** : une interface en français correct (H-03), lisible par la directrice et l'intendant (B-05a, B-05b) ; repère retenu par l'équipe pour le contraste : 4,5:1 (WCAG 2.2, critère 1.4.3) ; aucun tiret cadratin (consigne de l'équipe, JP-28).
+- **Référence** : H-03, B-05a, B-05b, JP-28 ; RG-04 (rien d'ajouté au-delà du sprint)
+- **Gravité** : mineur (aucun effet sur les CA)
+- **Décision** : corrigé
+- **Raison** : lisibilité et qualité du français ; aucune information ni fonction nouvelle.
+- **Correction** : `index.html` : texte secondaire en ardoise #4A5D6E (6,8:1 sur blanc, 6,3:1 sur le fond) ; titre « PowerWatch · Suivi de la génératrice » ; pictogrammes SVG intégrés (horloge, goutte, billet, calendrier), masqués aux lecteurs d'écran ; phrase fixe affichée par le CSS seulement quand un message d'erreur est visible : « Corrigez le fichier, puis cliquez de nouveau sur « Choisir un fichier ». Le fichier d'origine n'est jamais modifié. » Les 4 tirets cadratins du script (valeurs de remise à zéro) sont conservés pour garder le script identique : ils ne sont jamais affichés, car le tableau de bord est masqué au même moment. Commit : `6f59584`.
+- **Vérifié après correction** : oui, par l'IA assistante (aucun tiret cadratin ni demi-cadratin hors du script ; taille de texte minimale de 14 px ; message d'erreur et aide visibles sur `US01_CA07_colonne_manquante_index.png` et `US01_CA11_valeur_non_numerique_index.png`)
+
+### E-32 : Proposition de l'outil de design rejetée (thème sombre, polices en ligne)
+
+- **Date / relais / membre** : 2026-10-18 / R6 (en parallèle) / Leddycia
+- **Source** : IA assistante (Claude Code, Claude Opus 5.5), compétence de design « ui-ux-pro-max » appelée à la demande de Leddycia (JP-28)
+- **Observé** : système de design proposé pour PowerWatch : style « Glassmorphism » (verre dépoli, flou), fond sombre #0F172A, accent vert #22C55E, polices Fira Code et Fira Sans chargées depuis Google Fonts (`https://fonts.googleapis.com/css2?family=Fira+Code…`), et une structure de page commerciale (accroche, appel à l'action « Start trial / Contact »).
+- **Attendu** : un seul fichier HTML sans aucune ressource externe (RG-05, C-10, C-11, P-05) ; aucune fonction hors sprint, dont le mode sombre (RG-04, P-08) ; un outil interne hors ligne et sans compte (B-16, B-17).
+- **Référence** : RG-05, P-05, C-11, RG-04, P-08, B-16
+- **Gravité** : majeur (appliquée, la police en ligne aurait fait échouer le contrôle « aucune ressource externe »)
+- **Décision** : rejeté
+- **Raison** : polices téléchargées depuis Internet ; thème sombre et effets de verre hors sprint ; page commerciale sans rapport avec le besoin.
+- **Correction** : seconde recherche plus ciblée (style clair et accessible), puis direction retenue par l'IA et validée par Leddycia : fond clair, une seule couleur vive (ambre), polices déjà présentes sur l'ordinateur (Bahnschrift, Segoe UI) avec polices de repli.
+- **Vérifié après correction** : oui, par l'IA assistante (motif d'`AGENTS.md` §7, `url(`, `src=` et `<link` : aucune occurrence dans `index.html` ; une seule requête pendant la vérification, le fichier local lui-même)
+
+### E-33 : Icône d'onglet proposée puis retirée
+
+- **Date / relais / membre** : 2026-10-18 / R6 (en parallèle) / Leddycia
+- **Source** : IA assistante (Claude Code, Claude Opus 5.5), plan d'habillage (JP-28)
+- **Observé** : le plan prévoyait d'intégrer le logo comme icône d'onglet, ce qui ajoute une balise `<link rel="icon">` à `index.html`.
+- **Attendu** : les contrôles transverses de R5 vérifient l'absence de `<link` (`tests/plan_de_test.md` §3, « Aucune ressource externe »).
+- **Référence** : RG-05, P-05
+- **Gravité** : mineur (l'icône aurait été intégrée au fichier, sans appel réseau, mais le contrôle aurait signalé la balise)
+- **Décision** : rejeté
+- **Raison** : garder un contrôle simple et identique à celui de R5 ; l'icône n'apporte rien aux CA.
+- **Correction** : aucune icône d'onglet ; le logo reste dans l'en-tête de la page.
+- **Vérifié après correction** : oui, par l'IA assistante (`<link` : 0 occurrence)
+
+### E-34 : Mode de session inexact dans l'en-tête de la réponse brute (O-13)
+
+- **Date / relais / membre** : 2026-10-18 / R6 (reprise) / Leddycia
+- **Source** : en-tête de `travail/brut/delegation_reponse_brute.md` (l. 6), rédigé au relais R4 (outil du relais : Antigravity, Gemini 3.8 Flash High ; auteur exact de la ligne non consigné)
+- **Observé** : l'en-tête décrit une « Nouvelle conversation web temporaire », alors que `prompts.md` §1.1 décrit une « Nouvelle conversation web » (audit de R5, A3b) ; le texte brut reçu que conserve l'archive (l. 9 à 1116) commence directement par `<!DOCTYPE html>`, sans les marques ```html du bloc demandé par le prompt (audit de R5, A2b).
+- **Attendu** : le mode exact de la session vierge, noté de la même façon partout (D-09 ; `CLAUDE.md`, délégation du Sprint 01) ; la réponse complète conservée (DoD de `version_IA.html`, `AGENTS.md` §12).
+- **Référence** : D-09, C-08, `AGENTS.md` §12, O-13
+- **Gravité** : mineur (aucun effet sur `version_IA.html`, identique au code HTML de l'archive)
+- **Décision** : corrigé (dans `prompts.md` seulement)
+- **Raison** : le membre de R4 a confirmé une nouvelle conversation, et non une conversation temporaire, ainsi que le bloc HTML reçu en réponse (confirmation transmise par Leddycia à 18:44, JP-32) ; `prompts.md` §1.1 était donc juste, et l'en-tête de l'archive est inexact. Pour la réponse, la confirmation porte sur le bloc HTML ; elle ne précise pas si des marques ```html ou un texte l'entouraient : l'archive en conserve le code HTML.
+- **Correction** : `prompts.md` §1.1 : la note d'audit de R6 est remplacée par une note qui clôt O-13 et signale l'inexactitude. L'archive n'est pas modifiée : elle a été commitée avec `version_IA.html` (`624003a`, tag `version-ia`) et sert de preuve de l'extraction.
+- **Vérifié après correction** : oui, par l'IA assistante de la reprise (extraction de l'archive comparée à `version_IA.html` par `git diff --no-index --ignore-cr-at-eol` : aucune différence ; `git log` de l'archive : seul `624003a`)
+
+### E-35 : Photos de l'écran retirées des captures du livrable
+
+- **Date / relais / membre** : 2026-10-18 / R6 (reprise) / Leddycia
+- **Source** : captures manuelles de R5 (photos de l'écran prises sous Firefox par le membre de R5), versées au livrable par R5 (`370abc6`) ; celle de CA-01.03 a été recadrée et celle de CA-01.08 masquée au complément de R5 (`b797c0c`, E-25)
+- **Observé** : `US01_CA03_liste_periodes.png`, `US01_CA08_lecture_seule.png` et `US01_CA10_fichier_partiel.png` sont des photos de l'écran prises de biais, et non des captures d'écran ; celle de CA-01.08 montre encore, sous les masques gris, le terminal, la barre d'adresse et la barre des tâches du poste. Ce sont les seules preuves de `version_IA.html` pour CA-01.03, CA-01.08 et CA-01.10.
+- **Attendu** : au moins une capture par CA du Sprint 01, valeur attendue lisible (C-15 ; DoD de `captures/`, `AGENTS.md` §12) ; aucun lien du README vers un fichier absent.
+- **Référence** : C-15, C-01, RG-10, E-25
+- **Gravité** : mineur (les trois CA restent prouvés par les captures d'`index.html`, au script identique ; les observations de R5 restent consignées)
+- **Décision** : corrigé (photos retirées du livrable)
+- **Raison** : suppression voulue, confirmée par Leddycia à 19:20, motif donné à 19:38 (JP-34) : photos de l'écran prises de biais, et non de vraies captures : peu lisibles et peu professionnelles pour le livrable.
+- **Correction** : les trois fichiers ont été supprimés du dossier `captures/` à 19:13, hors de la session de l'IA assistante (51 captures suivies avant, 48 après) ; README : colonne `version_IA.html` des trois CA remplacée par « Aucune (photo retirée, voir sous le tableau) » et paragraphe d'explication ; plan de test §3 : rectificatif et mention dans la colonne « Capture », sans réécrire les observations de R5. Les photos restent dans l'historique du dépôt (`370abc6`, puis `b797c0c` pour les versions recadrée et masquée).
+- **Vérifié après correction** : oui, par l'IA assistante de la reprise (53 liens du README, tous vers des fichiers présents ; 48 captures, toutes liées ; chaque CA du Sprint 01 et Test-P04 garde une capture d'`index.html`)

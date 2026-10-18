@@ -12,10 +12,10 @@
 - **Date et heure d'envoi** : 2026-10-18 à 13:12
 - **Outil et modèle** : ChatGPT (OpenAI, GPT-4o)
 - **Mode exact de la session vierge** : Nouvelle conversation web sur chatgpt.com, mémoire et instructions personnalisées désactivées, sans document joint, hors de tout projet ou GPT personnalisé (D-09).
-- **Relecture préalable** : relu et validé par Leddycia (membre de R3) et Bradley (R4) le 2026-10-18 à 13:03.
+- **Relecture préalable** : relu et validé par le membre de R3 et le membre de R4 le 2026-10-18 à 13:03.
 - **Commit avant délégation** : `b170333` (`docs(r4): prompt RMTCEV final, avant délégation`, C-08).
 
-**Note d'audit R6 (O-13, non résolu au 2026-10-18)** : le fichier brut décrit une « Nouvelle conversation web temporaire » et commence directement par `<!DOCTYPE html>`, sans clôtures de bloc Markdown ni texte autour. Bradley n'a pas répondu à la demande de confirmation de R6. Le mode exact et la complétude de l'archive au regard du format demandé restent donc à confirmer ; les informations ci-dessus reprennent la traçabilité inscrite par R4 et ne constituent pas une confirmation indépendante de R6.
+**Note de R6 sur le mode de session et la réponse brute (O-13)** : l'archive de la réponse brute (`travail/brut/delegation_reponse_brute.md`, conservée dans le dépôt du projet, hors livrable) décrit dans son en-tête une « Nouvelle conversation web temporaire » ; le texte brut reçu qu'elle conserve (à partir de sa l. 9) commence directement par `<!DOCTYPE html>`, sans les marques Markdown d'un bloc de code ni texte autour. Le 2026-10-18, le membre de R4 a confirmé à R6 une nouvelle conversation, et non une conversation temporaire : le mode « nouvelle conversation » indiqué ci-dessus est donc le bon, et la mention « temporaire » de l'en-tête de l'archive est inexacte (E-34). Pour la réponse, la confirmation porte sur le bloc HTML ; elle ne précise pas si des marques ```html ou un texte l'entouraient : l'archive en conserve le code HTML. L'archive n'est pas modifiée, car elle reste telle qu'elle a été commitée avec `version_IA.html`, qui est identique à son code HTML (contrôle `git diff --no-index --ignore-cr-at-eol` vide).
 
 ### 1.2 Texte exact du prompt RMTCEV envoyé
 
@@ -517,7 +517,7 @@ Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de co
 
 ### JP-01 : Analyse et cadrage initial
 
-- **Relais, membre, outil et modèle** : R1, Leddycia, Claude Code (application de bureau), Claude Opus 5.5.
+- **Relais, membre, outil et modèle** : R1, membre de R1, Claude Code (application de bureau), Claude Opus 5.5.
 - **Prompt exact** :
 
 > Lis les docs car on va faire le projet powerwatch. Analyse minutieusement tout ca. Nous allons construire des md d'agents egalement au cas ou les autres membres travaillent avec gemini ou codex. Planifie tout ca mais ne code encore rien. Tout doit d'abord etre parfaitement cadrer
@@ -527,13 +527,13 @@ Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de co
 
 ### JP-05 : Validation et application des corrections
 
-- **Relais, membre, outil et modèle** : R1, Leddycia, Claude Code (application de bureau), Claude Opus 5.5.
+- **Relais, membre, outil et modèle** : R1, membre de R1, Claude Code (application de bureau), Claude Opus 5.5.
 - **Prompt exact** :
 
 > Oui, applique toutes les corrections confirmées avec tes recommandations : je valide D-06 à D-09 et H-01 à H-06, retire CA-01.02/Q-08, corrige la mention de l'oracle, et consigne les erreurs de l'IA R1 dans journal_ecarts.md. Je passe moi-même le dépôt en privé.
 
 - **Production** : corrections ciblées du socle et consignation des erreurs de l'IA en E-01 à E-12. La mention du passage en privé a ensuite été remplacée par la décision documentée de laisser le dépôt public (JP-07, D-12).
-- **Vérification humaine** : Leddycia a validé les décisions et les corrections indiquées ; la relecture adversariale avait relevé les erreurs avant application. Les décisions de visibilité ont été vérifiées et tranchées séparément par Leddycia.
+- **Vérification humaine** : le membre de R1 a validé les décisions et les corrections indiquées ; la relecture adversariale avait relevé les erreurs avant application. Les décisions de visibilité ont été vérifiées et tranchées séparément par le membre de R1.
 
 ---
 
@@ -542,12 +542,33 @@ Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de co
 ### E-16 : « Toute la période » limitée à l'échantillon fourni
 
 - **Proposition produite** : le brouillon du cahier des charges définissait « toute la période » comme tous les jours du fichier fourni, du 3 août au 16 octobre 2026.
-- **Pourquoi c'était incorrect** : B-03 indique que l'intendant recopie le registre chaque semaine ; fixer dans la définition les dates de l'échantillon aurait exclu d'autres fichiers et contredit la question ouverte Q-02. La période entière doit être interprétée à partir de toutes les lignes du fichier chargé, pas de dates codées en dur.
-- **Correction** : le CDC a été corrigé avant son premier commit : « tous les jours du fichier chargé (sur le fichier fourni : du 3 août au 16 octobre 2026) ». L'équipe a conservé les dates de l'échantillon uniquement comme précision descriptive.
+- **Pourquoi c'était incorrect** : B-03 indique que l'intendant recopie le registre chaque semaine ; fixer dans la définition les dates de l'échantillon aurait exclu d'autres fichiers et contredit l'hypothèse provisoire Q-02 (liste des mois déduite du fichier). La période entière doit être interprétée à partir de toutes les lignes du fichier chargé, pas de dates codées en dur.
+- **Correction** : le CDC a été corrigé avant son premier commit : « tous les jours du fichier chargé (sur le fichier fourni : du 3 août au 16 octobre 2026, B-18) ». L'équipe a conservé les dates de l'échantillon uniquement comme précision descriptive.
 - **Vérification** : correction confirmée par les vérificateurs du workflow de rédaction (E-16, B-03, B-09, Q-02).
+
+### E-29 : Prix de référence absent de la carte du coût (`version_IA.html`)
+
+- **Proposition produite** : dans `version_IA.html` (ChatGPT, GPT-4o), la carte du coût affiche « Coût estimé » et « Estimation du coût du carburant ». Le prix « 300 gourdes par litre » n'apparaît que dans le bloc de chargement, loin de la carte.
+- **Pourquoi c'était incorrect** : CA-02.02 demande que le libellé du coût « indique le prix de référence de 300 gourdes par litre » (B-08, B-12, RM-01). R5 avait retenu une lecture large (le prix est sur le même écran que le coût) ; sous une lecture stricte (« son libellé »), le CA n'est pas respecté, et le jury peut retenir cette lecture.
+- **Correction** : `version_IA.html` reste intact (C-09, RG-08). Dans `index.html` (D-16), la carte du coût indique « Calcul du coût estimé : litres consommés × 300 gourdes par litre » ; le script, et donc le calcul, est identique.
+- **Vérification** : revérification complète d'`index.html` sous Chrome 155 (fuseau d'Haïti et réseau coupé par émulation) ; capture `captures/US02_CA02_libelle_prix_index.png`.
+
+### E-30 : Mention du prix non officiel en très petits caractères (`version_IA.html`)
+
+- **Proposition produite** : dans `version_IA.html`, la mention « prix de référence de l'intendance, pas un prix officiel » est le plus petit texte de la page : 11 px, sans majuscule ni point.
+- **Pourquoi c'était faible** : c'est la seule mise en garde sur le coût. CA-02.05 demande qu'elle soit « visible à côté du coût », et elle doit éviter de lire le coût comme une dépense réelle (B-04, B-12, Q-20). R5 l'avait jugée respectée.
+- **Correction** : dans `index.html`, phrase complète « Ce prix est un prix de référence de l'intendance, pas un prix officiel. », en 15 px, en gras, ambre foncé (contraste de 6,3:1 sur blanc) ; la mention exacte de CA-02.05 y figure mot pour mot.
+- **Vérification** : texte exact présent et visible, taille contrôlée ; capture `captures/US02_CA02_libelle_prix_index.png`.
+
+### E-32 : Thème sombre et polices en ligne proposés par l'outil de design (rejeté)
+
+- **Proposition produite** : pour l'habillage d'`index.html`, l'IA assistante (Claude Code, Claude Opus 5.5, compétence de design) a proposé un style « verre dépoli » sur fond sombre, des polices chargées depuis Google Fonts (`https://fonts.googleapis.com/…`) et une structure de page commerciale (accroche, appel à l'action « Start trial / Contact »).
+- **Pourquoi c'était incorrect** : le prototype doit être un seul fichier HTML sans aucune ressource externe (C-10, C-11, RG-05) et fonctionner sans Internet (B-16) ; le mode sombre est hors du Sprint 01 (RG-04) ; une page commerciale n'a aucun rapport avec un outil interne du collège. Appliquée, la police en ligne aurait fait échouer le contrôle « aucune ressource externe ».
+- **Correction** : proposition rejetée. Seconde recherche plus ciblée, puis direction proposée par l'IA et validée par un membre de l'équipe : fond clair, une seule couleur vive (ambre), polices déjà présentes sur l'ordinateur (Bahnschrift, Segoe UI) avec polices de repli.
+- **Vérification** : recherche des URL, de `url(`, de `src=` et de `<link` dans `index.html` : aucune occurrence ; pendant la vérification, une seule requête, le fichier local lui-même.
 
 ---
 
 ## 4. Écarts par rapport à la demande du client
 
-**Aucun écart à C-12 n'a été constaté.** R5 a vérifié que les données du CSV ne sont pas intégrées dans `version_IA.html` et que le fichier est chargé à la demande par l'utilisateur. Aucun autre écart du prototype aux exigences du client n'a été constaté sur les critères du Sprint 01. Les comportements hors CA consignés en O-14 ne sont pas présentés comme des écarts aux critères testés et n'ont pas été corrigés, afin de ne pas ajouter de fonctionnalité hors Sprint 01 (RG-04).
+**Aucun écart à C-12 n'a été constaté.** R5 a vérifié que les données du CSV ne sont pas intégrées dans `version_IA.html` et que le fichier est chargé à la demande par l'utilisateur. La revérification d'`index.html` (D-16) donne le même résultat : aucune date du CSV dans le source, aucune valeur calculée à l'ouverture. Aucun autre écart du prototype aux exigences du client n'a été constaté sur les critères du Sprint 01, dans les deux versions, selon la lecture retenue par R5. Sous une lecture stricte (« son libellé »), `version_IA.html` ne respectait pas CA-02.02 ; la mention de CA-02.05, présente à côté du coût, y était le plus petit texte de la page (11 px). Ces deux points faibles de présentation sont corrigés dans `index.html` (§3, E-29 et E-30). Les comportements hors CA consignés en O-14 ne sont pas présentés comme des écarts aux critères testés et n'ont pas été corrigés, afin de ne pas ajouter de fonctionnalité hors Sprint 01 (RG-04).
