@@ -1,0 +1,8 @@
+# Conserver les octets exacts des fichiers de référence (B-15, C-09) :
+# aucune conversion des fins de ligne par Git, quel que soit le système de chaque membre.
+docs/energie_college.csv -text
+tests/fixtures/*.csv -text
+Groupe_*_Cas_01/prototype/version_IA.html -text
+*.docx binary
+*.pdf binary
+*.png binary
