@@ -297,3 +297,16 @@
 - **Raison** : (1) valeur métier qui ne vient pas du client ; (2) CA incomplets pour une règle délicate : un prototype pourrait passer CA-01.05 et afficher un jour maximal faux.
 - **Correction** : `Groupe_01_Cas_01/product_backlog.md` v1 (US-03 ; CA-02.04 et CA-03.04 ajoutés sans renuméroter) ; la fiche n'est pas modifiée (RG-10)
 - **Vérifié après correction** : oui (contrôle DoD par script de l'IA assistante ; relecture humaine du backlog par Leddycia, sans correction, JP-17)
+
+### E-22 : Environnement de test différent de la procédure (Linux au lieu de Windows)
+
+- **Date / relais / membre** : 2026-10-18 / R5 / Louis
+- **Source** : procédure de test (`agents/05_verificateur.md`, `tests/plan_de_test.md` §2), appliquée par l'IA assistante (Claude Code, Claude Opus 5.5)
+- **Observé** : le poste de R5 est sous Kali Linux. Le fuseau est fixé par le système (`America/Port-au-Prince`, décalage de 240 min au 01/09/2026) et non par le réglage Windows « (UTC-05:00) Haïti ». L'empreinte est contrôlée par `sha256sum` et non par `Get-FileHash`. La passe principale est faite sous Chromium 150 headless piloté par le protocole DevTools (vrai `<input type="file">`, événement `change`), et le hors ligne y est émulé. Les captures automatiques n'ont pas de barre d'adresse `file:///`, et les captures « fuseau » sont des montages des trois mois, avec le fuseau lu dans le navigateur.
+- **Attendu** : tests sous Windows, fuseau « (UTC-05:00) Haïti », Edge ou Chrome et Firefox, ouverture par double-clic, hors ligne réel, captures Win+Maj+S (fiche 05 ; Q-09).
+- **Référence** : Q-09, P-01, fiche 05 (préparation et contrôles transverses)
+- **Gravité** : mineur
+- **Décision** : accepté tel quel
+- **Raison** : le piège P-01 dépend d'un décalage négatif et non du système d'exploitation ; le décalage de −4 h (heure d'été d'Haïti en octobre 2026, comme le réglage Windows) le déclenche. Le pilotage par script rend la passe reproductible. Restent manuels, faits par Louis à l'écran : la coupure réseau réelle, le second navigateur (Firefox), la liste déroulante ouverte (CA-01.03, CA-01.10) et l'empreinte du CSV (CA-01.08). Le test sous Windows sur un autre PC reste prévu par R6 (test depuis le Drive).
+- **Correction** : aucune (procédure documentée dans `tests/plan_de_test.md` §3)
+- **Vérifié après correction** : sans objet

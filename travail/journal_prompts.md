@@ -277,3 +277,45 @@
 - **Candidat pour `prompts.md`** : non.
 
 
+
+### JP-20 : Démarrage du relais R5 (message de passation de R4)
+
+- **Relais / membre** : R5 / Louis
+- **Outil et modèle** : Claude Code (Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 14:00
+- **Prompt (texte exact)** : message de passation de R4 collé tel quel (« Relais R4 terminé (porte G4 : atteinte). […] git pull puis lis ETAT_PROJET.md (§6 : ta mission). »)
+- **Ce qu'il a produit** : protocole de démarrage (`AGENTS.md` §0) ; audit d'entrée A1 à A4 et pré-test de `version_IA.html` sous Chromium headless (fuseau America/Port-au-Prince), sans écriture dans le dépôt ; plan en 7 étapes.
+- **Ce que l'humain a vérifié ou corrigé** : lecture du rapport d'audit et du plan.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-21 : Validation du plan de R5
+
+- **Relais / membre** : R5 / Louis
+- **Outil et modèle** : Claude Code (Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 14:04
+- **Prompt (texte exact)** :
+  > Oui je suis Louis. Oui
+- **Ce qu'il a produit** : confirmation du membre et de l'outil ; validation du plan, y compris les captures manuelles par Louis (liste déroulante, hors ligne, fuseau, empreinte) ; R5 marqué EN COURS.
+- **Ce que l'humain a vérifié ou corrigé** : plan accepté sans modification.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-22 : Captures manuelles de R5 dans Firefox
+
+- **Relais / membre** : R5 / Louis
+- **Outil et modèle** : Claude Code (Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, de 14:13 à 14:31
+- **Prompt (texte exact)** : « je ne vois rien pour les captures » (avec une capture de l'état initial), puis « le reseau es coupe » (avec une capture), puis trois photos de l'écran envoyées sans texte.
+- **Ce qu'il a produit** : CA-01.01, CA-01.03, CA-01.08 et CA-01.10 vus à l'écran par Louis dans Firefox, réseau réellement coupé (sauf CA-01.08, réseau rétabli) ; captures enregistrées sous les noms du plan de test (photo de CA-01.08 redressée par `ffmpeg`), plus `US01_CA02_firefox_toute_periode.png` (second navigateur) ; statuts passés de « à confirmer » à « respecté ».
+- **Ce que l'humain a vérifié ou corrigé** : valeurs lues à l'écran (4 choix ; 3 choix et 54 h, 155,0 L avec f06 ; 97 h, 280,0 L, 84 000 gourdes, 06/08/2026 (5 h) ; empreinte `320155c7…a84b`).
+- **Candidat pour `prompts.md`** : non.
+
+### JP-23 : Clôture du relais R5
+
+- **Relais / membre** : R5 / Louis
+- **Outil et modèle** : Claude Code (Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 14:35
+- **Prompt (texte exact)** :
+  > fin de notre relais. le nom est Petiote
+- **Ce qu'il a produit** : passation complète (`agents/00_protocole_relais.md` §4) : ETAT §1 à §8, `travail/audits/R5_audit.md`, commit, tag annoté `relais-5`, push ; Petiote inscrite comme membre de R6.
+- **Ce que l'humain a vérifié ou corrigé** : prénom du membre de R6 fourni.
+- **Candidat pour `prompts.md`** : non.
