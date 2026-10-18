@@ -271,3 +271,29 @@
 - **Raison** : affirmation sans source, et indice de solution technique donné à l'IA déléguée avant la décision D-10.
 - **Correction** : CDC v1, avant son premier commit (§11.2) : les deux premières par le correcteur du workflow, la troisième par l'IA assistante lors de son contrôle
 - **Vérifié après correction** : oui (contrôle par l'IA assistante) ; relecture humaine du CDC à confirmer par Leddycia
+
+### E-20 : Citation de B-12 déformée dans la justification de Q-20
+
+- **Date / relais / membre** : 2026-10-18 / R3 / Leddycia
+- **Source** : IA assistante de R3 (Claude Code, Claude Opus 5.5)
+- **Observé** : la justification de Q-20 dans `travail/decisions.md` citait entre guillemets B-12 sous la forme « n'est pas un prix officiel ».
+- **Attendu** : texte exact du client : « il ne s'agit pas d'un prix officiel » (B-12).
+- **Référence** : B-12, RG-01
+- **Gravité** : mineur
+- **Décision** : corrigé
+- **Raison** : une citation entre guillemets doit reproduire le texte du client mot pour mot.
+- **Correction** : `travail/decisions.md` (Q-20), avant le commit de R3, par l'IA assistante en se relisant
+- **Vérifié après correction** : oui (IA assistante)
+
+### E-21 : Esquisse du backlog de la fiche 02 : bénéfice non sourcé et fuseau testé sur les seuls totaux
+
+- **Date / relais / membre** : 2026-10-18 / R3 / Leddycia
+- **Source** : esquisse de la fiche `agents/02_product_owner.md`, rédigée par l'IA assistante de R1 (Claude Code, Claude Opus 5.5)
+- **Observé** : (1) bénéfice de l'US-03 : « afin d'identifier les journées les plus dépendantes de la génératrice » ; (2) seul CA-01.05 teste le fuseau horaire, sur les totaux d'heures et de litres.
+- **Attendu** : (1) un bénéfice tiré du brief : B-04 (« discuter avec le conseil d'administration de l'installation de panneaux supplémentaires ») ; (2) l'oracle §5 montre que le bug de fuseau fausse aussi le coût (23 100 au lieu de 21 300 gourdes en août) et le jour maximal (05/08/2026 au lieu de 06/08/2026).
+- **Référence** : RG-01, B-04, P-01, Q-09, `docs/oracle.md` §5
+- **Gravité** : mineur
+- **Décision** : corrigé
+- **Raison** : (1) valeur métier qui ne vient pas du client ; (2) CA incomplets pour une règle délicate : un prototype pourrait passer CA-01.05 et afficher un jour maximal faux.
+- **Correction** : `Groupe_01_Cas_01/product_backlog.md` v1 (US-03 ; CA-02.04 et CA-03.04 ajoutés sans renuméroter) ; la fiche n'est pas modifiée (RG-10)
+- **Vérifié après correction** : oui (contrôle DoD par script de l'IA assistante ; relecture humaine du backlog par Leddycia, sans correction, JP-17)

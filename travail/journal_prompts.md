@@ -212,3 +212,44 @@
 - **Ce qu'il a produit** : passation complète (`agents/00_protocole_relais.md` §4) : journaux, `travail/audits/R2_audit.md`, ETAT §1 à §8, commit, tag annoté `relais-2`, push, message de passation. Prénom du membre de R3 demandé au membre (réponse : Leddycia).
 - **Ce que l'humain a vérifié ou corrigé** : à faire (relecture du compte rendu et du message avant envoi).
 - **Candidat pour `prompts.md`** : non.
+
+### JP-15 : Démarrage du relais R3
+
+- **Relais / membre** : R3 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5 ; prompt transmis par une autre session Claude Code de Leddycia, qui a ouvert la session R3
+- **Date et heure** : 2026-10-18, 11:51
+- **Prompt (texte exact)** :
+  > Tu es l'IA assistante du relais R3 du projet PowerWatch (cas 01).
+  > 0. D'abord : git fetch --tags origin, git status -sb (doit afficher ## main...origin/main sans rien d'autre ; sinon git pull --no-rebase --no-edit si l'arbre est propre), git tag -l (relais-1 et relais-2 doivent apparaître). Cite ensuite mot pour mot la règle RG-08 d'AGENTS.md.
+  > 1. Lis AGENTS.md en entier, puis ETAT_PROJET.md, agents/00_protocole_relais.md, la fiche agents/02_product_owner.md et ses fichiers d'entrée. Tiens ETAT_PROJET.md à jour selon le protocole ; à « fin de notre relais », fais la passation complète.
+  > 2. Analyse l'état actuel du dépôt (fichiers, contenu, derniers commits).
+  > 3. Audite le travail du relais précédent avec la checklist d'audit de ma fiche.
+  > 4. Présente-moi : (a) ton rapport d'audit (constat, preuve, gravité, action proposée), (b) ton plan pour mon heure de travail.
+  > Ne modifie aucun fichier avant ma validation. Ne va jamais au-delà des consignes (docs/consignes.md) ni du brief (docs/brief_client.md) ; tout point non fixé par le client devient une question Q-xx.
+- **Ce qu'il a produit** : synchronisation (`## main...origin/main`, tags `relais-1` et `relais-2`), citation de RG-08, audit A1 à A6 du cahier des charges en lecture seule (script hors du dépôt : citations, sources, termes techniques, Q-xx, matrice), rapport de 19 constats et plan, sans écriture dans le dépôt. Propositions : Q-18 à Q-20, ajout ciblé au CDC, CA-02.04 et CA-03.04.
+- **Ce que l'humain a vérifié ou corrigé** : Leddycia a validé l'audit, le plan et les trois hypothèses (JP-16).
+- **Candidat pour `prompts.md`** : non. Prompt d'amorçage standard (`AGENTS.md` §14).
+
+### JP-16 : Validation du plan de R3 et des questions Q-18 à Q-20
+
+- **Relais / membre** : R3 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, 11:55
+- **Prompt (texte exact)** :
+  > Je valide l'audit, le plan, Q-18, Q-19 et Q-20, ainsi que l'ajout ciblé au CDC §11.1. Mon outil : Claude Code (application de bureau, Claude Opus 5.5). Je fais la relecture mot à mot pendant que tu rédiges.
+- **Ce qu'il a produit** : R3 EN COURS (ETAT §1, §2, §8) ; `travail/audits/R3_audit.md` ; Q-18 à Q-20 dans `travail/decisions.md` et dans le cahier des charges ; rédaction de `Groupe_01_Cas_01/product_backlog.md`.
+- **Ce que l'humain a vérifié ou corrigé** : relecture humaine mot à mot du cahier des charges par Leddycia, pendant la rédaction (résultat : conforme, JP-17).
+- **Candidat pour `prompts.md`** : non.
+
+### JP-17 : Clôture du relais R3
+
+- **Relais / membre** : R3 / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau), Claude Opus 5.5
+- **Date et heure** : 2026-10-18, 12:03
+- **Prompt (texte exact)**, puis réponse à la question de l'IA sur le membre de R4 :
+  > Relecture du backlog faite, rien à changer. Relecture mot à mot du CDC : conforme. fin de notre relais
+  >
+  > Bradley. Il va utiliser Antigravity (gemini).
+- **Ce qu'il a produit** : passation complète (`agents/00_protocole_relais.md` §4) : journaux, `travail/audits/R3_audit.md`, ETAT §1 à §8, commit, tag annoté `relais-3`, push, message de passation ; membre de R4 inscrit au §2.
+- **Ce que l'humain a vérifié ou corrigé** : relecture du product backlog (aucune correction) et relecture mot à mot du cahier des charges contre le brief (conforme) ; compte rendu et message de passation à relire avant envoi.
+- **Candidat pour `prompts.md`** : non.

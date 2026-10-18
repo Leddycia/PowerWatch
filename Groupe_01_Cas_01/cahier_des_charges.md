@@ -7,7 +7,7 @@
 > - **C-xx** : consignes du projet final du cours (transcription `docs/consignes.md`) ;
 > - **D-xx** (décisions d'équipe), **Q-xx** (questions au client) et **H-xx** (choix de présentation de l'équipe) : registre des décisions de l'équipe, `travail/decisions.md` ; les Q-xx et les H-xx sont reproduits au §11.
 >
-> **Version** : v1 du 2026-10-18, rédigée au relais R2 (Groupe 01, cas 01).
+> **Version** : v1 du 2026-10-18, rédigée au relais R2 (Groupe 01, cas 01) ; points à confirmer Q-18 à Q-20 ajoutés au relais R3.
 >
 > **Règles de lecture** :
 > - « doit » marque une exigence, une règle ou une contrainte ;
@@ -78,7 +78,7 @@ Pour la première version, le client classe ses besoins par ordre d'importance (
 - **Liste des mois** : EF-02 reprend les mois cités par le client (B-09). La liste des mois proposés suit l'hypothèse provisoire Q-02 ; les libellés de H-04 sont ceux des mois de B-09.
 - **Règles applicables** (§6) : EF-06 suit RM-01 (calcul) et RM-03 (montants) ; EF-05 et EF-08 suivent RM-03 (litres) ; EF-07 suit RM-02 (égalité) ; toutes les EF respectent RM-04 (données non modifiées).
 - **Contraintes du projet liées** (§7) : CT-03 et CT-04 portent sur la façon dont le prototype réalise EF-01.
-- **Points à confirmer liés** (§11.1) : EF-01 → Q-04, Q-10 ; EF-02 → Q-02 ; EF-02 et EF-03 → Q-03 ; EF-04 à EF-06 → Q-08 ; EF-05 et EF-08 → Q-01 ; EF-06 → Q-06, Q-07 ; EF-07 → Q-05, Q-17 ; EF-04, EF-07 et EF-08 → Q-16 ; EF-08 → Q-15. Le comportement face à un fichier invalide n'est pas fixé par le client : il relève uniquement de Q-04.
+- **Points à confirmer liés** (§11.1) : EF-01 → Q-04, Q-10 ; EF-02 → Q-02 ; EF-02 et EF-03 → Q-03 ; EF-04 à EF-06 → Q-08 ; EF-05 et EF-08 → Q-01 ; EF-06 → Q-06, Q-07, Q-20 ; EF-07 → Q-05, Q-17 ; EF-04, EF-07 et EF-08 → Q-16 ; EF-08 → Q-15, Q-18, Q-19. Le comportement face à un fichier invalide n'est pas fixé par le client : il relève uniquement de Q-04.
 - **Choix de présentation de l'équipe applicables** (§11.2) : EF-01 → H-05 ; EF-02 et EF-03 → H-04 ; EF-06 → H-02 ; EF-07 et EF-08 → H-01.
 
 ## 5. Exigences non fonctionnelles
@@ -98,7 +98,7 @@ Pour la première version, le client classe ses besoins par ordre d'importance (
 
 | ID | Règle | Source | S'applique à |
 |---|---|---|---|
-| RM-01 | Le coût estimé du carburant doit se calculer ainsi : litres consommés × 300 gourdes. Précision du client : « Ce prix de référence est fixé par l'intendance pour ce suivi ; il ne s'agit pas d'un prix officiel. » | B-12 | EF-06 (litres de la période, B-08) ; Q-06, Q-07 |
+| RM-01 | Le coût estimé du carburant doit se calculer ainsi : litres consommés × 300 gourdes. Précision du client : « Ce prix de référence est fixé par l'intendance pour ce suivi ; il ne s'agit pas d'un prix officiel. » | B-12 | EF-06 (litres de la période, B-08) ; Q-06, Q-07, Q-20 |
 | RM-02 | Si plusieurs jours de la période choisie ont le même nombre maximal d'heures de génératrice, l'outil doit afficher le premier de ces jours dans l'ordre chronologique, c'est-à-dire l'ordre de leurs dates, quel que soit l'ordre des lignes dans le fichier. | B-13 (période choisie : B-10) | EF-07 |
 | RM-03 | Les montants doivent être affichés en gourdes, sans décimale ; les litres peuvent avoir une décimale. | B-14 | EF-06 (montants) ; EF-05, EF-08 (litres) ; Q-01, Q-07 ; H-02 |
 | RM-04 | Les données du fichier ne doivent pas être modifiées par l'outil. | B-15 | toutes les EF, en particulier EF-01 et EF-08 ; Q-04 ; H-01 |
@@ -188,7 +188,7 @@ Pour B-24, **l'équipe** (et non le client) a décidé de ne pas le retenir pour
 
 ## 11. Points à confirmer ou à décider
 
-### 11.1 Questions au client (Q-01 à Q-17)
+### 11.1 Questions au client (Q-01 à Q-20)
 
 Ces points ne sont pas fixés par le client ; ils figurent ici comme points encore à confirmer ou à décider (C-20). En attendant la réponse du client, l'hypothèse provisoire est appliquée ; elle n'est **pas** une règle du client. Un point au statut « ouvert » n'a pas d'hypothèse applicable. Q-11 à Q-14 portent sur des souhaits ultérieurs (§10 bis), dont le présent document ne tire aucune exigence : une éventuelle hypothèse ne vaudrait que si le souhait était réalisé plus tard. Pour les souhaits qui dépendent d'une règle non fixée par le client (Q-11 à Q-13), aucune hypothèse n'est retenue (C-05).
 
@@ -211,6 +211,9 @@ Ces points ne sont pas fixés par le client ; ils figurent ici comme points enco
 | Q-15 | À confirmer : le tableau jour par jour montre-t-il les jours de la période choisie, ou toutes les données chargées ? Contrairement à B-07 et B-10, B-11 ne cite pas la période. (hypothèse provisoire : les jours de la période choisie) | provisoire | EF-08 (B-11) |
 | Q-16 | À confirmer : quel format d'affichage pour les heures de génératrice (totaux, jour maximal, tableau) ? Le client ne fixe que celui des montants et des litres (B-14). (hypothèse provisoire : la valeur du fichier, suivie de l'unité « h ») | provisoire | EF-04, EF-07, EF-08 ; RM-03 (B-14) |
 | Q-17 | À confirmer : pour le jour où la génératrice a fonctionné le plus longtemps, faut-il afficher la date seule, ou aussi le nombre d'heures de génératrice de ce jour ? (hypothèse provisoire : la date et le nombre d'heures de génératrice de ce jour) | provisoire | EF-07 (B-10) |
+| Q-18 | À confirmer : quelles colonnes le tableau jour par jour affiche-t-il ? B-11 demande « les données » sans préciser les colonnes. (hypothèse provisoire : les 4 colonnes du fichier décrites en B-19 : date, heures solaires, heures de génératrice, litres de carburant) | provisoire | EF-08 (B-11) ; §8 (B-19) |
+| Q-19 | À confirmer : dans quel ordre les lignes du tableau jour par jour sont-elles affichées ? (hypothèse provisoire : l'ordre chronologique des dates, quel que soit l'ordre des lignes dans le fichier) | provisoire | EF-08 (B-11) |
+| Q-20 | À confirmer : faut-il rappeler, à côté du coût estimé, que les 300 gourdes par litre sont un prix de référence de l'intendance et non un prix officiel ? Le client le précise (B-12) sans demander cet affichage. (hypothèse provisoire : oui, avec la mention « prix de référence de l'intendance, pas un prix officiel ») | provisoire | EF-06 (B-08) ; RM-01 (B-12) |
 
 ### 11.2 Choix de présentation de l'équipe (H-01 à H-06)
 
@@ -246,18 +249,18 @@ Colonne « Sections » : sections des §1 à §10 bis où l'élément est cité.
 | B-05c | Le gardien tient le registre papier ; il n'utilise pas l'outil | §3 | aucune (acteur hors outil) | — |
 | B-06 | Charger le fichier CSV fourni par l'intendant | §4, §9 | EF-01 | CT-03, CT-04 ; Q-04, Q-10 ; H-05 |
 | B-07 | Total des heures de génératrice et total des litres pour la période choisie | §4, §9 | EF-04, EF-05 ; EF-06 (période) | Q-01, Q-08, Q-16 |
-| B-08 | Coût estimé du carburant pour la période | §4, §6, §9 | EF-06 | Q-06, Q-07, Q-08 ; H-02 |
+| B-08 | Coût estimé du carburant pour la période | §4, §6, §9 | EF-06 | Q-06, Q-07, Q-08, Q-20 ; H-02 |
 | B-09 | Choisir un mois (août, septembre ou octobre 2026) ou afficher toute la période | §4, §9 | EF-02, EF-03 ; EF-06 (période) | Q-02, Q-03 ; H-04 |
 | B-10 | Jour où la génératrice a fonctionné le plus longtemps sur la période choisie | §4, §6, §9 | EF-07 ; RM-02 (période choisie) | Q-05, Q-16, Q-17 ; H-01 |
-| B-11 | Données sous forme de tableau, jour par jour | §4, §9 | EF-08 | Q-01, Q-15, Q-16 ; H-01 |
-| B-12 | Coût estimé = litres consommés × 300 gourdes ; prix de référence de l'intendance, pas un prix officiel | §1, §4, §6 | RM-01 (appliquée par EF-06) | Q-06, Q-07, Q-09 |
+| B-11 | Données sous forme de tableau, jour par jour | §4, §9 | EF-08 | Q-01, Q-15, Q-16, Q-18, Q-19 ; H-01 |
+| B-12 | Coût estimé = litres consommés × 300 gourdes ; prix de référence de l'intendance, pas un prix officiel | §1, §4, §6 | RM-01 (appliquée par EF-06) | Q-06, Q-07, Q-09, Q-20 |
 | B-13 | Égalité : le premier de ces jours dans l'ordre chronologique | §4, §6 | RM-02 (appliquée par EF-07) | — |
 | B-14 | Montants en gourdes, sans décimale ; les litres peuvent avoir une décimale | §1, §5, §6 | RM-03 | Q-01, Q-07, Q-09, Q-16 ; H-02 |
 | B-15 | Les données du fichier ne doivent pas être modifiées par l'outil | §5, §6 | RM-04 | Q-04 ; H-01 (un changement de format d'affichage n'est pas une modification) |
 | B-16 | Ordinateur du bureau de l'intendance, Internet pas toujours disponible : fonctionner sans Internet | §5, §7, §10 bis | ENF-01 | CT-02 ; Q-09, Q-12 ; D-08 (B-24) |
 | B-17 | Aucun compte utilisateur pour cette première version | §3, §5, §7 | ENF-02 | CT-02 |
 | B-18 | Échantillon de 36 jours ouvrables (12 par mois), du 3 août au 16 octobre 2026 ; virgules ; valeurs sans accents | §4, §8, §10 bis | aucune (description des données) | Q-02, Q-04, Q-08, Q-10, Q-14 |
-| B-19 | Colonnes du fichier et leur signification | §4, §8 | aucune exigence propre (colonnes citées par EF-04, EF-05 et EF-07) | H-01 |
+| B-19 | Colonnes du fichier et leur signification | §4, §8 | aucune exigence propre (colonnes citées par EF-04, EF-05 et EF-07) | Q-18 ; H-01 |
 | B-20.1 | Priorité 1 : totaux des heures de génératrice et des litres pour un mois donné | §2, §4, §9 | rang 1 de EF-02, EF-04, EF-05 | H-06 |
 | B-20.2 | Priorité 2 : coût estimé du carburant pour ce mois | §2, §4, §9 | rang 2 de EF-06 | — |
 | B-20.3 | Priorité 3 : jour où la génératrice a le plus fonctionné | §2, §4, §9 | rang 3 de EF-07 | — |
