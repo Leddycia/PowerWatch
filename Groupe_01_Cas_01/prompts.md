@@ -571,7 +571,7 @@ Format de réponse : uniquement le fichier HTML complet, dans un seul bloc de co
 
 - **Proposition produite** : la réponse de ChatGPT (GPT-4o) à la délégation du Sprint 01 entourait le bloc HTML d'un texte (indication du membre de R4, transmise à R6 le 2026-10-18).
 - **Pourquoi c'était incorrect** : le prompt envoyé demandait « uniquement le fichier HTML complet, dans un seul bloc de code HTML […], sans aucun texte d'introduction ni de conclusion, sans explication » (§1.2, « Format de réponse »).
-- **Correction** : seul le code HTML a été repris, tel quel, dans `version_IA.html` (C-09) ; le texte autour n'a pas été utilisé. L'archive de la réponse brute ne conserve que ce code : le texte d'origine n'a pas été gardé, et son contenu n'est pas connu.
+- **Correction** : seul le code HTML a été repris, tel quel, dans `version_IA.html` (C-09) ; le texte autour n'a pas été utilisé. L'archive de la réponse brute ne conserve que ce code : le texte d'origine n'a pas été gardé, son contenu n'est pas connu, et il ne peut pas être retrouvé.
 - **Vérification** : `version_IA.html` est identique au code HTML de l'archive (`git diff --no-index --ignore-cr-at-eol` vide) ; la réponse complète non conservée est consignée comme écart de procédure (E-36).
 
 ---

@@ -491,3 +491,27 @@
 - **Ce qu'il a produit** : E-36 ; `prompts.md` §1.1 (note O-13) et §3 (E-36) ; E-34 précisé ; O-13 clos ; point 5 du complément pour Gervais mis à jour.
 - **Ce que l'humain a vérifié ou corrigé** : information du membre de R4, transmise par Leddycia.
 - **Candidat pour `prompts.md`** : non.
+
+### JP-37 : Réponse complète introuvable ; début du contre-audit de Gervais
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 20:01 (première heure lue après l'envoi)
+- **Prompt (texte exact)** :
+  > Bradley ne la retrouvera pas. Gervais va debuter
+- **Contexte** : réponse à la question de R6 : le membre de R4 peut-il retrouver la réponse complète de l'IA déléguée (E-36) ?
+- **Ce qu'il a produit** : E-36 clos (réponse introuvable, écart laissé) ; `prompts.md` §3 (E-36), K16 et ETAT §8 mis à jour ; point 5 du complément de la feuille de route de Gervais mis à jour et republié.
+- **Ce que l'humain a vérifié ou corrigé** : réponse du membre de R4, transmise par Leddycia ; Gervais commence le contre-audit.
+- **Candidat pour `prompts.md`** : non.
+
+### JP-38 : Document de soutenance préparé par Delly
+
+- **Relais / membre** : R6 (reprise) / Leddycia
+- **Outil et modèle** : Claude Code (application de bureau, Claude Opus 5.5)
+- **Date et heure** : 2026-10-18, 20:04 (première heure lue après l'envoi)
+- **Prompt (texte exact)** :
+  > Delly prepare egalement le doc pour la soutenance pour qu'on puisse presenter demain
+- **Contexte** : information donnée pendant le contre-audit de Gervais ; la soutenance a lieu le 2026-10-19. C-16 prévoit environ 15 min : une courte démonstration, puis des questions individuelles à tous les membres ; les consignes n'exigent pas de support écrit.
+- **Ce qu'il a produit** : ligne 20:04 et point ouvert dans ETAT §8 : document d'aide à la soutenance, hors livrable (rien de plus dans `Groupe_01_Cas_01/`, RG-12) ; références : fiche 06, « Mode coach » (questions à savoir traiter, démonstration d'environ 3 min) et valeurs de l'oracle (`AGENTS.md` §6). Aucun document produit par l'IA assistante.
+- **Ce que l'humain a vérifié ou corrigé** : à venir : relecture du document par l'équipe avant la soutenance.
+- **Candidat pour `prompts.md`** : non.

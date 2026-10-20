@@ -488,7 +488,7 @@
 - **Attendu** : une réponse limitée au fichier HTML dans un seul bloc de code, « sans aucun texte d'introduction ni de conclusion » (prompt envoyé, `prompts.md` §1.2) ; la réponse brute complète conservée par copier-coller intégral (fiche 03, tâche de délégation ; DoD de `version_IA.html`, `AGENTS.md` §12).
 - **Référence** : C-08, C-09, C-21, D-09, `AGENTS.md` §12, O-13
 - **Gravité** : mineur (aucun effet sur `version_IA.html`, identique au code HTML reçu ; la réponse complète, elle, n'est pas conservée)
-- **Décision** : rejeté (texte autour non repris dans `version_IA.html`) ; conservation de la réponse complète : non corrigée à ce stade
+- **Décision** : rejeté (texte autour non repris dans `version_IA.html`) ; conservation de la réponse complète : laissé (réponse introuvable)
 - **Raison** : C-09 demande la première sortie brute du prototype, c'est-à-dire le fichier HTML ; le texte autour n'en fait pas partie. Le texte d'origine n'a pas été gardé : il ne peut pas être reconstitué, et l'archive commitée avec `version_IA.html` n'est pas modifiée.
-- **Correction** : `prompts.md` §1.1 (note O-13) et §3 complétés ; E-34 précisé ; O-13 clos. Retrouver la réponse complète dans la conversation du membre de R4, pour l'ajouter dans un nouveau fichier de `travail/brut/` sans toucher à l'archive, reste à décider par l'équipe (ETAT §8, points ouverts).
+- **Correction** : `prompts.md` §1.1 (note O-13) et §3 complétés ; E-34 précisé ; O-13 clos. Le membre de R4 ne pourra pas retrouver la réponse complète (indiqué par Leddycia à 20:01, JP-37) : l'écart reste consigné, sans correction possible.
 - **Vérifié après correction** : oui, par l'IA assistante de la reprise (format demandé relu dans `prompts.md` §1.2, l. 511 ; archive relue : le texte reçu commence à `<!DOCTYPE html>` et finit à `</html>`)
